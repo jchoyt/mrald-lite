@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project name="MRALD documentation" default="docs" basedir=".">
+  <property file="build.properties" />
+
+<!-- these should be overwritten in build.properties for your own setup -->
+  <!-- docbook location: Everything taken relative to this for docbook stuff -->
+  <property name="docbookHome" value="/usr/home/docbook"/>
+
+  <property name="docbook.dtd.location" value="http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" />
+  <property name="build.dir" value="build" />
+  <property name="proxy-port" value="80" />
+  <!-- Stylesheet for monolithic HTML file -->
+  <property name="mono.stylesheet" value="${docbookHome}/html/docbook.xsl"/>
+  <!-- Stylesheet for chunked HTML files -->
+  <property name="chunk.stylesheet" value="${docbookHome}/html/chunk.xsl"/>
+
+  <target name="init">
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+
+
+  <target name="docs" depends="gen-mono-userguide">
+<!--     <mkdir dir="${build.dir}" />
+    <mkdir dir="${build.dir}/images/" />
+    <copy todir="${build.dir}/images/">
+      <fileset dir="images"/>
+    </copy>
+    <xslt style="${mono.stylesheet}" destdir="${build.dir}" excludes="build*" includes="**/*.xml">
+      <xmlcatalog>
+        <dtd publicId="-//OASIS//DTD DocBook XML V4.1.2//EN" location="${docbook.dtd.location}" />
+      </xmlcatalog>
+    </xslt> -->
+  </target>
+
+
+  <target name="gen-mono-userguide">
+    <antcall target="gen-mono-doc">
+      <param name="sub-dir" value="UserGuide"/>
+    </antcall>
+  </target>
+
+  <target name="gen-mono-doc" depends="init, set-proxy">
+    <property name="build" value="${build.dir}/${sub-dir}" />
+    <mkdir dir="${build}/images" />
+    <copy todir="${build}/images">
+      <fileset dir="${sub-dir}/images"/>
+    </copy>
+    <xslt style="${mono.stylesheet}" destdir="${build.dir}" excludes="build*" includes="**/*.xml">
+      <xmlcatalog>
+        <dtd publicId="-//OASIS//DTD DocBook XML V4.1.2//EN" location="${docbook.dtd.location}" />
+      </xmlcatalog>
+    </xslt>
+  </target>
+
+  <target name="set-proxy" if="proxy-host">
+    <setproxy proxyhost="${proxy-host}" proxyport="${proxy-port}"/>
+  </target>
+
+</project>
+
+<!-- :indentSize=2:lineSeparator=\n:tabSize=2: -->
+
+

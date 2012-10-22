@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+ <!--
+ * :mode=html:tabSize=2:indentSize=2:noTabs=true:
+ * :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=90:
+-->
+
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <title>
+    </title>
+  </head>
+  <body>
+  This document is meant to be a help in setting up a new MRALD installation. <br>
+  It provides a list of common (and some uncommon) databases and the format <br>
+  for their JDBC strings.  The format of the list is:<br><br>
+    Database
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; DBDRIVER string
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; DBSERVER string
+    <br>
+    <br>
+    Numbers given are port numbers and are the defaults as best I can tell. <br/>
+    Where shown, &lt;database&gt; is used to show the database name - the<br/>
+    JDBC term for this is "catalog".  You may have to change them depending<br/>
+    on the installation. MRALD has not been tested on all these, but at<br/>
+    least we now have strings for them.
+    <br>
+    <br>
+    Postgres
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; org.postgresql.Driver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:postgresql://&lt;host&gt;:5432/&lt;database&gt;
+    <br>
+    <br>
+    MySql
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; com.mysql.jdbc.Driver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:mysql://&lt;mysqlhost&gt;/&lt;database&gt;
+    <br>
+    <br>
+    Oracle
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; oracle.jdbc.driver.OracleDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:oracle:thin:@&lt;server&gt;:1521:&lt;sid&gt; (for thin)
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:oracle:oci8:@&lt;database&gt; (for OCI)
+    <br>
+    <br>
+    Informix
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; com.informix.jdbc.IfxDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:informix-sqli://&lt;host&gt;:&lt;port&gt;:informixserver=&lt;ifx_server&gt;
+    <br>
+    <br>
+    DB2
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; COM.ibm.db2.jdbc.app.DB2Driver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:db2://&lt;host&gt;/&lt;database&gt;
+    <br>
+    <br>
+    Sybase
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; com.sybase.jdbc2.jdbc.SybDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:sybase:Tds:&lt;host&gt;:2638/&lt;database&gt; (database is optional?)
+    <br>
+    <br>
+    SQLServer
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; com.microsoft.jdbc.sqlserver.SQLServerDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:microsoft:sqlserver://localhost:1433
+    <br>
+    <br>
+    An as alternative to the vendor drivers for SQLServer and Sybase, you can use the jTDS drvier from <a href="http://jtds.sourceforge.net/index.html" target="_blank">here.</a>
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; net.sourceforge.jtds.jdbc.Driver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp;  jdbc:jtds:&lt;server_type&gt;://&lt;server&gt;[:&lt;port&gt;] [/&lt;database&gt;] 
+    <br/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   (server type is 'sqlserver' or 'sybase' :: port default is 1433 for SQL Server and 7100 for Sybase :: database is optional)
+    <br>
+    <br>
+
+    net.sourceforge.jtds.jdbc.Driver
+    HypersonicSQL
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; org.hsqldb.jdbcDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:hsqldb:hsqls://&lt;host&gt;:9001/&lt;database&gt;
+    <br>
+    <br>
+    Mckoi
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; com.mckoi.JDBCDriver
+    <br>
+    &nbsp; &nbsp; &nbsp; &nbsp; jdbc:mckoi://&lt;host&gt;/&lt;database&gt;
+<!-- Database
+        DBDRIVER string
+        DBSERVER string
+
+Numbers given are port numbers and are the defaults as best I can tell.  You
+may have to change them depending on the installation.  MRALD has not been
+tested on all these, but at least we now have strings for them.
+
+Postgres
+        org.postgresql.Driver
+        jdbc:postgresql://<host>:5432/<database>
+
+MySql
+        com.mysql.jdbc.Driver
+        jdbc:mysql://<mysqlhost>/<database>
+
+Oracle
+        oracle.jdbc.driver.OracleDriver
+        jdbc:oracle:thin:@<server>:1521:<sid> (for thin)
+        jdbc:oracle:oci8:@<database> (for OCI)
+
+Informix
+        com.informix.jdbc.IfxDriver
+        jdbc:informix-sqli://<host>:<port>:informixserver=<ifx_server>
+
+DB2
+        COM.ibm.db2.jdbc.app.DB2Driver
+        jdbc:db2://<host>/<database>
+
+Sybase
+        com.sybase.jdbc2.jdbc.SybDriver
+        jdbc:sybase:Tds:<host>:2638/<database> (database is optional?)
+
+SQLServer
+        com.microsoft.jdbc.sqlserver.SQLServerDriver
+        jdbc:microsoft:sqlserver://localhost:1433
+
+HypersonicSQL
+        org.hsqldb.jdbcDriver
+        jdbc:hsqldb:hsqls://<host>:9001/<database>
+
+Mckoi
+        com.mckoi.JDBCDriver
+        jdbc:mckoi://<host>/<database> -->
+  </body>
+</html>
+
+

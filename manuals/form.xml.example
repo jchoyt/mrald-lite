@@ -1,0 +1,184 @@
+<![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<MraldForm>
+  <schema>CRS_PROD</schema>
+  <title>OOOI Data Retrieval Form</title>
+  <formElements>
+<stat useStats="yes" />
+    <orFilter>
+      <table1>OOOICOMMON</table1>
+      <column1>ARRAIRPORT</column1>
+      <operator1>=</operator1>
+      <table2>OOOICOMMON</table2>
+      <column2>DEPTAIRPORT</column2>
+      <operator2>=</operator2>
+      <label>Arrival OR Departure Airport</label>
+      <value>DFW</value>
+      <value>JFK</value>
+      <value>MIA</value>
+      <value>PHL</value>
+      <value>PIT</value>
+    </orFilter>
+    <time>
+      <default>02/01/2001</default>
+      <endBy>02/01/2001</endBy>
+    </time>
+    <field output='no' checked='no' filter='no' stats='no' groupby='no' sort='no'>
+      <column>OOOIDATAID</column>
+      <table>OOOIDERIVEDTIMEGMT</table>
+      <label>OOOIDATAID</label>
+      <type>Numeric</type>
+      <order>12</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>OUTTIME</column>
+      <table>OOOIDERIVEDTIMEGMT</table>
+      <label>Out Time</label>
+      <type>Date</type>
+      <format>MM/dd/yyyy hh:mm:ss a</format>
+      <order>13</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>OFFTIME</column>
+      <table>OOOIDERIVEDTIMEGMT</table>
+      <label>Off Time</label>
+      <type>Date</type>
+      <format>MM/dd/yyyy hh:mm:ss a</format>
+      <order>14</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>ONTIME</column>
+      <table>OOOIDERIVEDTIMEGMT</table>
+      <label>On Time</label>
+      <type>Date</type>
+      <format>MM/dd/yyyy hh:mm:ss a</format>
+      <order>15</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>INTIME</column>
+      <table>OOOIDERIVEDTIMEGMT</table>
+      <label>In Time</label>
+      <type>Date</type>
+      <format>MM/dd/yyyy hh:mm:ss a</format>
+      <order>16</order>
+    </field>
+    <field output='no' checked='no' filter='no' stats='no' groupby='no' sort='no'>
+      <column>OOOIDATAID</column>
+      <table>OOOICOMMON</table>
+      <label>OOOIDATAID</label>
+      <type>Numeric</type>
+      <order>1</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>CARRIER</column>
+      <table>OOOICOMMON</table>
+      <label>Carrier</label>
+      <type>String</type>
+      <order>2</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>FLIGHTNO</column>
+      <table>OOOICOMMON</table>
+      <label>Flight Number</label>
+      <type>String</type>
+      <order>3</order>
+    </field>
+    <field output='no' checked='no' filter='no' stats='no' groupby='no' sort='no'>
+      <column>TAILNO</column>
+      <table>OOOICOMMON</table>
+      <label>TAILNO</label>
+      <type>String</type>
+      <order>4</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>DEPTAIRPORT</column>
+      <table>OOOICOMMON</table>
+      <label>Departure Airport</label>
+      <type>String</type>
+      <order>5</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>ARRAIRPORT</column>
+      <table>OOOICOMMON</table>
+      <label>Arrival Airport</label>
+      <type>String</type>
+      <order>6</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>GMTDate</column>
+      <table>OOOICOMMON</table>
+      <label>GMT Date</label>
+      <type>Date</type>
+      <format>MM/dd/yyyy hh:mm:ss a</format>
+      <order>7</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>TAXIOUTTIME</column>
+      <table>OOOICOMMON</table>
+      <label>Taxi Out Time</label>
+      <type>Numeric</type>
+      <order>8</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>TAXIINTIME</column>
+      <table>OOOICOMMON</table>
+      <label>Taxi In Time</label>
+      <type>Numeric</type>
+      <order>9</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>AIRBORNETIME</column>
+      <table>OOOICOMMON</table>
+      <label>Airborne Time</label>
+      <type>Numeric</type>
+      <order>10</order>
+    </field>
+    <field output='yes' checked='yes' filter='yes' stats='yes' groupby='yes' sort='yes'>
+      <column>BLOCKTIME</column>
+      <table>OOOICOMMON</table>
+      <label>Block Time</label>
+      <type>Numeric</type>
+      <order>11</order>
+    </field>
+    <link>
+      <primarytable>OOOICOMMON</primarytable>
+      <primaryfield>OOOIDATAID</primaryfield>
+      <secondarytable>OOOIDERIVEDTIMEGMT</secondarytable>
+      <secondaryfield>OOOIDATAID</secondaryfield>
+    </link>
+    <filter>
+      <operator>=</operator>
+      <table>OOOICOMMON</table>
+      <column>DEPTAIRPORT</column>
+      <value>DFW</value>
+      <value>JFK</value>
+      <value>MIA</value>
+      <value>PHL</value>
+      <value>PIT</value>
+      <label>Departure Airport</label>
+    </filter>
+    <filter>
+      <operator>=</operator>
+      <table>OOOICOMMON</table>
+      <column>ARRAIRPORT</column>
+      <value>DFW</value>
+      <value>JFK</value>
+      <value>MIA</value>
+      <value>PHL</value>
+      <value>PIT</value>
+      <label>Arrival Airport</label>
+    </filter>
+  </formElements>
+  <stat>
+    <function>Count</function>
+    <function>Max</function>
+    <function>Min</function>
+    <function>Avg</function>
+    <function>Stddev</function>
+    <function>Sum</function>
+    <function>Variance</function>
+    <frequency>Hour</frequency>
+    <frequency>Day</frequency>
+  </stat>
+</MraldForm>
+]]>

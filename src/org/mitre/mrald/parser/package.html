@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org"><!--
+              @(#)package.html1.60 98/01/27
+              This is the copyright work of The MITRE Corporation, and was produced for
+              the U. S. Government under Contract Number DTFA01-01-C-00001, and is subject
+              to Federal Aviation Administration Acquisition Management System Clause 3.5-13
+              Rights in Data ? General, (October 1996), Alt. III and IV.  No other use other
+              than that granted to the U. S. Government, or to those acting on behalf of the
+              U. S. Government, under that Clause is authorized without the express written
+              permission of The MITRE Corporation. For further information, please contact
+              The MITRE Corporation, Technology Transfer Office
+              7515 Colshire Drive., McLean, VA  22102
+              (703) 883-6000.
+            -->
+    <title>
+    </title>
+  </head>
+  <body bgcolor="white">
+    Provides the base class and ParserElement base class to do initial parsing on the MsgObject.<br>
+    <br>
+     ParserElement is a Java class that implements a few methods
+    <ul>
+      <li>
+        preProcess()
+      </li>
+      <li>
+        process()
+      </li>
+      <li>
+        postProcess()
+      </li>
+      <li>
+        a few others
+      </li>
+    </ul>
+    <br>
+     Also contains a Hashtable to store name/value pairs (actually, it has a MsgObject and uses the enhanced hashtable found in there). <br>
+     Key method is process() - it understands the grammar and how to parse it into name/value pairs and stores them in the Hashtable <br>
+    <blockquote>
+      Table:OAGCOMMON~Field:FLIGHTNO~Order:1 becomes:<br>
+       Table = OAGCOMMON<br>
+       Field = FLIGHTNO<br>
+       Order = 1
+    </blockquote>
+    <br>
+     Pre- and Post- process allow additional changes to be made for special cases <br>
+     Process can be overwritten to do other special processing as well <br>
+     <br>
+     The MraldParser uses the list of ParserElements is in parser.props file to determine which name/value pairs in the MsgObject to process.
+  </body>
+</html>
+
+

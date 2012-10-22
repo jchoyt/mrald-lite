@@ -1,0 +1,46 @@
+MRALD is a web-based, automated data delivery system that works with an existing
+database. It was created for situations where the need is an efficient, flexible,
+pre-built data delivery system with a minimum of effort. MRALD gives any user most
+of the power of SQL, even if they lack database experience, by using a combination
+of pre-built forms, an integrated form builder, and an advanced query system. It is
+easy enough for anyone to use, yet it enables the power user to not only do what
+they do best, but to share that knowledge throughout the organization
+
+This release contains an installation document, a WAR file for new deployments, a ZIP file of the complete source
+code, and a zip file with the javadoc apis.
+
+Requires:
+    A database with a reasonably complete JDBC driver
+    Java 5.0
+    Tomcat 5.5 (any Servlet 2.4/JSP 2.0 or later compliant Servlet engine should work)
+
+
+Known issues
+    *   SQL Server does not use standard function names for standard deviation and
+        variance.  Those functions will not work on SQL Server without modifications
+        to the formbuilding xsl files.
+    *   SQL Server does not allow a DISTINCT query on text, ntext, or image data types.
+        The same is true for Oracle and CLOB fields.  By default, the simple and advance
+        forms do a "select distinct".  This can be changed in the xsl files.
+    *   The to_date function, used in many of our date field interactions, doesn't work with
+        SQL Server.
+    *   JDBC specification doesn't have a type for SQL Server's 'money' data type, so
+        it becomes a problem when trying to filter on it.  Retrieval is fine.  Problem occurs
+        when trying to do an update as well.
+    *   The XML output does not escape characters.   The resulting file is fine, but some
+        renderers will have problems if these escape characters are in the data.  Also the
+        query does not get shown on XML output.
+    *   Using : and ~ in filter values causes un-predictable results.  ~ will cause an "OR"
+        between the values separated by the ~.  We call that a feature.  : will cause the loss
+        of the value all together.  This is not a feature.
+    *   Occassionally on the first startup, the demo database will not be properly read.  Re-
+        starting Tomcat will resolve this issue.  Again - it only happens when the platform is
+        first deployed.
+
+If these are severe issues for you, please contact us.  At the moment they are not high on the list
+of things to fix.
+
+Any questions, comments, concerns?
+mrald-dev-list@lists.mitre.org
+jchoyt@mitre.org
+ghamilton@mitre.org

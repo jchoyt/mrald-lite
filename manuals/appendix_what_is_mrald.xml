@@ -1,0 +1,41 @@
+<!--
+ :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->
+<!--
+<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+ -->
+<appendix>
+  <title>What is MRALD?</title>
+
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/logo.jpg" format="JPG" />
+    </imageobject>
+  </mediaobject>
+
+  <section>
+    <title>An Acronym</title>
+
+    <para>MRALD is an acronym for MITRE Resource for Accessing Loaded Data. It's pronounced like emerald, hence the little gems floating around.</para>
+  </section>
+
+  <section>
+    <title>Software</title>
+
+    <para>MRALD is a web-based automated data delivery system that works with your existing database. This technology is domain and platform independent, and ready to deliver data, based on users' needs and selections immediately after installation.</para>
+
+    <para>MRALD is for users that need an efficient, flexible, pre-built data delivery system. By using a combination of pre-built forms, an integrated form builder, and an advanced query system, MRALD gives any user most of the power of SQL, even if they lack database experience. It is easy enough for anyone to use, yet it enables the power user to not only do what they do best, but to share that knowledge throughout the organization.</para>
+
+    <para>This system is flexible enough to easily accommodate schema changes, new data sets, and new requirements. It is designed to be extended and customized to fit your specific needs and fit into your existing infrastructure.</para>
+  </section>
+
+  <section>
+    <title>NOT a project</title>
+
+    <para>MRALD has no funding of it's own. It's creation and advancement have been accomplished during the ongoing business of other projects within MITRE. Any new features you might want added will have to be paid for by your project. In addition, if you use MRALD on your project, we'd appreciate a bit of staffing to help with ongoing enhancement, training, documentation, and maintenance.</para>
+  </section>
+</appendix>
+
+

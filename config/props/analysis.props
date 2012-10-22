@@ -1,0 +1,3 @@
+MITRE_FD=org.mitre.mrald.analysis.MitreFD
+WEKA_J48=org.mitre.mrald.analysis.WekaJ48
+WEKA_ID3=org.mitre.mrald.analysis.WekaID3

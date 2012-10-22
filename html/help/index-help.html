@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-tramsotopma;.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../mrald.css" type="text/css" />
+    <title>Help for main page</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 class="headerTitle">Help for main page</h1>
+    </div>
+    <div class="subHeader">
+    <span class="doNotDisplay">Navigation:</span>
+    MRALD - Finding the gems in your data |
+    <a href="../index.jsp">Home</a>
+    |
+    <a href="http://mitre.org">MITRE</a> | <a href="mailto:mrald-dev-list@lists.mitre.org">Contact Developers</a>
+    </div>
+    <center>
+      <div class="floating-text" style="text-align:left;">
+      <a name="private">
+      </a>
+      <h1 style="border-top: none; padding-top: 0;">Private information</h1>
+      All the user specific information is here. A list of
+      <a href="#personal">Personalized Forms</a>
+      , along with facilities to create and manage them, and a link to list the history of all queries the user has submitted to the database (since the last log file rotation).
+      <a name="personal">
+      </a>
+      <h1>Personalized Forms</h1>
+      This system should cater to db novices, intermediate users, and power users. Normal forms work for novices, and DirectQuery works for the power user. What about the average user with special needs? Personalized forms allow people with passing db knowledge, decent domain knowledge, and a general understanding of how the standard forms work to build new forms from any group of available tables The user has a very low level control of what goes on the form so it can be tailored for a very specific use. The resulting form is then shareable with any number of users, or can be adopted as a standard form. There is also an integrated editor so minor changes can be made through the web (though shared froms would have to be re-shared).
+      <a name="forms">
+      </a>
+      <h1>Pre-built Forms</h1>
+      This is the location for all the pre-built forms for your users. The forms in this location should aim to satisfy most of the needs of an average user. People with special needs can use the Formbuilder, located in the
+      <a href="#personal">Personalized Forms</a>
+      section, and power users who want to write their own SQL can use the DirectQuery links in the
+      <a href="#special">Special Purpose Forms</a>
+      section.
+      <a name="special">
+      </a>
+      <h1>Special Purpose Forms</h1>
+      This is the location for special purpose forms.  Initially, there is only a link to DirectQuery, where a more advanced user can write their own queries, and a form to upload a text file with many pre-written queries in it - they will all be processed together.
+      <a name="documentation">
+      </a>
+      <h1>Documentation</h1>
+      Licensing information for MRALD and the included libraries, a users' guide, and acknowledgements.
+      <a name="news">
+      </a>
+      <h1>News</h1>
+      A simple news area where the administrator can announce major new data sets, system upgrade, or other local information.  System administrators have facilities for updating and archiving news items.  Or it can be modified by directly modifying the news.xml file.
+      <a name="database"></a>
+      <h1 style="border-top: none; padding-top: 0;">Database review and visualization</h1>
+      Using a heirarchical structure, users can click to review the database structure one table or field at a time.  Also provided is a database visualization tool that shows the entire database structure, including the table relationships, in a graphical, manipulatable form.  The visualization feature requires the Java 5.0 browser plugin available from <a href="http://java.sun.com">Sun</a> when you install the Jave Runtime Environment.
+      <a name="keyword">
+      </a>
+      <h1 style="border-top: none; padding-top: 0;">Keyword Search</h1>
+      The keyword search features a search throughout the entire database for a single word or phrase.  The search is case sensitive and checkes only the text fields in the database.  The result is a list of all tables where the word appears and all the rows in the table that contain the word.  <br/><br/>Care must be taken as this can take a long time on large datasets and may return an unweildly amount of information.
+      <a name="admin">
+      </a>
+      <h1>Administration</h1>
+      Certain users can be granted administrative privledges. The following administrative functions are available.
+      <ul>
+        <li>Update any of the properties files that govern the behavior of MRALD.</li>
+        <li>Add a new data source and reload database metadata.</li>
+        <li>Automatic publishing of forms for all users.</li>
+        <li>Create forms for inserting and updating/deleting data.</li>
+        <li>Modifying MRALD configuration files. The changes take effect immediately.</li>
+        <li>View log files. This link redirects the user to the log file.</li>
+<!--         <li>Rotate logs. This renames the current log files by prepending the current date. This is useful as the main log file gets quite large.</li>
+         -->
+        <li>Manage err files. When an error occurs, a .err file is created which allows administrators and developers to gain insight into the problem and provide fixes quickly. This functionality allows a user to view all the .err files currently on the system and delete files as desired.</li>
+        <li>People manager. This allows an administrator to change information on the users registered with the system. Perhaps the most useful change is the ability to set a user to administrator status.</li>
+        <li>Edit news. An online way to add, edit, and archive news items.</li>
+      </ul></div>
+    </center>
+  </body>
+</html>
+<!--
+ * :mode=html:tabSize=2:indentSize=2:noTabs=true:
+ * :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->

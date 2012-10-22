@@ -1,0 +1,626 @@
+<graph directed="0">  <node id="algorithm" label="algorithm" weight="algorithm">
+  <att name="column1" value="algorithm_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="algorithm_id"/>
+  <att name="column2" value="name"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="version"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="description"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="pkey1" value="algorithm_id"/>
+  </node>
+  <node id="attribute" label="attribute" weight="attribute">
+  <att name="column1" value="attribute_id"/>
+  <att name="type1" value="INTEGER"/>
+  <att name="fkey1" value="attribute_id"/>
+  <att name="column2" value="entity_id"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="fkey2" value="entity_id"/>
+  <att name="column3" value="name"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="units"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="description"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="pkey1" value="attribute_id"/>
+  </node>
+  <node id="country" label="country" weight="country">
+  <att name="column1" value="countrycd"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="name"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="pkey1" value="countrycd"/>
+  </node>
+  <node id="derivation_history" label="derivation_history" weight="derivation_history">
+  <att name="column1" value="volume_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="volume_id"/>
+  <att name="column2" value="source_volume_id"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="fkey2" value="source_volume_id"/>
+  <att name="pkey1" value="volume_id"/>
+  <att name="pkey2" value="source_volume_id"/>
+  </node>
+  <node id="dti_scan_event" label="dti_scan_event" weight="dti_scan_event">
+  <att name="column1" value="scan_id"/>
+  <att name="type1" value="INTEGER"/>
+  <att name="fkey1" value="scan_id"/>
+  <att name="column2" value="repetitions"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="parallel_imaging"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="sense_factor"/>
+  <att name="type4" value="DOUBLE "/>
+  <att name="column5" value="dynamic_avg"/>
+  <att name="type5" value="INTEGER"/>
+  <att name="column6" value="gradient_name"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="fkey2" value="gradient_name"/>
+  <att name="pkey1" value="scan_id"/>
+  </node>
+  <node id="dti_scan_protocol" label="dti_scan_protocol" weight="dti_scan_protocol">
+  <att name="column1" value="scan_protocol_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="scan_protocol_name"/>
+  <att name="column2" value="dynamic_avg"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="repetitions"/>
+  <att name="type3" value="INTEGER"/>
+  <att name="column4" value="parallel_imaging"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="gradient_name"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="fkey2" value="gradient_name"/>
+  <att name="column6" value="start_date"/>
+  <att name="type6" value="DATE "/>
+  <att name="column7" value="end_date"/>
+  <att name="type7" value="DATE "/>
+  <att name="pkey1" value="scan_protocol_name"/>
+  </node>
+  <node id="entity" label="entity" weight="entity">
+  <att name="column1" value="entity_id"/>
+  <att name="type1" value="INTEGER"/>
+  <att name="fkey1" value="entity_id"/>
+  <att name="column2" value="name"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="description"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="type"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="fkey2" value="type"/>
+  <att name="pkey1" value="entity_id"/>
+  </node>
+  <node id="gradient" label="gradient" weight="gradient">
+  <att name="column1" value="gradient_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="gradient_name"/>
+  <att name="column2" value="length"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="separation"/>
+  <att name="type3" value="INTEGER"/>
+  <att name="pkey1" value="gradient_name"/>
+  </node>
+  <node id="gradient_bvalue" label="gradient_bvalue" weight="gradient_bvalue">
+  <att name="column1" value="gradient_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="gradient_name"/>
+  <att name="column2" value="bvalue"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="strength"/>
+  <att name="type3" value="DOUBLE "/>
+  <att name="pkey1" value="gradient_name"/>
+  <att name="pkey2" value="bvalue"/>
+  </node>
+  <node id="gradient_orientation" label="gradient_orientation" weight="gradient_orientation">
+  <att name="column1" value="gradient_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="gradient_name"/>
+  <att name="column2" value="bvalue"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="orientation_no"/>
+  <att name="type3" value="INTEGER"/>
+  <att name="column4" value="x"/>
+  <att name="type4" value="DOUBLE "/>
+  <att name="column5" value="y"/>
+  <att name="type5" value="DOUBLE "/>
+  <att name="column6" value="z"/>
+  <att name="type6" value="DOUBLE "/>
+  <att name="pkey1" value="gradient_name"/>
+  <att name="pkey2" value="bvalue"/>
+  <att name="pkey3" value="orientation_no"/>
+  </node>
+  <node id="graphs" label="graphs" weight="graphs">
+  <att name="column1" value="graphid"/>
+  <att name="type1" value="INTEGER"/>
+  <att name="column2" value="userid"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="pkey1" value="graphid"/>
+  <att name="pkey2" value="userid"/>
+  </node>
+  <node id="images" label="images" weight="images">
+  <att name="column1" value="volume_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="volume_id"/>
+  <att name="column2" value="filename"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="fkey2" value="filename"/>
+  <att name="pkey1" value="filename"/>
+  </node>
+  <node id="images_label" label="images_label" weight="images_label">
+  <att name="column1" value="filename"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="filename"/>
+  <att name="column2" value="owner"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="label"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="pkey1" value="filename"/>
+  <att name="pkey2" value="label"/>
+  </node>
+  <node id="label_sql" label="label_sql" weight="label_sql">
+  <att name="column1" value="table_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="sql_clause"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="pkey1" value="table_name"/>
+  </node>
+  <node id="latticegroup" label="latticegroup" weight="latticegroup">
+  <att name="column1" value="latticegroupid"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="latticegroupid"/>
+  <att name="column2" value="latticegroupname"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="latticegroupdesc"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="pkey1" value="latticegroupid"/>
+  </node>
+  <node id="message" label="message" weight="message">
+  <att name="column1" value="id"/>
+  <att name="type1" value="INTEGER"/>
+  <att name="column2" value="time_sent"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="sender"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="recipient"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="title"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="column6" value="body"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="column7" value="status"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="pkey1" value="id"/>
+  </node>
+  <node id="orientation" label="orientation" weight="orientation">
+  <att name="column1" value="orientationid"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="orientation"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="fkey1" value="orientation"/>
+  <att name="pkey1" value="orientation"/>
+  </node>
+  <node id="people" label="people" weight="people">
+  <att name="column1" value="email"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="peopletypeid"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="column3" value="password"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="latticegroupid"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="fkey1" value="latticegroupid"/>
+  <att name="column5" value="firstname"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="column6" value="lastname"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="column7" value="company"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="column8" value="department"/>
+  <att name="type8" value="VARCHAR"/>
+  <att name="column9" value="address"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="city"/>
+  <att name="type10" value="VARCHAR"/>
+  <att name="column11" value="state"/>
+  <att name="type11" value="VARCHAR"/>
+  <att name="column12" value="zip"/>
+  <att name="type12" value="VARCHAR"/>
+  <att name="column13" value="country"/>
+  <att name="type13" value="VARCHAR"/>
+  <att name="column14" value="pi"/>
+  <att name="type14" value="VARCHAR"/>
+  <att name="column15" value="comments"/>
+  <att name="type15" value="VARCHAR"/>
+  <att name="column16" value="validationcode"/>
+  <att name="type16" value="VARCHAR"/>
+  <att name="column17" value="validated"/>
+  <att name="type17" value="VARCHAR"/>
+  <att name="pkey1" value="email"/>
+  </node>
+  <node id="project" label="project" weight="project">
+  <att name="column1" value="grant_no"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="grant_no"/>
+  <att name="column2" value="grant_name"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="research_title"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="research_desc"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="funding_agency"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="column6" value="start_date"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="column7" value="end_date"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="column8" value="current_budget"/>
+  <att name="type8" value="VARCHAR"/>
+  <att name="column9" value="related_people"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="pi_email"/>
+  <att name="type10" value="VARCHAR"/>
+  <att name="pkey1" value="grant_no"/>
+  </node>
+  <node id="quality" label="quality" weight="quality">
+  <att name="column1" value="volume_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="volume_id"/>
+  <att name="column2" value="quality_attribute1"/>
+  <att name="type2" value="DOUBLE "/>
+  <att name="column3" value="quality_attribute2"/>
+  <att name="type3" value="DOUBLE "/>
+  <att name="pkey1" value="volume_id"/>
+  </node>
+  <node id="scan_event" label="scan_event" weight="scan_event">
+  <att name="column1" value="sequence"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="scan_id"/>
+  <att name="type2" value="INTEGER"/>
+  <att name="fkey1" value="scan_id"/>
+  <att name="column3" value="scanner_id"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="fkey2" value="scanner_id"/>
+  <att name="column4" value="subject_id"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="fkey3" value="subject_id"/>
+  <att name="column5" value="flip_angle"/>
+  <att name="type5" value="DOUBLE "/>
+  <att name="column6" value="excitations"/>
+  <att name="type6" value="INTEGER"/>
+  <att name="column7" value="slice_thickness"/>
+  <att name="type7" value="DOUBLE "/>
+  <att name="column8" value="scan_date"/>
+  <att name="type8" value="DATE "/>
+  <att name="column9" value="software_version"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="grant_no"/>
+  <att name="type10" value="VARCHAR"/>
+  <att name="fkey4" value="grant_no"/>
+  <att name="column11" value="modality"/>
+  <att name="type11" value="VARCHAR"/>
+  <att name="column12" value="tr"/>
+  <att name="type12" value="DOUBLE "/>
+  <att name="column13" value="te"/>
+  <att name="type13" value="DOUBLE "/>
+  <att name="column14" value="subject_age"/>
+  <att name="type14" value="VARCHAR"/>
+  <att name="column15" value="freq_encode_step_x"/>
+  <att name="type15" value="DOUBLE "/>
+  <att name="column16" value="freq_encode_step_y"/>
+  <att name="type16" value="DOUBLE "/>
+  <att name="column17" value="freq_encode_step_z"/>
+  <att name="type17" value="DOUBLE "/>
+  <att name="pkey1" value="scan_id"/>
+  </node>
+  <node id="scan_protocol" label="scan_protocol" weight="scan_protocol">
+  <att name="column1" value="scan_protocol_name"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="scan_protocol_name"/>
+  <att name="column2" value="sequence"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="scanner_id"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="fkey2" value="scanner_id"/>
+  <att name="column4" value="freq_encode_step_x"/>
+  <att name="type4" value="DOUBLE "/>
+  <att name="column5" value="freq_encode_step_y"/>
+  <att name="type5" value="DOUBLE "/>
+  <att name="column6" value="freq_encode_step_z"/>
+  <att name="type6" value="DOUBLE "/>
+  <att name="column7" value="xorientation"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="column8" value="yorientation"/>
+  <att name="type8" value="VARCHAR"/>
+  <att name="column9" value="zorientation"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="xfov"/>
+  <att name="type10" value="DOUBLE "/>
+  <att name="column11" value="xresolution"/>
+  <att name="type11" value="DOUBLE "/>
+  <att name="column12" value="xdimension"/>
+  <att name="type12" value="INTEGER"/>
+  <att name="column13" value="yfov"/>
+  <att name="type13" value="DOUBLE "/>
+  <att name="column14" value="yresolution"/>
+  <att name="type14" value="DOUBLE "/>
+  <att name="column15" value="ydimension"/>
+  <att name="type15" value="INTEGER"/>
+  <att name="column16" value="zfov"/>
+  <att name="type16" value="DOUBLE "/>
+  <att name="column17" value="zresolution"/>
+  <att name="type17" value="DOUBLE "/>
+  <att name="column18" value="zdimension"/>
+  <att name="type18" value="INTEGER"/>
+  <att name="column19" value="subject_id"/>
+  <att name="type19" value="VARCHAR"/>
+  <att name="fkey3" value="subject_id"/>
+  <att name="column20" value="flip_angle"/>
+  <att name="type20" value="DOUBLE "/>
+  <att name="column21" value="excitations"/>
+  <att name="type21" value="INTEGER"/>
+  <att name="column22" value="slice_thickness"/>
+  <att name="type22" value="DOUBLE "/>
+  <att name="column23" value="software_version"/>
+  <att name="type23" value="VARCHAR"/>
+  <att name="column24" value="grant_no"/>
+  <att name="type24" value="VARCHAR"/>
+  <att name="fkey4" value="grant_no"/>
+  <att name="column25" value="modality"/>
+  <att name="type25" value="VARCHAR"/>
+  <att name="column26" value="tr"/>
+  <att name="type26" value="DOUBLE "/>
+  <att name="column27" value="te"/>
+  <att name="type27" value="DOUBLE "/>
+  <att name="column28" value="start_date"/>
+  <att name="type28" value="DATE "/>
+  <att name="column29" value="end_date"/>
+  <att name="type29" value="DATE "/>
+  <att name="column30" value="type"/>
+  <att name="type30" value="VARCHAR"/>
+  <att name="column31" value="numerical_format"/>
+  <att name="type31" value="VARCHAR"/>
+  <att name="pkey1" value="scan_protocol_name"/>
+  </node>
+  <node id="scanner" label="scanner" weight="scanner">
+  <att name="column1" value="scanner_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="scanner_id"/>
+  <att name="column2" value="manufacturer"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="model"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="column4" value="manufacture_date"/>
+  <att name="type4" value="DATE "/>
+  <att name="column5" value="field_strength"/>
+  <att name="type5" value="DOUBLE "/>
+  <att name="pkey1" value="scanner_id"/>
+  </node>
+  <node id="subject" label="subject" weight="subject">
+  <att name="column1" value="subject_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="subject_id"/>
+  <att name="column2" value="initial_exam"/>
+  <att name="type2" value="DATE "/>
+  <att name="column3" value="birthdate"/>
+  <att name="type3" value="DATE "/>
+  <att name="column4" value="nation_of_residence"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="gender"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="column6" value="race"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="column7" value="primary_language"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="column8" value="second_language"/>
+  <att name="type8" value="VARCHAR"/>
+  <att name="column9" value="third_language"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="fourth_language"/>
+  <att name="type10" value="VARCHAR"/>
+  <att name="column11" value="marital_status"/>
+  <att name="type11" value="VARCHAR"/>
+  <att name="column12" value="education"/>
+  <att name="type12" value="NUMERIC"/>
+  <att name="column13" value="handedness"/>
+  <att name="type13" value="VARCHAR"/>
+  <att name="column14" value="height"/>
+  <att name="type14" value="NUMERIC"/>
+  <att name="column15" value="weight"/>
+  <att name="type15" value="NUMERIC"/>
+  <att name="pkey1" value="subject_id"/>
+  </node>
+  <node id="subject_label" label="subject_label" weight="subject_label">
+  <att name="column1" value="subject_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="subject_id"/>
+  <att name="column2" value="owner"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="label"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="pkey1" value="subject_id"/>
+  <att name="pkey2" value="label"/>
+  </node>
+  <node id="subject_values" label="subject_values" weight="subject_values">
+  <att name="column1" value="date"/>
+  <att name="type1" value="DATE "/>
+  <att name="column2" value="value"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="attribute_id"/>
+  <att name="type3" value="INTEGER"/>
+  <att name="fkey1" value="attribute_id"/>
+  <att name="column4" value="subject_id"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="fkey2" value="subject_id"/>
+  <att name="pkey1" value="date"/>
+  <att name="pkey2" value="attribute_id"/>
+  <att name="pkey3" value="subject_id"/>
+  </node>
+  <node id="type" label="type" weight="type">
+  <att name="column1" value="type"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="type"/>
+  <att name="column2" value="description"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="pkey1" value="type"/>
+  </node>
+  <node id="volume" label="volume" weight="volume">
+  <att name="column1" value="volume_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="volume_id"/>
+  <att name="column2" value="type"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="algorithm_id"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="fkey2" value="algorithm_id"/>
+  <att name="column4" value="numerical_format"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="xfov"/>
+  <att name="type5" value="DOUBLE "/>
+  <att name="column6" value="xdimension"/>
+  <att name="type6" value="INTEGER"/>
+  <att name="column7" value="xstep"/>
+  <att name="type7" value="DOUBLE "/>
+  <att name="column8" value="xstart"/>
+  <att name="type8" value="DOUBLE "/>
+  <att name="column9" value="xorientation"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="fkey3" value="xorientation"/>
+  <att name="column10" value="xresolution"/>
+  <att name="type10" value="DOUBLE "/>
+  <att name="column11" value="yfov"/>
+  <att name="type11" value="DOUBLE "/>
+  <att name="column12" value="ydimension"/>
+  <att name="type12" value="INTEGER"/>
+  <att name="column13" value="ystep"/>
+  <att name="type13" value="DOUBLE "/>
+  <att name="column14" value="ystart"/>
+  <att name="type14" value="DOUBLE "/>
+  <att name="column15" value="yorientation"/>
+  <att name="type15" value="VARCHAR"/>
+  <att name="fkey4" value="yorientation"/>
+  <att name="column16" value="yresolution"/>
+  <att name="type16" value="DOUBLE "/>
+  <att name="column17" value="zfov"/>
+  <att name="type17" value="DOUBLE "/>
+  <att name="column18" value="zdimension"/>
+  <att name="type18" value="INTEGER"/>
+  <att name="column19" value="zstep"/>
+  <att name="type19" value="DOUBLE "/>
+  <att name="column20" value="zstart"/>
+  <att name="type20" value="DOUBLE "/>
+  <att name="column21" value="zorientation"/>
+  <att name="type21" value="VARCHAR"/>
+  <att name="fkey5" value="zorientation"/>
+  <att name="column22" value="zresolution"/>
+  <att name="type22" value="DOUBLE "/>
+  <att name="column23" value="scan_id"/>
+  <att name="type23" value="INTEGER"/>
+  <att name="fkey6" value="scan_id"/>
+  <att name="pkey1" value="volume_id"/>
+  </node>
+  <node id="volume_label" label="volume_label" weight="volume_label">
+  <att name="column1" value="volume_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="fkey1" value="volume_id"/>
+  <att name="column2" value="owner"/>
+  <att name="type2" value="VARCHAR"/>
+  <att name="column3" value="label"/>
+  <att name="type3" value="VARCHAR"/>
+  <att name="pkey1" value="volume_id"/>
+  <att name="pkey2" value="label"/>
+  </node>
+  <node id="subject_scan" label="subject_scan" weight="subject_scan">
+  <att name="column1" value="subject_id"/>
+  <att name="type1" value="VARCHAR"/>
+  <att name="column2" value="initial_exam"/>
+  <att name="type2" value="DATE "/>
+  <att name="column3" value="birthdate"/>
+  <att name="type3" value="DATE "/>
+  <att name="column4" value="nation_of_residence"/>
+  <att name="type4" value="VARCHAR"/>
+  <att name="column5" value="gender"/>
+  <att name="type5" value="VARCHAR"/>
+  <att name="column6" value="race"/>
+  <att name="type6" value="VARCHAR"/>
+  <att name="column7" value="primary_language"/>
+  <att name="type7" value="VARCHAR"/>
+  <att name="column8" value="second_language"/>
+  <att name="type8" value="VARCHAR"/>
+  <att name="column9" value="third_language"/>
+  <att name="type9" value="VARCHAR"/>
+  <att name="column10" value="fourth_language"/>
+  <att name="type10" value="VARCHAR"/>
+  <att name="column11" value="marital_status"/>
+  <att name="type11" value="VARCHAR"/>
+  <att name="column12" value="education"/>
+  <att name="type12" value="NUMERIC"/>
+  <att name="column13" value="handedness"/>
+  <att name="type13" value="VARCHAR"/>
+  <att name="column14" value="height"/>
+  <att name="type14" value="NUMERIC"/>
+  <att name="column15" value="weight"/>
+  <att name="type15" value="NUMERIC"/>
+  <att name="column16" value="sequence"/>
+  <att name="type16" value="VARCHAR"/>
+  <att name="column17" value="scan_id"/>
+  <att name="type17" value="INTEGER"/>
+  <att name="column18" value="scanner_id"/>
+  <att name="type18" value="VARCHAR"/>
+  <att name="column19" value="flip_angle"/>
+  <att name="type19" value="DOUBLE "/>
+  <att name="column20" value="excitations"/>
+  <att name="type20" value="INTEGER"/>
+  <att name="column21" value="slice_thickness"/>
+  <att name="type21" value="DOUBLE "/>
+  <att name="column22" value="scan_date"/>
+  <att name="type22" value="DATE "/>
+  <att name="column23" value="software_version"/>
+  <att name="type23" value="VARCHAR"/>
+  <att name="column24" value="grant_no"/>
+  <att name="type24" value="VARCHAR"/>
+  <att name="column25" value="modality"/>
+  <att name="type25" value="VARCHAR"/>
+  <att name="column26" value="tr"/>
+  <att name="type26" value="DOUBLE "/>
+  <att name="column27" value="te"/>
+  <att name="type27" value="DOUBLE "/>
+  <att name="column28" value="subject_age"/>
+  <att name="type28" value="VARCHAR"/>
+  <att name="column29" value="freq_encode_step_x"/>
+  <att name="type29" value="DOUBLE "/>
+  <att name="column30" value="freq_encode_step_y"/>
+  <att name="type30" value="DOUBLE "/>
+  <att name="column31" value="freq_encode_step_z"/>
+  <att name="type31" value="DOUBLE "/>
+  </node>
+  <edge source="volume" target="derivation_history"/>
+  <edge source="gradient_bvalue" target="gradient_orientation"/>
+  <edge source="type" target="entity"/>
+  <edge source="entity" target="attribute"/>
+  <edge source="latticegroup" target="people"/>
+  <edge source="attribute" target="subject_values"/>
+  <edge source="subject" target="scan_event"/>
+  <edge source="orientation" target="volume"/>
+  <edge source="subject" target="scan_protocol"/>
+  <edge source="scan_event" target="dti_scan_event"/>
+  <edge source="volume" target="derivation_history"/>
+  <edge source="project" target="scan_event"/>
+  <edge source="images" target="images_label"/>
+  <edge source="scan_event" target="volume"/>
+  <edge source="volume" target="volume_label"/>
+  <edge source="scanner" target="scan_protocol"/>
+  <edge source="gradient" target="dti_scan_event"/>
+  <edge source="subject" target="subject_label"/>
+  <edge source="volume" target="quality"/>
+  <edge source="orientation" target="volume"/>
+  <edge source="subject" target="subject_values"/>
+  <edge source="project" target="scan_protocol"/>
+  <edge source="gradient" target="gradient_bvalue"/>
+  <edge source="gradient" target="dti_scan_protocol"/>
+  <edge source="algorithm" target="volume"/>
+  <edge source="scanner" target="scan_event"/>
+  <edge source="orientation" target="volume"/>
+  <edge source="scan_protocol" target="dti_scan_protocol"/>
+  <edge source="volume" target="images"/>
+</graph>

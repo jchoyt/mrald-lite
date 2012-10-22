@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="news" type="newsType" />
+    <xs:complexType name="newsdayType">
+        <xs:sequence>
+            <xs:element type="newsitemType" name="newsitem" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="date" use="optional" />
+        <xs:attribute type="xs:string" name="archive" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="newsitemType">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="body" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="newsType">
+        <xs:sequence>
+            <xs:element type="newsdayType" name="newsday" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+a

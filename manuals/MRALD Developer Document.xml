@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"/usr/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/docbookx.dtd"
+[
+<!ENTITY workflow.xml.example SYSTEM "workflow.xml.example">
+<!ENTITY form.xml.example SYSTEM "form.xml.example">
+<!ENTITY form.html.example SYSTEM "form.html.example">
+]>
+<!--
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+>
+ -->
+<book>
+<bookinfo>
+<title>MRALD Developer Document</title>
+<author><firstname>Gail</firstname> <surname>Hamilton</surname></author>
+</bookinfo>
+
+<chapter>
+<title>Introduction (stating the obvious)</title>
+
+<para>What is MRALD?</para>
+
+<para>MRALD is an easily deployable application. This application allows for any database to be accessed easily via a web browser.</para>
+
+<para>It provides a portal-like access to any database. </para>
+
+<para>Each project can have the same main page (like it's own Portal). (e.g. crs.mitre.org)</para>
+
+<para>But each user will see a personalized version of this main page. </para>
+
+<para>How?</para>
+
+<para>MRALD Uses a set of specialized HTML documents - called Forms.</para>
+
+<para>Each Form contains information in a predefined format, called tags. A full list of these tags are defined in the Appendix.</para>
+
+<para>Each of these tags contain information (in HTML format), that 'tells' the MRALD application to perform certain functions. </para>
+
+<para>In other words, MRALD is instructed to perform functions based upon the information contained within the tags. </para>
+
+<para>A simple example:</para>
+
+<para>&lt;input type=&quot;hidden&quot; name=&quot;workflow&quot; value=&quot;Building SQL&quot;&gt;</para>
+
+<para>MRALD will take the value of name and recognize that the workflow that MRALD has to use is 'Building SQL'.</para>
+
+</chapter><chapter><title>Design : Rough overview</title>
+
+<para>A detailed discussion of the design of MRALD is given in document contained within Appendix ?.</para>
+
+<para>But the basic functionality is as follows:</para>
+
+<para>MRALD starts with a Parsing object (that takes a document called the Workflow document.)</para>
+
+<para>The workflow document contains a list of all the available 'paths' of functionality that MRALD can use.</para>
+
+<para>Based on the Workflow specified within the Form, (e.g. 'Building SQL' shown above) MRALD loads a set of objects that it will execute in a predefined order. The Order is also specified in the workflow document. (See below for example).</para>
+
+<para>These objects will be created dynamically at runtime. </para>
+
+<para>Then MRALD will run one function, execute, on each of the objects in turn.</para>
+
+</chapter><chapter><title>Elements</title>
+
+<para>This section is aimed at the developer/ advanced user that wishes gain a more in-depth understanding of MRALD.</para>
+
+<para>A comprehensive list of tag objects is listed below.</para>
+
+<para>An example of an MRALD tag object is below:</para>
+
+<para>&lt;input type=hidden name=&quot;outputFormat1&quot; value=&quot;fieldname:jepcode~nicename:Airport ID&quot;&gt;</para>
+
+<para>In general for each MRALD tag are 3 components</para>
+
+<para>The type</para>
+
+<para>The name</para>
+
+<para>The value</para>
+
+<para>The type is merely how it will be displayed on the HTML form, and does not concern MRALD.</para>
+
+<para>In MRALD this type is one of the following: text, hidden, radio, checkbox, drop down list</para>
+
+<para>The name is important, as this will tell MRALD what it should do with this tag.</para>
+
+<para>There are a variety of tag types that MRALD uses, and in general fall into one of these categories.</para>
+
+<para>A Database object tag. </para>
+
+<para>A Format tag</para>
+
+<para>An Output object tag</para>
+
+<para>The majority of the tags deal with the database.</para>
+
+<para>These are the tags that begin with the following</para>
+
+<para>Select</para>
+
+<para>Filter</para>
+
+<para>Sort</para>
+
+<para>Group</para>
+
+<para>Stat</para>
+
+<para>Link</para>
+
+<para>Range</para>
+
+<para>Radius</para>
+
+<para>Time</para>
+
+<para>The majority of the rest of the MRALD tags deal with how the data that is returned from the database is displayed or formatted. These tags begin with one of the following</para>
+
+<para>OutputFormat</para>
+
+<para>OutputSize</para>
+
+<para>ShowDuplicates</para>
+
+<para>OutputMBSize</para>
+
+<para>Format</para>
+
+<para>BrowserFormatDelimiter</para>
+
+<para>The MRALD functionality associated with each of these tags will be described in detail in the following chapters.</para>
+
+<para>The value part of the tag, contains more detailed information, usually dealing with database information.</para>
+
+<para>e.g.</para>
+
+<para>value=&quot;Table:airportstagedata~Field:jepcode~Order:1&quot;</para>
+
+<para>The value tag contains a set of name/value pairs separated by a ':'.</para>
+
+<para>Each set of name value pairs is separated by a '~'.</para>
+
+<para>MRALD will parse out these name value pairs and determine what to do with the information, dependant upon the name of the tag. </para>
+
+<para>Select Tag</para>
+
+<para>Example:</para>
+
+<para>&lt;input checked type=&quot;checkbox&quot; name=&quot;Select1&quot; value=&quot;Table:airportstagedata~Field:jepcode~Order:1&quot;&gt;Airport ID</para>
+
+<para>The name Select1, the Select denotes that a Select object is to be created for MRALD to use.</para>
+
+<para>This Select Object takes care of functionality associated with the Select part of an SQL statement.</para>
+
+<para>If the user selects this checkbox then in this example, MRALD will use the value, to determine that</para>
+
+<para>The DB table that the data is to be retrieved from is airportstagedata</para>
+
+<para>The field name is jepCode, that this is to appear 1st in the select list, and that it is to appear on the Form as Airport ID.</para>
+
+<para>This will translate in the SQL statement as</para>
+
+<para>Select airportstagedata.jepcode &#x85;From airportstagedata&#x85;where&#x85;</para>
+
+<para>Filter Tag</para>
+
+<para>Example:</para>
+
+<para>&lt;select name=&quot;Filter1&quot;&gt;</para>
+
+<para>&lt;option value=&quot;&quot;&gt;</para>
+
+<para>               &lt;option value=&quot;Table:airportstagedata~Field:areaCode~Value:USA~Operator:!=&quot;&gt;</para>
+
+<para>                                                                 United States</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>The name Filter1, the Filter denotes that a Filter object is to be created for MRALD to use.</para>
+
+<para>This Filter Object takes care of functionality associated with the Where part of an SQL statement.</para>
+
+<para>If the user selects the value 'United States' from the drop down, then in this example, MRALD will use the value, to determine that the DB table that the data is to be retrieved from is airportstagedata</para>
+
+<para>The field name is areaCode, that only records that do not have a value of areaCode 'USA' should be returned.</para>
+
+<para>In addition this option will appear on the form within a drop down list, with the label United States.</para>
+
+<para>The reason that only the records that do not have area code='USA' is that the Operator can also be specified. In this case the Operator is '!='</para>
+
+<para>This will translate in the SQL statement as</para>
+
+<para>Select &#x85;From airportstagedata&#x85;where areaCode != 'USA'&#x85;.</para>
+
+<para>The operator can have one of the following values.</para>
+
+<para>=</para>
+
+<para>like</para>
+
+<para>!=</para>
+
+<para>&gt; (appears as &amp;gt; in underlying html)</para>
+
+<para>&lt; (appears as &amp;lt; in underlying html)</para>
+
+<para>&gt;= (appears as &amp;gt=; in underlying html)</para>
+
+<para>&lt;= (appears as &amp;lt=; in underlying html)</para>
+
+<para>starts</para>
+
+<para>How</para>
+
+<para>How does MRALD associate each tag with an Object</para>
+
+<para>An Object within the code called the </para>
+
+<para>Sort Tag</para>
+
+<para>Example:</para>
+
+<para>&lt;select name=&quot;Sort1&quot;&gt;</para>
+
+<para>&lt;option value=&quot;&quot;&gt;</para>
+
+<para>&lt;option value=&quot;Table:airportstagedata~Field:region~Order:1~OrderType:ASC&quot;&gt;</para>
+
+<para>                                                                Region</para>
+
+<para> &lt;/select&gt;</para>
+
+<para>The name Sort1, the Sort denotes that a Sort object is to be created for MRALD to use.</para>
+
+<para>This Sort Object takes care of functionality associated with the ORDER BY  part of an SQL statement.</para>
+
+<para>If the user selects the value 'Region' from the Sort By drop down list, then in this example, MRALD will use the value, to determine that the DB table that the data is to be sorted on, is from is airportstagedata</para>
+
+<para>The field name to be sorted on is region, that this is the first Sort to be performed, and that the sort order is ascending (default is ascending).</para>
+
+<para>This will translate in the SQL statement as</para>
+
+<para>Select &#x85;From airportstagedata&#x85;where &#x85;.Order By airportstagedata.region A</para>
+
+<para>Stat Tag</para>
+
+<para>This tag is generally used in conjunction with the Group tag.</para>
+
+<para>The Stat tag consists of three separate entries, two of which are shown here.</para>
+
+<para>In this example below the first statistical tag deals with the corresponding database function to be used. </para>
+
+<para>&lt;select name=&quot;Stat3&gt;</para>
+
+<para>&lt;option value=&quot;&quot;&gt;</para>
+
+<para>              &lt;option value=&quot;Function:Count~Order:6&quot;&gt;</para>
+
+<para>                Count</para>
+
+<para>               &lt;option value=&quot;Function:Max~Order:6&quot;&gt;</para>
+
+<para>Maximum</para>
+
+<para>&lt;option value=&quot;Function:Min~Order:6&quot;&gt;</para>
+
+<para>Minimum</para>
+
+<para>&lt;option value=&quot;Function:Avg~Order:6&quot;&gt;</para>
+
+<para>               Average</para>
+
+<para>&lt;option value=&quot;Function:Stddev~Order:6&quot;&gt;</para>
+
+<para>Standard Deviation</para>
+
+<para>&lt;option value=&quot;Function:Sum~Order:6&quot;&gt;</para>
+
+<para>Summation</para>
+
+<para>&lt;option value=&quot;Function:Variance~Order:6&quot;&gt;</para>
+
+<para>Variance</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>All these functions are recognized within most databases.</para>
+
+<para>The second part deals with the column that this function is to be performed upon.</para>
+
+<para>For example:</para>
+
+<para>&lt;select name=&quot;Stat3&quot; &gt;</para>
+
+<para>&lt;option value=&quot;Table:airportstagedata~Field:speedlimit&quot;&gt;</para>
+
+<para>                                                                Speed Limit</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>If this is selected within the 3rd drop Down under the Statistical Functions section of the Form</para>
+
+<para>Say the user selects the Maximum option within the first Drop down, this corresponds to the following tag</para>
+
+<para>&lt;select name=&quot;Stat3&gt;</para>
+
+<para>&lt;option value=&quot;Function:Max~Order:6&quot;&gt;Maximum</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>and the Speed Limit tag in the other part</para>
+
+<para>&lt;select name=&quot;Stat3&quot; &gt;</para>
+
+<para>&lt;option value=&quot;Table:airportstagedata~Field:speedlimit&quot;&gt;</para>
+
+<para>                                                                Speed Limit</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>Then in this case the Function is Max, the Order within the select statement is 6. The table that the user wants the maximum data from is airportstagedata, and the field that the user wants the maximum value for is speedlimit.</para>
+
+<para>This corresponds to the following part of a SQL statement, which will be built as a result</para>
+
+<para>Select &#x85;max ( airportstagedata.speedlimit)&#x85;from airportstagedata&#x85;..where&#x85;&#x85;</para>
+
+<para>Group Tag</para>
+
+<para>The Group tag really only serves a function as part of the Statistical functionality. Which is why it is grouped together with it on most forms.</para>
+
+<para>The name Group1, the Group denotes that a Group object is to be created for MRALD to use.</para>
+
+<para>This Group Object takes care of functionality associated with the GROUP BY part of an SQL statement.</para>
+
+<para>In general, although not always, the Group Tag determines how the Statistical data is to be grouped.</para>
+
+<para>For instance a user might want to know which airport has the maximum speed limit, and this value, for each state. (Or Region)</para>
+
+<para>e.g.</para>
+
+<para>If the user selects 'Region' from the first Group By Drop down.</para>
+
+<para>Which corresponds to the following tag.</para>
+
+<para>&lt;select name=&quot;Group1&quot;&gt;</para>
+
+<para>              &lt;option value=&quot;Table:airportstagedata~Field:region~Order:1&quot;&gt;</para>
+
+<para>               Region</para>
+
+<para>&lt;/select&gt;</para>
+
+<para>This means that the data is to be grouped according to data from the airportstagedata table, the field that the data is to be grouped on is Region, and this is to be the first Group By function. (There can be multiple groupings ).</para>
+
+<para>This corresponds to the following part of a SQL statement, which will be built if the user selects the options above.</para>
+
+<para>Select &#x85;max ( airportstagedata.speedlimit)&#x85;from airportstagedata&#x85;..where&#x85;&#x85;</para>
+
+<para>Group  By airportstagedata.Region</para>
+
+<para>Link Tag</para>
+
+<para>Example:</para>
+
+<para>&lt;input type=hidden name='Link1' value='PrimaryLink:ASQPCOMMON.ASQPDATAID~SecondaryLink:ASQPDEPTLOCAL.ASQPDATAID'&gt;</para>
+
+<para>The name Link1, the Link denotes that a Link object is to be created for MRALD to use.</para>
+
+<para>This Link Object takes care of functionality associated with the join of a Where part of an SQL statement.</para>
+
+<para>This tag is hidden, and so, as a result, will always be created. However it will only be used in MRALD if two tables, requiring this join are selected. </para>
+
+<para>To determine if the link object is required, MRALD uses an object that contains an algorithm called Djikstras algorithm that is used to determine the shortest paths between two objects. A popular example of this, is a travelling salesman that has to visit 50 airports, using the shortest route. For a more detailed discussion of Djikstra's algorithm, please refer below.</para>
+
+<para>This recognizes that a join is to be created between these tables, if both are used.</para>
+
+<para>This will translate in the SQL statement as</para>
+
+<para>Select &#x85;From ASQPCOMMON, ASQPDEPTLOCAL&#x85;where ASQPCOMMON.ASQPDATAID = ASQPDEPTLOCAL.ASQPDATAID</para>
+
+<para>Specialized Tags</para>
+
+<para>The following denote specialized functionality that do not correspond directly to an operation within the database, but actually correspond to a composite object, that involve multiple database functions. </para>
+
+<para>Time</para>
+
+<para>Range</para>
+
+<para>Radius</para>
+
+<para>Time Tag</para>
+
+<para>The Time tag is a commonly used object, to allow for filtering of data based upon a range of time.</para>
+
+<para>This contains a multiple set of tags, that MRALD will group together and treat as one object.</para>
+
+<para>e.g The Time object can have the following name tags.</para>
+
+<para>Time1~StartDate</para>
+
+<para>Time1~StartTime</para>
+
+<para>Time1~EndDate</para>
+
+<para>Time1~EndTime</para>
+
+<para>Time1~Month</para>
+
+<para>Time1~Day</para>
+
+<para>Time1~Hour</para>
+
+<para>Time1~Minutes</para>
+
+<para>Time1~Second</para>
+
+<para>In a particular user-initiated retrieve, not all of these tags will be used.</para>
+
+<para> And some are in fact mutually exclusive. There is, in fact, javascript on the form that prevents the user from selecting all of these tags.</para>
+
+<para>An example of the tag for the StartDate is:</para>
+
+<para>&amp;nbsp;&amp;nbsp;Month/Day/Year </para>
+
+<para>							&lt;input name='Time1~StartDate' type='text' size='13' value='01/01/2001'&gt;</para>
+
+<para>						</para>
+
+<para>MRALD will take all tags that start with Time1 and group together as the same MRALD object, in this case an object corresponding to Time1 will be created.</para>
+
+<para>This Time1 object will then be used by MRALD to care of functionality associated with the join of a Where part of an SQL statement. </para>
+
+<para>In the above example, the value, in this case, is a default value. If the user inputs a different value on the form, this new value will automatically be used my MRALD.</para>
+
+<para>There is also a separate tag, which will just, in this example, have the tag name Time1.</para>
+
+<para>This tag deals with the actual database table and field to be used in the statement.</para>
+
+<para>e.g.</para>
+
+<para>	&amp;nbsp;&amp;nbsp;Time entered based on event </para>
+
+<para>	&lt;select name='Time1' &gt;</para>
+
+<para>		&lt;option value='Table:FLIGHT~Field: DEPTDATE'&gt;</para>
+
+<para>Departure Date</para>
+
+<para>   &lt;/select&gt;</para>
+
+<para>All the tags will be used by MRALD to create the Time specific component of the where clause.</para>
+
+<para> e.g. For an Oracle database</para>
+
+<para>SELECT &#x85; From FLIGHT Where  </para>
+
+<para>( FLIGHT.DEPTDATE &gt;= to_date('2001-01-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS') and FLIGHT.DEPTDATE &lt;= to_date('2001-01-01 00:00:01', 'YYYY-MM-DD HH24:MI:SS') ) &#x85;..</para>
+
+<para>Range Tag</para>
+
+<para>The Range tag is, like the Time tag, made up of multiple tags. MRALD will group these tags, together to create a Range object.</para>
+
+<para>A Range object will have two components a maximum componenet, and a minimum component.</para>
+
+<para>The minimum component is shown here. </para>
+
+<para>Example:</para>
+
+<para>&lt;input name='Range1~Min' type='text' size='9'&gt;&#xb0; Latitude</para>
+
+<para>&lt;input name='Range1' type='hidden'  </para>
+
+<para>value='RangeType:Min~Table:AIRPORT~Field: LATITUDE'&gt;</para>
+
+<para>The name Range1, the Range denotes that a Range object is to be created for MRALD to use.</para>
+
+<para>This Range Object takes care of functionality associated with the Where part of an SQL statement, and so provides a filtering on data.</para>
+
+<para>In this case the Table that the data is to be filtered on is Airport and the field that will be filtered on is Latitude.</para>
+
+<para>This Range object is used, as the user may want to enter two values and return data that falls between these two ranges. A common example, is to enter in a maximum and minimum latitude. And return data for all airports that fall with in this latitude range.</para>
+
+<para>In the above example, MRALD would create the following part of the SQL statement</para>
+
+<para>Select&#x85;.From AIRPORT Where ( Airport.Latitude &gt; 0 and Airport.Latitude &lt; 45)&#x85;.</para>
+
+<para>The values 0 and 45 are entered on the form by the user at run time. If no 'value' is specified as part of the tag, MRALD will automatically take the value entered from the html form.</para>
+
+<para>Radius Tag</para>
+
+<para>The Radius is a filter that is used specifically for returning data based on a geographic filter.</para>
+
+<para>In this case all data is returned that falls within the radius of a certain starting point. The starting point is usually an Airport. For non geographic applications of MRALD, this tag would not be used.</para>
+
+<para>An example is that the user inputs a starting airport of Dulles, and asks for all data on airports with a 50 km radius.</para>
+
+<para>The Radius tag deals with the most complex of MRALD tags. </para>
+
+<para>And is the tag that requires the use of a MultiSQL Query workflow. </para>
+
+<para>This will not be dealt with in depth here, but this is basically a workflow that does not return data back to the user, but returns data back to MRALD, to allow for further processing.</para>
+
+<para>In this case the latitude and longitude of the starting point is returned to MRALD. MRALD then inputs this lat/long pair , with a radius into an algorithm. The algorithm will return 4 points that represent a box, that just encompasses a circle of the radius specified by user, centered on the starting point.</para>
+
+<para>These four points are then used as part of the where clause.</para>
+
+<para>All the tags used for a Radius filter are shown below:</para>
+
+<para>		</para>
+
+<para>&lt;td valign='top'&gt;</para>
+
+<para>							 </para>
+
+<para>&lt;input type= 'hidden' name='Select1' value='Table:AIRPORT~Field:LATITUDE~Order:1~SqlThread:1~outputManager:RadiusOutput'&gt;</para>
+
+<para>&lt;input type= 'hidden' name='Select2' value='Table:AIRPORT~Field: LONGITUDE~Order:2~SqlThread:1~outputManager:RadiusOutput'&gt;	Ata Code </para>
+
+<para>						</para>
+
+<para>&lt;input name='Filter0' type='text' size='9'&gt;</para>
+
+<para>							</para>
+
+<para>&lt;input type='hidden' name='Filter0' value='Table:AIRPORT~Field:ATACODE~SqlThread:1~outputManager:RadiusOutput'&gt;</para>
+
+<para>							Radius (km) from Airport</para>
+
+<para>							</para>
+
+<para>&lt;input name='Radius' type='text' size='9'&gt;</para>
+
+<para>							</para>
+
+<para>&lt;input type='hidden' name='Radius' value='Table:AIRPORT~SqlThread:1~outputManager:RadiusOutput'&gt;</para>
+
+<para>						</para>
+
+<para>&lt;/td&gt;</para>
+
+<para>There are a lot of new values here, such as SqlThread and outputManager that will not be dealt with here, but in a more in depth explanation of the Multi-Query workflow later in this document.</para>
+
+<para>The important part to note here is that for the tags marked Radius, it behaves in a similar way to all the other tags with the data that is to be filtered on, to create the Range object, specified by table name and field name.</para>
+
+<para>The Select1 and Select2 behave in exactly the same way that the Select tags behaved above.</para>
+
+<para>So that in this case, if the User selects Dulles Airport as a starting point (ATA CODE=IAD).</para>
+
+<para>A first select statement will be created</para>
+
+<para>Select Airport.latitude, Airport.logitude from Airport where ATACODE = 'IAD'</para>
+
+<para>This will return the values: Latitude= 38.9,  Longitude= -77.4 (-ve indicates W of Greenwich Meridian)</para>
+
+<para>These will then be input into the RadiusOutput object that contains the Radius algorithm to convert this data to 4 points, each specified by a latitude and longitude.</para>
+
+<para>This will translate to the following component of the SQL statement that will be used t return data to the user. (In this example - using a Radius of 50km)</para>
+
+<para>SELECT &#x85; From AIRPORT&#x85;..</para>
+
+<para> Where   ( AIRPORT. LATITUDE &gt;= '38.47055470999465' AND AIRPORT. LATITUDE &lt;= '39.36888929000535' )  AND   ( AIRPORT.LONGITUDE &gt;= '-77.7858532561677' AND AIRPORT. LONGITUDE &lt;= '-77.08692474383231' ) &#x85;..</para>
+
+<para> </para>
+
+<para>Formula Select Tag</para>
+
+<para>Allows for the use of formulas in SQL queries.  Example:</para>
+
+<para>&lt;input checked type=&quot;checkbox&quot; name=&quot;FormulaSelect1&quot;</para>
+
+<para>value=&quot;Table:VHFNAVAIDS~Table:NDBNAVAIDS~Field:(VHFNAVAIDS.VORLONGITUDE+NDBNAVAIDS.LONGITUDE)/2~As:AveLong~Order:9&quot;&gt;</para>
+
+<para>Average Longitude</para>
+
+<para>(Note every Table used in the formula has a Table:XXXX name/value pair.)</para>
+
+<para>The name FormulaSelect1, the FormulaSelect denotes that a Select object is to be created for MRALD to use.  This</para>
+
+<para>FormulaSelect Object allows you to add derived fields to your select statements.  To filter on a derived field, you must use the</para>
+
+<para>FormulaFilterElement (yet to be created). </para>
+
+<para>This will translate in the SQL statement as</para>
+
+<para>Select (VHFNAVAIDS.VORLONGITUDE+NDBNAVAIDS.LONGITUDE)/2 AveLong &#x85;From VHFNAVAIDS,</para>
+
+<para>NDBNAVAIDS&#x85;where&#x85;</para>
+
+<para>Follow your database's rules for creating formulas, as they will be passed directly to the database in the query.</para>
+
+</chapter><chapter><title>MRALD Functionality (Workflows)</title>
+
+<para>This section id aimed at the developer/ advanced user that wishes to understand what functionality is currently available within MRALD.</para>
+
+<para>Building SQL</para>
+
+<para>Most used workflow. Default that the forms use. Takes an Html document and converts to a SQL statement.</para>
+
+<para>DirectQuery</para>
+
+<para>For advanced user, with good understanding of SQL. Takes a SQL statement entered by user and executes on the database. </para>
+
+<para>Multi Query </para>
+
+<para>Workflow used, when results from a query, require additional processing before being returned to the User. e.g.  An algorithm is carried out on data before being returned to the user.</para>
+
+<para>Or User wishes to see data from unrelated tables, in the same output. </para>
+
+<para>Submit New Bug</para>
+
+<para>Currently specific to CRS. Allows for user to submit a bug/issue through MRALD interface.</para>
+
+<para>Update Bug</para>
+
+<para>Currently specific to CRS. Allows for user to update a bug/issue through MRALD interface.</para>
+
+<para>User Build Form</para>
+
+<para>Workflow that allows for user to build their own forms. Which will then be saved as a personalized form.</para>
+
+<para>Modify Form</para>
+
+<para>Workflow that allows for developer to modify existing forms. Which will then be saved as a personalized form.</para>
+
+<para>DPAT Generation</para>
+
+<para>Misnamed, allows for specialized output.</para>
+
+<para>Display XSLT</para>
+
+<para>A workflow created to allow developers to view XML documents with stylesheets.</para>
+
+<para>Tag Names: </para>
+
+<para>List of all possible tags</para>
+
+<para>What they mean</para>
+
+</chapter><chapter><title>Packages (source code organization?)</title>
+
+<para>What functionality each package deals with.</para>
+
+<para>This chapter is directed towards developers with an understanding of Java, and who wish to have a more in-depth understanding of MRALD.</para>
+
+<para>The functionality of MRALD is compartmentalized into different packages, that are largely independent.</para>
+
+<para>The exceptiona are two packages, control and utility, that are used extensively by other packages.</para>
+
+<para>The packages are:</para>
+
+<para>Autolink</para>
+
+<para>BuildForm</para>
+
+<para>Control</para>
+
+<para>DirectQuery</para>
+
+<para>FormQuery</para>
+
+<para>MyMrald</para>
+
+<para>Output</para>
+
+<para>Query</para>
+
+<para>Servlets</para>
+
+<para>SpecOutput</para>
+
+<para>Util</para>
+
+<para>AutoLink</para>
+
+<para>This package contains the objects that deal with the automatic linking functionality that exists within MRALD.</para>
+
+<para>Automatic linking, is the term used when the system uses information from the database to determine how tables within the system are related. </para>
+
+<para>These relationships are in the form of Primary/Foreign Key relationships. Each RDBMS vendor implements this functionality slightly differently.</para>
+
+<para>This automatic linking is used primarily in the BuildForm workflow. To determine when the form is built, how the tables are linked together. </para>
+
+<para>This will appear on the form in the Link tags. For each relationship found in the database a Link tag will be created on the form.</para>
+
+<para>BuildForm</para>
+
+<para>This package deals with Building Forms. This is a special mini-app that the User can use to build their own forms. This subject will be dealt with more in-depth in the BuildForm section.</para>
+
+<para>Control</para>
+
+<para>This package provides most of the control functionality within MRALD. This deals with organizing and setting up of which objects are to be called within MRALD. It organizes the order that they are to be called in.</para>
+
+<para>It also contains any Interfaces that need to be implemented. </para>
+
+<para>e.g. All objects in MRALD that are to be executed (see above) need to inherit from AbstractStep. A class with only one abstract method that has to be implemented : execute.  </para>
+
+<para>Util</para>
+
+<para>The util package contains a miscellaneous set of objects that are used by the other packages. These objects have functionality that is commonly used by the MRALD application in multiple places.</para>
+
+<para>e.g. TimeFormatter object is contained within this package. This object is used to convert text to required MRALD date/time formats.</para>
+
+<para>DirectQuery</para>
+
+<para>This package deals with the Direct Query functionality. Direct query is really a simplified version of the Build SQL workflow, that allows a user with advanced knowledge of SQL, to create their own SQL queries. </para>
+
+<para>FormQuery</para>
+
+<para>FormQuery contains the objects that control how MRALD takes the information from the form and converts into sql queries.  It is more of package for  managing objects for the Element objects explained later in this chapter.  </para>
+
+<para>Query</para>
+
+<para>Query package is really used in conjunction with FormQuery, they cannot exist independently of one another.</para>
+
+<para>The Query package contains the very import Element Objects.</para>
+
+<para>Basically an Element object is an object that is responsible for converting a tag on the form into part of a SQL statement. They are all inherited from an abstract class called SqlElements.</para>
+
+<para>Currently there are 9 Element objects, (NB : One for each of the database tag objects. This is no coincidence. )</para>
+
+<para>Refer back to section, xx.xx you will see that there is a one-to-one relationship between the two.</para>
+
+<para>This is an intentional part of the design.</para>
+
+<para>The Element objects are currently</para>
+
+<para>SelectElement</para>
+
+<para>FilterElement</para>
+
+<para>SortElement</para>
+
+<para>GroupElement</para>
+
+<para>StatElement</para>
+
+<para>LinkElement</para>
+
+<para>RangeElement</para>
+
+<para>RadiusElement</para>
+
+<para>TimeElement</para>
+
+<para>e.g The Select tag on the form has an associated Object SelectElement. MRALD uses this object to translate the Select tag object on the form into a SELECT component of the SQL query.</para>
+
+<para>The underlying mechanism of how this is done, is outside the scope of the document. </para>
+
+<para>Later in this document, an Example of how to extend MRALD easily will be given.</para>
+
+<para>Servlets</para>
+
+<para>The Servlets package contains the Servlet objects. These are the objects that are used as entry points into MRALD from the html form.</para>
+
+<para>Currently there is only one, MraldServlet,  that is used by the core MRALD functionality.</para>
+
+<para>MyMrald</para>
+
+<para>This package contains all objects that deal with personalizing MRALD for the user.</para>
+
+<para>In MRALD personalized forms are stored in the database in an XML format.</para>
+
+<para>The MyMrald package contains objects that retrieve and store forms in the database, so that when a user logs into MRALD, they will see a list of their own personalized forms.</para>
+
+<para>The mechanism for storing, sharing and retrieving personalized forms will be dealt with later in this document. See section xx.xx.</para>
+
+<para>Output</para>
+
+<para>This package contains all functionality that deals with the Outputting of data from the database.</para>
+
+<para>This contains the objects that will connect to the database.</para>
+
+<para>It takes the sql statement built through MRALD, and queries that database with this sql statement. The  returning data is then presented in the required format, e.g. HTML, text, etc,..</para>
+
+<para>SpecOutput</para>
+
+<para>Some users require for the output to be in a specialized format.  </para>
+
+<para>E.g Return the same data, in a predefined order, for use as input into another application.</para>
+
+<para>This package allows for the desired output format to be specified in a separate document. </para>
+
+<para>The separate document, is an XML document. This subject will be dealt with later in the document. See section xx.xx.</para>
+
+</chapter><chapter><title>Building Forms</title>
+
+<para>This package deals with Building Forms. This is a special mini-app that the User can use to build their own forms. These Forms will then be saved as personalized forms (see below.)</para>
+
+<para>To use BuildForms the user must have at least some understanding of the data in the underlying database. In addition the user needs a good understanding of which tables this data can be obtained from. If the User does not have this understanding, then a developer, or someone familiar with the database structure can be contacted to create a personalized form.</para>
+
+<para>If you select the Build Form option, that should be available on the main screen the following screen will appear.</para>
+
+<para>Figure 1</para>
+
+<para> </para>
+
+<para>A list of tables in the underlying database will appear.</para>
+
+<para>If the User knows exactly which tables he wants to obtain data from, in the form, then these can simply be selected by clicking the checkbox to the left of the list. It is important that is the User wants only the tables selected that the checkbox, 'Get related tables' at the top of the form is NOT selected.</para>
+
+<para>The reason for this, is that is if this option is selected, then MRALD will return the table selected plus all the tables that are associated with this table, through Primary/ Foreign Keys relationships in the database. </para>
+
+<para>e.g. Selecting on AirportstageData with 'Get Related Tables' option selected will return the following, see Figure 8.</para>
+
+<para>The following, Figure.2,  shows the top part of Figure. 8 in more detail.</para>
+
+<para>Figure 2</para>
+
+<para>The headings from left to right are:</para>
+
+<para>Column Name, Column Label, Output, Default Selection, Filter, Stats, Group By, Order, Sort, Comments.</para>
+
+<para>The User then has the option of deselecting those columns/ tables that he does not want to see on the form.</para>
+
+<para>The label option, allows the user to specify how this column should appear on the form, e.g. instead of OAGCODE appearing on the form, it might make more sense to most users to see the label Airport ID. In this case the user should input Airport ID into the label field to the right of the OAGCODE column.</para>
+
+<para>The second field that the user can make an entry into, is the Order field. This specifies the order in which the fields will be displayed on the screen. See Figure 2.</para>
+
+<para>It will also be the order in which the data is returned from the database.</para>
+
+<para>e.g. In Figure 2, if the user retrieve the data with selections shown, the data retrieved from the database will be, and in this order: Airport ID, ATA Designator, Latitude, Longitude, Elevation and Name.</para>
+
+<para>For each column there are 7 options that can be turned on or off.</para>
+
+<para>Output</para>
+
+<para>Default Selection</para>
+
+<para>Filter</para>
+
+<para>Stats</para>
+
+<para>Group By</para>
+
+<para>Order</para>
+
+<para>Sort</para>
+
+<para>The output option allows the user to specify if they want the column to be in the 'Output Data Selections' of the Form. I.e. this allows the User to specify if they want the data to appear in form, in a way similar to Figure 3.</para>
+
+<para>If this is selected then the user will be able to retrieve this data from the database.</para>
+
+<para>e.g.</para>
+
+<para>Figure 3</para>
+
+<para>Default Selection option allows the user to specify if the column in 'Output Data Selections' should be defaulted as checked or not. This is useful if the user wants to build a form that retrieves the same set of data, each time. </para>
+
+<para>e.g. In this example Airport ID is selected by default.</para>
+
+<para>In Sort By option allows the user to specify if they want the field to appear in the Sort By drop down list. See figure 4. This allows the data that is returned to the User to be sorted according to the parameter selected in the drop down list.</para>
+
+<para>Figure 4</para>
+
+<para>The Filter option allows the user to specify if they want the column to appear in the Filter section of the form.</para>
+
+<para>e.g. An example of a Filter section of a form is shown below in Figure 5.</para>
+
+<para>This allows for the user to Filter on this data, e.g.in this example the user would be able to specify, for instance, if they wanted to Filter on AreaCode= 'USA'.</para>
+
+<para>Figure 5</para>
+
+<para>The Stat Option allows the user to specify if they want the column to be used in statistical functions on the form. See Figure 6</para>
+
+<para>Figure 6</para>
+
+<para>The Statistical functions available to most databases are listed on the left hand side.</para>
+
+<para>These are count, maximum, minimum, average, standard deviation, summation and variation.</para>
+
+<para>Apart from the count function, which just counts the number of times a row is retrieved for that data, all other functions are only relevant when used with numeric fields. </para>
+
+<para>Using Maximum for an Airport ID would obviously not make sense. Therefore, in general only fields that are numeric are generally used with the statistical functionality.</para>
+
+<para>The Group By option, is used in conjunction with the statistical function. Which is why the Stat and Group By sections are grouped together on the form. See Figure 7</para>
+
+<para>Figure 7</para>
+
+<para>The user should select the Group By option on the Build form, if they would like the column in the statistical field to be grouped on the column.</para>
+
+<para>e.g. In this above cases ( see Figure 6 and Figure 7)  the user could select the maximum Speed Limit and group the data according to each Region. This would show the user a list of the maximum speed limits for each Region in the world.</para>
+
+
+<para>Figure 8</para>
+
+<para>The last section of the Build Form concerns the FilterOr functionality.</para>
+
+<para>On the Form the Filter Or functionality is shown in Figure 9.</para>
+
+<para>Figure 9</para>
+
+<para>This functionality allows the user to specify filtering on values that they know will be used many times in the form. For example, the user may know that they will be selecting information based on a Departure airport of JFK in most cases. Instead of having to specify this each time they can just select the checkbox beside the value.</para>
+
+<para>However, there is a more subtle reason for using this functionality.</para>
+
+<para>In this case if DFW, JFK, MIA are all selected using the checkboxes, then the query will return results for all these airports.</para>
+
+<para>i.e. The data will ask for all flights that have a departure Airport of DFW or JFK or MIA. </para>
+
+<para>However if the user selects DFW, JFK and MIA using each of the 3 drop down filters, then no data will be returned. This is because the data will be filtered on data that satisfies the requirement that the departure airport be JFK and DFW and MIA.</para>
+
+<para>Obviously for a particular flight it is not possible to have a departure airport of all three for the same flight. Hence no data will be returned.</para>
+
+<para>It is, therefore, a good idea for the User to understand what type of data they might want to select from the database, before building this part of the form.</para>
+
+<para>The section on the Build Form application that is used to create this part of the form is shown in Figure 10.</para>
+
+<para>Figure 10</para>
+
+<para>In this case if the user selects these options then a form will be built with a Departure Airport section in the Filter, similar to Figure 9.</para>
+
+<para>The last section on the BuildForm, is the most specialized for CRS use, and therefore is most likely to change. However this document would be incomplete without an explanation. </para>
+
+<para>This section of the Build Form is shown in Figure 11</para>
+
+<para>Figure 11</para>
+
+<para>The most commonly used part of this form, and the only one to be dealt with in this document, is the Time Filter.</para>
+
+<para>If the above values were input into the BuildForm, and the form were built, the resulting form would look like Figure 12.</para>
+
+<para>Figure 12</para>
+
+<para>The MRALD application, when building forms, checks to see which of the fields in the database, is a Date/Time format. It then automatically adds these fields to the 'Time entered based on event' drop down, shown in Figure 12. </para>
+
+<para>Usually a Time Filter is only required where the data is time dependant.  </para>
+
+<para>The mechanism of Build Forms is described below, but may be too detailed for most users.</para>
+
+</chapter><chapter><title>Personalized forms</title>
+
+<para>This section is directed towards those advanced users that have an understanding of databases.</para>
+
+<para>The personalized forms are stored in the database. When a form is initially built then it is automatically stored to the database under that user name. The user will see the new form, listed under the personalized forms section of their main page.</para>
+
+<para>For this functionality, a number of JSP forms (Java Server Pages) have been built, that  control the following functionality:</para>
+
+<para>File Sharing, functionality to Share Forms with other Users in MRALD</para>
+
+<para>File Download, functionality to download any forms stored in the database, onto users' computer.</para>
+
+<para>File Upload, functionality to load any forms on users' computer into the database.</para>
+
+<para>To allow for this functionality a set of JSP's, (Java Server Pages) have been developed to allow for management of this functionality. These are</para>
+
+<para>CopyForm.jsp, when user selects'Share Form' this manages the code to share the form in the database.</para>
+
+<para>PageServer.jsp, manages automatically retrieving the user's personalized form from the database</para>
+
+<para>ShareForm.jsp, displays list of Users in MRALD application, for this project, and manages 'sharing' of forms.</para>
+
+<para>UploadForm.jsp manages functionality to allow user to save ANY type of document to the database. Not necessarily limited to MRALD forms.</para>
+
+<section><title>HTML and XML Documents</title>
+
+<para>The default format for storing of forms is XML format. This is a convenient way to store data, and information about the data. A sample of a typical MRALD form is shown below.</para>
+
+<para>Figure 13</para>
+
+<para>Looking at this sample of XML, it is easy to see what information is being stored.  The first field being stored is ATACARR.  </para>
+
+<para>It is this format that MRALD uses to determine how to display the forms. </para>
+
+<para>The process by which MRALD stores the forms is as below</para>
+
+<para>User Builds form, using BuildForm functionality.</para>
+
+<para>Form gets stored in the database in an XML format, similar to the sample shown in Figure13.</para>
+
+<para>Form is displayed in list of personalized forms.</para>
+
+<para>When the user selects the form, by clicking on in list of personalized forms, MRALD performs the following underlying processes</para>
+
+<para>MRALD checks to see the format of the form.</para>
+
+<para>If the document is an XML document, MRALD returns form in XML format, similar to Figure 13.</para>
+
+<para>If the document is an Html form (or any non-XML form) it returns the document 'as is'. (The case where a form may be saved as Html, is when a User uses the 'Upload' functionality to store the form in the database).</para>
+
+<para>MRALD 'translates' this XML format into HTML format, by means of a special 'translation' document, called a Stylesheet, an example of which is included in the Appendix.</para>
+
+<para>MRALD returns the resulting transformed HTML document to the user.</para>
+
+<para>It is outside the scope of this document to describe the functionality of XML and XSLT (Stylesheet) documents. Interested users should refer to the following links for more information on these subjects.</para>
+
+<para>XML:</para>
+
+<para>XSLT:</para>
+
+<para>It is possible for a knowledgeable User to change the HTML document, by making changes to the underlying XML document. However, as it is easy to corrupt the document, this should only be attempted with care.</para>
+
+<para>To do this the User can use the following method</para>
+
+<para>Download the xml form, by selecting the 'download' option beside the document name, in the list of personalized form.</para>
+
+<para>Save to their local drive.</para>
+
+<para>Edit document, using any Xml editor, or text editor.</para>
+
+<para>Use the Upload option to upload the document back to the database.</para>
+
+<para>The next time the user selects this document from the list, they will see the changes they have made.</para>
+
+</section><section><title>Form Management</title>
+
+<para>As a side note, it should be noted that although the personalized forms functionality, is primarily used for MRALD forms. The form management is not limited in this way.</para>
+
+<para>In fact almost any document can be stored in the database.</para>
+
+<para>e.g.  Project specific memos, project plans, or status reports.</para>
+
+<para>It should be left to the Project Manager to determine how best , if at all, to use this functionality for general documents.</para></section>
+</chapter>
+<chapter><title>Specialized Format</title>
+
+<para>Specialized format has been implemented for 2 cases at time of writing.</para>
+
+<para>DPAT and TAAM.</para>
+
+<para>MRALD provides the specialized format by the following means</para>
+
+<para>On HTML Data Retrieval Form, the Workflow is set to specialized format. Any MRALD developer can easily set up a form for which this is the case.</para>
+
+<para>A form is built, not by the user in this case. This will require some advanced knowledge. This form can have any functionality that currently exists on the more standard MRALD forms. E.g. Filter function, Time Filters, Group By. The only major difference is that due to fact that the Output is a predefined format, that the user wants to use, there is no Output Data Selection Box (See Figure 3.)</para>
+
+<para>The name of the XML document to be used to produce the predefined format becomes a hidden tag on the HTML document. </para>
+
+<para>e.g. For DPAT, the predefined format is specified in a document called dpat_oneQuery.xml, so that to use this format in the HTML form, called DPAT Output, a line is added to the HTML form, through a simple text or html editor.</para>
+
+<para>
+<programlisting>
+<![CDATA[<input type="hidden" name="formatXML" value="dpat_oneQuery.xml">]]>
+</programlisting>
+</para>
+
+<para>MRALD uses the definition described in the XML document to produce the Output required by the User.</para>
+
+<para>To provide a Specialized format, for any new project, a new Specialized can be built by merely adding a new XML form to the system. </para>
+
+<para>Specialized XML Form</para>
+
+<para>This section is addressed to developers that are interested in creating their own Specialized output, or just to gain a deeper understanding of MRALD's specialized output. </para>
+
+<para>An example of the format for specialized output is given below. This section will describe how this form is used to output the data is a predefined format.</para>
+
+<para>Figure 14</para>
+
+<para>The first thing to be noted, is that this is a very simple example of specialized output. And does not incorporate any of the more sophisticated functionality. </para>
+
+<para>The next thing to note, is the Query string. This is the data that the user wants to use as a starting point for the data to be returned. MRALD will use this query string as the basic query.</para>
+
+<para>Figure 15</para>
+
+<para>However, if the user specifies any Filters, (see Figure 15) e.g In this case Country Code ='USA' then MRALD will append this to the end of the query.</para>
+
+<para>So that the query will become</para>
+
+<para>Select OagCommon.OagDataID, OagCommon.flightNo, OagCommon.deptAirport, OagCommon.arrAirport, OagCommon.ataEquip, OagDerivedTime.arrGMTTime, OagDerivedTime.deptGMTTime, Carrier.ataCarr, Carrier.oagCarr, ROWNUM From Carrier , OagCommon, OagDerivedTime WHERE OagCommon.oagCarr = Carrier.oagCarr AND OagDerivedTime.oagdataid=OagCommon.oagdataid  AND Airport.CntryCode ='USA' </para>
+
+<para>The next part to note is the line number. Each line specifies a different query. In this case there is only one line, line 1A. However there can be as many lines as is required. An example of a multi-line specialized output will be discussed later in this chapter.</para>
+
+<para>The fileName specifies where the output of this query is to be output to. In this case the default - toScreen, will automatically pop up a 'Save As' dialogue, and allow the user to save the file to anywhere they choose.</para>
+
+<para>There can be one fileName per line. This allows the data to be output to multiple files. An example of this will be shown later in this chapter.</para>
+
+<para>The major component of the specialized output is the Elements.</para>
+
+<para>These are the components that describe how the data is to be output to the file.</para>
+
+<para>Each element has a DBTable and a DBField, these should be exactly the same as the table name and the field of the associated data from the query. These fields serve the function to 'match up' the element with the data from the Query.</para>
+
+<para>e.g. The first element corresponds to the 10th column in the select query.</para>
+
+<para>The next component of Element is StaticValue. </para>
+
+<para>StaticValue can appear in one of two cases.</para>
+
+<para>The first case is shown above, in Figure 14, the Element 4.</para>
+
+<para>In this case, to get the right input for the DPAT application, a placeholder needs to be inserted.</para>
+
+<para>This placeholder has a value of '1'. Note that in this case the values for DBTable and Dbfield are both 'Empty'.</para>
+
+<para>So that the output will look something like</para>
+
+<para>AA 123 KIAD 1</para>
+
+<para>AA 236 KJFK 1</para>
+
+<para>The second case, is where if the data returned is null, then the StaticValue contains the default value, if one is required.</para>
+
+<para>For example, in the TAAM itin generator, the aircraft used for a flight, (known as the equipment type), is sometimes null. For the TAAM itin generator, a null for this field creates a problem, so a default value has to be used. In this case,a B737 is used as default. See Figure 16.</para>
+
+<para>Figure 16</para>
+
+<para>It should be noted that the SpecialTransform, denotes that this type has a DEFAULT value (the SpecialTransform will be dealt with in detail later in this Chapter).</para>
+
+<para>The next part is the &lt;Type&gt; tag. This denotes the data type to be output. In most cases this will be String. </para>
+
+<para>The most complex part of the Element, is the Special Transform tag. This is the tag that is used when additional formatting needs to take place before being output to the User.</para>
+
+<para>A good example of this is the specialTransform LATLONG.</para>
+
+<para>See figure 17</para>
+
+<para> </para>
+
+<para>Figure 17</para>
+
+<para>In this case the latitude has a decimal value in the database.</para>
+
+<para>e.g.  -30.5</para>
+
+<para>But the user needs the value in the format, degrees, minutes and seconds.</para>
+
+<para>e.g. S 30 30 0,</para>
+
+<para>The LATLONG formatter takes the decimal value and outputs the format as required.</para>
+
+<para>Any number of special Formats can be added easily by MRALD developers.</para>
+
+<para>The current List of SpecialFormats is:</para>
+
+<para>Regular : 	No additional formatting is required.</para>
+
+<para>NOSPACE: 	The default is that a space gets added after the value that has been output. In this case no space is to be added.</para>
+
+<para>LINEBREAK:	After this value, a new line is required. I.e. the next piece of data will appear on a new line.</para>
+
+<para>MPM:	Minutes past Midnight ( A DPAT format that takes a DateTime value and calculates the number of minutes past midnight from a starting date).</para>
+
+<para>TAAMTIME:	Takes a DateTime value, and calculates the number of days to this date from a starting </para>
+
+<para>date.</para>
+
+<para>LATLONG:	Takes a decimal format and outputs the LatLong in degrees minutes and seconds.</para>
+
+<para>ROWNUM:	Outputs the row number that this value appears on. Usually used to create artificial </para>
+
+<para>indexes.</para>
+
+<para>Above we dealt with a very simple case. The DPAT itin generator.</para>
+
+<para>Now we look at a more complex example, the TAAM itin generator.</para>
+
+<para>The complete, TAAM xml file, that denotes the special format is included in Appendix xx.</para>
+
+<para>A sample of two lines, however will be sufficient to highlight the main functionality that the SpecializedFormat offers. (See Figure. 18)</para>
+
+<para>Figure 18</para>
+
+<para>The most important point to note here, is that Line 2A has a &quot;constraintOnID&quot; value.</para>
+
+<para>This &quot;constraintOnID&quot; tells MRALD that the values that were selected from the Line 1A are to be used as input for the where clause for the Line 2A.</para>
+
+<para>In this case the value to be used is the value for the FlightID.</para>
+
+<para>The table_name is the name of the table in the second query (2A), and the local_name is the field name that is to be used in the second query. (2A) </para>
+
+<para>In this example, if the first query returns a flightId = &quot;1001&quot;.</para>
+
+<para>Then the 2nd query will be built as follows</para>
+
+<para>SELECT flight.flightno,dept.icaocode deptcode, arr.icaocode arrcode, flight.deptdate, flight.arrdate, flight.flightid, flight.carrier, flight.equip, etmscommon.msgid, ROWNUM </para>
+
+<para>FROM etmscommon,etmsrt, flight, taamairport arr, taamairport dept </para>
+
+<para>WHERE etmscommon.msgid = etmsrt.msgid and flight.flightid = etmscommon.flightID and flight.deptairport = dept.airportcode and flight.arrairport = arr.airportcode and ROWNUM = 1 </para>
+
+<para>AND EtmsCommon.flightId = &quot;1001&quot;</para>
+
+<para>The first query may return multiple values. For each value the 2nd query will be executed, with the corresponding value of FlightId.</para>
+
+<para>This 'linking' between the queries can occur for multiple levels.</para>
+
+<para>e.g. A line 3A can be built that uses the values returned from 2A (see Figure 19) as input for the where clause, and so on&#x85;</para>
+
+<para>Figure 19</para>
+
+<para>A more complete segment of the TAAM xml document is shown below</para>
+
+<para>Figure 20</para>
+
+<para>The output from Figure 20 will be:</para>
+
+<para>{ </para>
+
+<para>LOT22 B737 1 KEWR-}</para>
+
+<para>{ </para>
+
+<para>AAL91 B737 1 EGLL-}</para>
+
+<para>{ </para>
+
+<para>ACA17 B737 1 CYVR-}</para>
+
+<para>{ </para>
+
+<para>ANZ52 B737 1 NFFN-}</para>
+
+<para>...</para>
+
+<para>As can be seen from the simple examples above, the flexibility of this tools means that the output can be changed very easily to almost any combination required.</para>
+
+<para>Issue Tracker</para>
+
+<para>Advanced</para>
+
+<para>Brief description of what they do.</para>
+
+<para>Dijkstra</para>
+
+<para>AutoLinker</para>
+
+<para>Stylesheets</para>
+
+<para>Which stylesheets are currently available.</para>
+
+</chapter><chapter><title>SVG functionality</title>
+
+<para>SVG The Scalable Vector Graphics (SVG) format is a new XML grammar for defining vector-based 2D graphics for the Web and other applications.</para>
+
+<para>It is a very simple, but flexible and powerful tool . </para>
+
+<para>In MRALD this format has been used to create some graphical representations of the MRALD data.</para>
+
+<para>For a more complete discussion of SVG please refer to the following </para>
+
+<para>In order to view SVG graphics, an SVG Viewer needs to be downloaded. It is expected that in the near future SVG viewing will be a standard for any browser. </para>
+
+<para>The most commonly used SVG Viewer is from Adobe, which can be downloaded from here.</para>
+
+<para><programlisting>
+<![CDATA[<link url='http://www.adobe.com/svg/community/external.html'></link>]]></programlisting></para>
+
+<para>For MRALD a number of XSLT documents have been written that use the SVG format.</para>
+
+<para>This allows for the data in one XML file (see Appendix G) to be viewed in a variety of ways.</para>
+
+<para>In Appendix G is an example of the XML data. Below, is different graphical representations of the same data.</para>
+
+<para>It cannot be stressed enough that the underlying XML data is not changed. The only thing that is changed is the stylesheet that is used with this XML document. The stylesheet (XSLT document)  is merely a means of translating the data from one XML format to another. In this case, from a MRALD specific data format, to an SVG format.</para>
+
+<para>This highlights one of the key strengths of XML, that of separation of XML content (the data) and the display (the Stylesheet).</para>
+
+<para>In other words, the data in the XML document can be changed, independently of the Stylesheet.</para>
+
+<para>And the Stylesheet can be changed (in this case we have 4 different versions of a very similar stylesheet)</para>
+
+<para>Figure 21</para>
+
+<para>Figure 22</para>
+
+<para>Figure 23</para>
+
+<para>Figure 24</para>
+
+<para>These are just samples of the available format. The display possibilities are endless, as to create a new display, all that is required is a new XSL stylesheet.</para>
+
+<para>In addition Figure 25, shows a form that uses the exact same stylesheet that is used in Figure 21, but with slightly different XML data.</para>
+
+<para>Figure 25</para>
+
+</chapter>
+
+<appendix>
+  <title>workflow.xml Example </title>
+  <programlisting>
+    <filename>workflow.xml</filename>
+     &workflow.xml.example;
+  </programlisting>
+</appendix>
+
+<appendix>
+  <title>form.xml Example </title>
+  <programlisting>
+     &form.xml.example;
+  </programlisting>
+</appendix>
+
+<appendix>
+  <title>form.html Example </title>
+  <programlisting>
+     &form.html.example;
+  </programlisting>
+</appendix>
+
+
+</book>

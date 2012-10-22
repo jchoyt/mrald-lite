@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org"><!--
+      @(#)package.html1.60 98/01/27
+      This is the copyright work of The MITRE Corporation, and was produced for
+      the U. S. Government under Contract Number DTFA01-01-C-00001, and is subject
+      to Federal Aviation Administration Acquisition Management System Clause 3.5-13
+      Rights in Data ? General, (October 1996), Alt. III and IV.  No other use other
+      than that granted to the U. S. Government, or to those acting on behalf of the
+      U. S. Government, under that Clause is authorized without the express written
+      permission of The MITRE Corporation. For further information, please contact
+      The MITRE Corporation, Technology Transfer Office
+      7515 Colshire Drive., McLean, VA  22102
+      (703) 883-6000.
+    -->
+    <title>
+    </title>
+  </head>
+  <body bgcolor="white">
+      Provides utilities and common files used by the rest of MRALD.  Utilities include:
+      <ul>
+        <li>Config - general configuration information.  Reads information from config.properties and provides easy programatic access.</li>
+        <li>XML file generation</li>
+        <li>Drill down utilities</li>
+        <li>FormConverter -  Command line class to convert MRALD XML form files to HTML forms</li>
+        <li>FormUtils - utilities for personalized form generation and management</li>
+        <li>Mailer - sends emails</li>
+        <li>MiscUtils - Well, miscellaneous utility functions.  Examples include converting text to html, converting html to text, string replacement, loading property files, and standardized logging.</li>
+        <li>MraldConnection - a thin wrapper around a JDBC connection</li>
+        <li>MraldError/Exception - common Exception handling for MRALD which take advantage of some of the architecture.</li>
+        <li>MraldOutFile - logging </li>
+        <li>MultiPartRequest - aids in uploading files</li>
+        <li>Snoop - standardized logging</li>
+        <li>User - representation of an MRALD user</li>
+        </ul>
+        <hr />
+    <h1>
+      Error and Exception Handling for MRALD
+    </h1>
+    <h2>
+      Why?
+    </h2>
+    MRALD as a whole should have a consistent Error and Exception handling philosophy and infrastructure. This document describes the philosophy and infrastructure provided.
+    <h2>
+      Java Basics
+    </h2>
+    From the <a href="http://java.sun.com/docs/books/jls/"><i>Java Language Specification</i>, Second Edition</a>:<br>
+
+    <blockquote>
+      The possible exceptions in a program are organized in a hierarchy of classes, rooted at class <code>Throwable</code>, a direct subclass of <code>Object</code>. The classes <code>Exception</code> and <code>Error</code> are direct subclasses of <code>Throwable</code>. The class <code>RuntimeException</code> is a direct subclass of <code>Exception</code>.
+      <p>
+        Programs can use the pre-existing exception classes in <code>throw</code> statements, or define additional exception classes, as subclasses of <code>Throwable</code> or of any of its subclasses, as appropriate. To take advantage of the Java platform's compile-time checking for exception handlers, it is typical to define most new exception classes as checked exception classes, specifically as subclasses of <code>Exception</code> that are not subclasses of <code>RuntimeException</code>.
+      </p>
+      <p>
+        The class <code>Exception</code> is the superclass of all the exceptions that ordinary programs may wish to recover from. The class <code>RuntimeException</code> is a subclass of class <code>Exception</code>. The subclasses of <code>RuntimeException</code> are unchecked exception classes. The subclasses of <code>Exception</code> other than <code>RuntimeException</code> are all checked exception classes.
+      </p>
+      <p>
+        The class <code>Error</code> and its subclasses are exceptions from which ordinary programs are not ordinarily expected to recover. See the Java API specification for a detailed description of the exception hierarchy.
+      </p>
+      <p>
+        The class <code>Error</code> is a separate subclass of <code>Throwable</code>, distinct from <code>Exception</code> in the class hierarchy, to allow programs to use the idiom:
+      </p>
+      <blockquote>
+<pre>
+} catch (Exception e) {
+</pre>
+      </blockquote>
+      to catch all exceptions from which recovery may be possible without catching errors from which recovery is typically not possible.
+    </blockquote>
+    Also, in Java 1.4, we have access to the new <a href="http://java.sun.com/j2se/1.4.1/docs/guide/lang/chained-exceptions.html">Chained Exception Facility</a>:
+    <blockquote>
+      It is common for Java code to catch one exception and throw another:
+      <blockquote>
+<pre>
+try {
+    ...
+} catch(YourException e) {
+    throw new MyException();
+}
+</pre>
+      </blockquote>
+      Unfortunately, the information contained in the "causative exception" (<tt>YourException</tt> in the example above) is generally lost, which greatly complicates debugging. Recognizing this problem, developers sometimes build ad hoc mechanisms to allow certain "wrapped exceptions" to contain a second exception. An accessor is generally provided to extract the contained exception. Such mechanisms are sometimes known as "exception chaining facilities", as they allow arbitrary chains of exceptions to be constructed when contained exceptions are, themselves, wrapped exceptions.
+      <p>
+        There are many advantages to unifying all of these facilities. Chief among them are: (1) We guarantee that anyone who wants to record the fact that one exception caused another can do so, regardless of what the exceptions are. (2) By providing a common API to record the fact that one exception caused another, we ease this task, making it more likely that programmers will take the trouble to do it. (3) By providing a common API to access causative exceptions, we greatly increase the likelihood that this information will be made available to those who need it. In fact, the proposed mechanism prints entire "causal chain" as part of the standard stack backtrace, ensuring that preexisting programs will provide this information with no additional effort on the part of their authors.
+      </p>
+      <p>
+        To address these issues, we have added two new methods to <tt>Throwable</tt>, <tt>getCause()</tt> and <tt>initCause(Throwable)</tt>, and two new constructors, <tt>Throwable(Throwable)</tt> and <tt>Throwable(String, Throwable)</tt>. Other "general purpose" exception classes (like <tt>Exception</tt>, <tt>RunTimeException</tt> and <tt>Error</tt>) have been similarly outfitted with <tt>(Throwable)</tt> and <tt>(String,&nbsp;Throwable</tt>) constructors. However, even exceptions without such constructors will be usable as "wrapped exceptions" via the <tt>initCause</tt> method.
+      </p>
+      <p>
+        The implementation of <tt>Throwable.printStackTrace</tt> has been modified to display backtraces for the entire causal chain of exceptions. New method <tt>getStackTrace</tt> provides programmatic access to the stack trace information provided by <tt>printStackTrace</tt>.
+      </p>
+      <p>
+        All of the platform's wrapped exceptions will be retrofitted to support the new facility (in addition to their legacy APIs).
+      </p>
+    </blockquote>
+    <h2>
+      MRALD complications and opportunities
+    </h2>
+    In MRALD, much of the internal state of the current thread can be shown by the internal state of the MsgObject. In order to take advantage of all these facilities, two new classes will be added to MRALD, MraldException and MraldError. Both these take constructors containing a MsgObject as well as having accessor methods for getting and setting the MsgObject fields in these classes.
+    <h3>
+      MraldException
+    </h3>
+    <blockquote>
+      An <code>MraldException</code> is a subclass of <code>Exception</code> that indicates either reasonable calling code might want to catch this exception, or the current thread's MsgObject is not available to the throwing method.
+      <p>
+        An MraldException should be used when the current thread's MsgObject is not available OR the calling code should handle the exception.
+      </p>
+      <p>
+        An MraldError needs to be declared in a method's <code>throws</code> clause.<br>
+      </p>
+    </blockquote>
+    <h3>
+      MraldError
+    </h3>
+    <blockquote>
+      An <code>MraldError</code> is a subclass of <code>Error</code> that indicates a serious problem that calling code cannot be expected to deal with.
+      <p>
+        An MraldError should only be used when the current thread's MsgObject is available AND there is no way reasonable calling code should be expected to handle the problem. If the case does not meet both requirements, use an MraldException instead.
+      </p>
+      <p>
+        An MraldError does not need to be declared in a method's <code>throws</code> clause.
+      </p>
+    </blockquote>
+    <h3>
+      Handling exceptions
+    </h3>
+    When used properly, all errors and unhandled exceptions will traverse up the execution path to a final exception handling facitlity which will provide feedback to the user. The primary way of doing this now is ErrorHandler.jsp, though other mechanisms are possible. All of MRALD's code will be retrofitted to support the new facility.<br>
+     <br>
+     In ErrorHandler.jsp, the user will be provided with a simple message, instructions on how to report the problem, and a link to an .err file. This file is a file that is created and contains the exception cause, the stack trace, and the interal state of the MsgObject at the time of the failure. For certain common exceptions, the user may also receive suggestions on how to fix a problem. A sample file is included below. <b>Remember when writing exception messages in MRALD that the end user gets what you write as the error message. In addition to being useful to another developer (not just you), it should also be fairly nice to an average user.</b>
+    <h4>
+      Sample MRALD .err file:
+    </h4>
+<pre>
+          Fri Aug 29 10:04:46 EDT 2003
+          ~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~
+          Message: org.mitre.mrald.util.MraldThrowable: ERROR:  For SELECT DISTINCT, ORDER BY expressions must appear in target list
+          Root Cause:
+          java.sql.SQLException: ERROR:  For SELECT DISTINCT, ORDER BY expressions must appear in target list
+          at org.postgresql.core.QueryExecutor.execute(QueryExecutor.java:131)
+          at org.postgresql.jdbc1.AbstractJdbc1Connection.ExecSQL(AbstractJdbc1Connection.java:505)
+          at org.postgresql.jdbc1.AbstractJdbc1Statement.execute(AbstractJdbc1Statement.java:320)
+          at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:48)
+          at org.postgresql.jdbc1.AbstractJdbc1Statement.executeQuery(AbstractJdbc1Statement.java:153)
+          at org.postgresql.jdbc1.AbstractJdbc1Statement.executeQuery(AbstractJdbc1Statement.java:141)
+          at org.mitre.mrald.output.OutputManager.run(OutputManager.java:423)
+          at java.lang.Thread.run(Thread.java:534)
+          State of this MRALD run's MsgObject:
+          Content Type: text/html
+          Queries stored:
+          SELECT DISTINCT addictives.pat_id, addictives.heroin, subject.initial_exam, subject.nation_of_residence, subject.gender, subject.second_language, subject.third_language, subject.handedness From subject, addictives Where  ( subject.pat_id = 'MNI_0100' ) AND addictives.pat_id=subject.pat_id ORDER BY addictives.ex_date DESC
+          Links stored:
+
+          This is a(n) LINK element
+          It's type and memory location are org.mitre.mrald.query.LinkElement@162e295
+          It contains the following in its nameValues:
+          SecondaryLink=addictives.pat_id; addictives.pat_id
+          PrimaryLink=subject.pat_id; subject.pat_id
+          Working Objects stored:
+
+          This is a(n) FILTER element
+          It's type and memory location are org.mitre.mrald.query.FilterElement@109de5b
+          It contains the following in its nameValues:
+          Table=subject
+          Value=MNI_0100
+          Field=pat_id
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@e53220
+          It contains the following in its nameValues:
+          Table=subject
+          Field=second_language
+          Order=29
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@13e0aba
+          It contains the following in its nameValues:
+          Table=subject
+          Field=gender
+          Order=26
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@3257b8
+          It contains the following in its nameValues:
+          Table=subject
+          Field=nation_of_residence
+          Order=25
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@11d2572
+          It contains the following in its nameValues:
+          Table=subject
+          Field=initial_exam
+          Order=23
+
+          This is a(n) SORT element
+          It's type and memory location are org.mitre.mrald.query.SortElement@859a68
+          It contains the following in its nameValues:
+          Table=addictives
+          OrderType=DESC
+          Field=ex_date
+          Order=1
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@15c62bc
+          It contains the following in its nameValues:
+          Table=addictives
+          Field=pat_id
+          Order=1
+
+          This is a(n) FILTER element
+          It's type and memory location are org.mitre.mrald.query.FilterElement@5660d6
+          It contains the following in its nameValues:
+          Table=addictives
+          Operator=&lt;=
+          Field=ex_date
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@ef83d3
+          It contains the following in its nameValues:
+          Table=addictives
+          Field=heroin
+          Order=15
+
+          This is a(n) FILTER element
+          It's type and memory location are org.mitre.mrald.query.FilterElement@b7b3f9
+          It contains the following in its nameValues:
+          Table=addictives
+          Operator=&gt;=
+          Field=ex_date
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@88df60
+          It contains the following in its nameValues:
+          Table=subject
+          Field=handedness
+          Order=34
+
+          This is a(n) SELECT element
+          It's type and memory location are org.mitre.mrald.query.SelectElement@1318b
+          It contains the following in its nameValues:
+          Table=subject
+          Field=third_language
+          Order=30
+          ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
+</pre>
+    <h2>
+      Dealing with .err files
+    </h2>
+    Left alone, .err files will quickly proliferate and fill up your ROOT (or other) directory. To avoid this, there is an option in the config.properties file, errFileExpireDays, which takes a number. After XX days, the .err files will be deleted.  This "expiring" of .err files is still being discussed - any input is welcome.
+        
+  </body>
+</html>
+
+

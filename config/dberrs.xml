@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db_errors>
+  <!-- Oracle errors -->
+    <error>
+        <number>ORA-00937</number>
+        <title>: not a single-group group function</title>
+        <user_message>  A SELECT list cannot include both a group function, such
+        as AVG, COUNT, MAX, MIN, SUM, STDDEV, or VARIANCE, and an individual column
+        expression, unless the individual column expression is included in a GROUP
+        BY clause.  If this did not help you or did not cause this error or you have
+        any questions please contact us using the link below.</user_message>
+    </error>
+    <error>
+        <number>ORA-00979</number>
+        <title>not a GROUP BY expression</title>
+        <user_message>  The GROUP BY clause does not contain all the expressions in
+        the SELECT clause. SELECT expressions that are not included in a group
+        function, such as AVG, COUNT, MAX, MIN, SUM, STDDEV, or VARIANCE, must be
+        listed in the GROUP BY clause.  If this did not help you or did not
+        cause this error or you have any questions please contact us using the link
+        below.</user_message>
+    </error>
+    <error>
+        <number>ORA-01722</number>
+        <title>invalid number</title>
+        <user_message>  The attempted conversion of a character string to a number
+        failed because the character string was not a valid numeric literal. Only
+        numeric fields or character fields containing numeric data may be used in
+        arithmetic functions or expressions. Only numeric fields may be added to or
+        subtracted from dates.  If this did not help you or did not
+        cause this error or you have any questions please contact us using the link
+        below.</user_message>
+    </error>
+    <error>
+        <number>ORA-01791</number>
+        <title>not a SELECTed expression</title>
+        <user_message>  This error occurs when a query is built that sorts on a
+        field that is not selected for output and also contains the SQL directive
+        "DISTINCT."  In order to retrieve your data, use your browser's back
+        button and either make sure you have selected for output all the fields you
+        are sorting on, or check the box in the output selections that reads
+        "Include duplicate rows in returned data ."  Note this will cause you to
+        get duplicate data if you have mulitple, identical rows.  If this did not
+        cause this error or you have any questions please contact us using the link
+        below.</user_message>
+    </error>
+    <error>
+        <number>ORA-01858</number>
+        <title>: a non-numeric character was found where a numeric was expected</title>
+        <user_message>  The input data to be converted using a date format model
+        was incorrect. The input data did not contain a number where a number was
+        required by the format model.  If this did not help you or did not
+        cause this error or you have any questions please contact us using the link
+        below.</user_message>
+    </error>
+    <error>
+        <number>ORA-00932</number>
+        <title>: Oracle does not allow SELECT DISTINCT with a CLOB data type</title>
+        <user_message>This error occurs when a user has the SQL directive
+        "DISTINCT." on a query containing a CLOB or XMLCLOB datatype column as output.
+        In order to retrieve your data, use your browser's back
+        button and check the box in the output selections that reads
+        "Include duplicate rows in returned data ."  Note this will cause you to
+        get duplicate data if you have mulitple, identical rows.  If this did not
+        cause this error or you have any questions please contact us using the link
+        below.
+	</user_message>
+    </error>
+  <!-- /Oracle errors -->
+    <error>  <!-- Postgres duplicate primary key message -->
+        <number>ERROR: duplicate key violates unique constraint</number>
+        <title>Duplicate data item entered.</title>
+        <user_message>This error occurs when an attempt is made to re-enter data
+        that has already be entered in the database.  Required data cannot usually 
+        be listed in a database more than once.  Check the database to determine 
+        if the data you are trying to enter is already there.</user_message>
+    </error>
+</db_errors>

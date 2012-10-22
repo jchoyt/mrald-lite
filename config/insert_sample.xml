@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InsertForm>
+  <schema>public</schema>
+  <title>Insert Orientations</title>
+  <formElements>
+    <stat useStats="yes"/>
+    <field checked="no" filter="no" groupby="no" output="yes" sort="no" stats="no">
+      <column>orientationid</column>
+      <table>orientation</table>
+      <label>orientationid</label>
+      <type>String</type>
+      <order>1</order>
+    </field>
+    <field checked="no" filter="no" groupby="no" output="yes" sort="no" stats="no">
+      <column>orientation</column>
+      <table>orientation</table>
+      <label>orientation</label>
+      <type>String</type>
+      <order>2</order>
+    </field>
+  </formElements>
+</InsertForm>
+

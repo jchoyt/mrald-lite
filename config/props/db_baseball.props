@@ -1,0 +1,7 @@
+DBDRIVER=org.hsqldb.jdbcDriver
+DBLOGIN=sa
+DBPASSWORD=
+DBSERVER=jdbc:hsqldb:file:[PATH]/demo/baseball;shutdown=true
+SCHEMA=PUBLIC
+DESCRIPTION=Sample database.  This contains select baseball data from 1871 to 2005.  Used with permission.  <br/>The full database can be found at <a href="http://www.baseball-databank.org">http://www.baseball-databank.org</a>.
+DBNAME=BaseballSampleDB

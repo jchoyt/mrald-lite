@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>test</comment>
+<entry key="HighLight_color">-3355393</entry>
+<entry key="Background_color">-2560528</entry>
+<entry key="Focus_color">-7094906</entry>
+<entry key="Standard_color">-1182485</entry>
+</properties>

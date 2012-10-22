@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/8/trunk/mrald/src/org/mitre/mrald/join
+END
+IndexJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/IndexJoin.java
+END
+JoinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/JoinTest.java
+END
+Source.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/Source.java
+END
+Join.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/8/trunk/mrald/src/org/mitre/mrald/join/Join.java
+END
+HashJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/HashJoin.java
+END
+NestedLoopJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/NestedLoopJoin.java
+END
+PostgresSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/PostgresSource.java
+END
+SortMergeJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/SortMergeJoin.java
+END
+SimpleOptimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/7/trunk/mrald/src/org/mitre/mrald/join/SimpleOptimizer.java
+END

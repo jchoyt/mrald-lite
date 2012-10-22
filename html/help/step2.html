@@ -1,0 +1,260 @@
+<HTML>
+<HEAD>
+  <LINK HREF="../mrald.css" REL="stylesheet" TYPE="text/css">
+  <STYLE>
+  P.response {
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  </STYLE>
+  <TITLE>MRALD Form Builder Step #2 Help</TITLE>
+</HEAD>
+  <BODY>
+  <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" WIDTH="100%">
+    <TR>
+      <TD CLASS="bord">
+        <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="1" CELLPADDING="0">
+          <TR>
+            <TH><H1>MRALD Form Builder Step #2</H1></TH>
+          </TR>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  <BR>
+  <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR>
+      <TD CLASS="body">
+        <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+          <TR>
+            <TD CLASS="bord">
+              <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="1" CELLPADDING="5">
+                <TR>
+                  <TD><BR>
+                    <A NAME="Links"><B><FONT SIZE="+1">What do each of the columns in the Links
+                    table represent?</FONT></B> <BR>
+                    <P CLASS="response">
+                    The links that appear in the rows of the table are the links that currently
+                    exist in the data model.  The 'Primary' and 'Foreign' are the primary and
+                    foreign keys between the tables.  These links were also the determinates for the
+                    depth of the search from the first step in the Form Builder.  In some cases, the
+                    user may choose to ignore certain links because of the irrelevance to the
+                    desired results.  By choosing 'Ignore' as opposed to 'Full', the link will not
+                    be considered and the form and resulting queries will disregard the relationship.
+                    In addition, the form provides drop-down menus for artificially creating links
+                    in the customized form.  This allows the user to add a relationship constraint
+                    that may not be include in the data model. NOTE: This only affects the created
+                    form.  It does not change of the data model or any other forms created on these
+                    tables.<BR>
+                    <BR>
+                    <B>IMPORTANT</B>: If more than one table is selected, each table must be
+                    involved in at least one link.  Violation of this rule will result in poor and,
+                    most likely, impossible results.
+                    </P>
+                    <BR>
+                    <BR>
+                    <A NAME="Fields"><B><FONT SIZE="+1">There is a lot of information provided for
+                    each of the available columns.  What does each of the selections mean?</FONT></B>
+                    <BR>
+                    <P CLASS="response">
+                    Each row pertains to a specific field in a given table.  The checkboxes
+                    underneath the column titles act as a "Select/Deselect All" function, which
+                    means that all the columns will be toggle to the value of the top checkbox. Each
+                    of the column titles mean the following:<BR>
+                    <UL>
+                      <LI>
+                        Ignore - If you have no need at all for the current field, you can choose to
+                        ignore it and the rest of the values or attributes you set for this field will
+                        be ignored.  This provides the user a quick way to disregard a field without
+                        having to check or uncheck every single box.
+                      <LI>
+                        Table - This is simply the table in which the current field exists.
+                      <LI>
+                        Column Name - This is the system name for the current field.
+                      <LI>
+                        Column Label - This is an available label for the current field as it will
+                        appear on the created form.  This can be used to translate a cryptic system name
+                        into something all users can understand.  It will not effect the query or
+                        results, only the way the name is displayed on the form.  In addition, the label
+                        will also appear as the column header on the returned results.  This is a method
+                        of translating the sometimes cryptic column names data modelers use to something
+                        the users can understand from their specific domain.  This value defaults to the
+                        column name, however if the columnNames.props file exists, the nice name from that
+                        file will be used as the default instead.
+                      <LI>
+                        Output - If you will ever have need for the values of this field, leave this
+                        column checked.  This column controls whether or not the field appears in the
+                        available output selection on the created form.  If this column is not checked,
+                        there will be no way to select the field as output.
+                      <LI>
+                        Default Selection - In order to assist some of our users as a speed up the time
+                        from start to finish, MRALD provides the ability to define the pre-selected
+                        output fields.  This means that whenever the created form is viewed or visited,
+                        this collection of fields will already be included in the output. (Of course,
+                        this is as customizable as the rest of the form.  These fields can also be
+                        unchecked if not desired)
+                      <LI>
+                        Filter - In order to reduce the clutter and confusion, MRALD gives the user an
+                        opportunity to select the fields that will show up in the available filter
+                        fields.  With some forms, the field list can be quite large.  This column allows
+                        the user to set which fields will appear under the filter drop-down menu.
+                      <LI>
+                        Stats - This column allows the user to choose which fields will be include in
+                        the created form's statisitical filter.  Again, the user has the ability to
+                        choose which fields will appear in the drop-down menu.
+                      <LI>
+                        Group By - This column allows the user to choose which fields will be include in
+                        the created form's Group By, which allows for grouping the returned results.
+                        This is usually used in conjunction with statistics.  For normal output, using
+                        the Sort option column is faster. Again, the user has the ability to choose
+                        which fields will appear in the drop-down menu.
+                      <LI>
+                        Order - This column determines the order of the fields that will appear in the
+                        output. This column also allows for decimal numbers, i.e. 1.02 is after 1 but
+                        before 2. If a field is ignored or not included in the output, the associated
+                        order number will be ignored, so there is no need to make the numbers continuous.
+                        The list will be sorted from smallest to largest so missing numbers will not
+                        affect the performance or results.
+                      <LI>
+                        Sort - This column allows the user to choose which fields will be included in
+                        the created form's sorting feature.  This feature allows the user to sort the
+                        results of the query by a desired field.  Again, the user has the ability to
+                        choose which fields will appear in the drop-down menu.
+                      <LI>
+                        Format - For numbers and dates, this column allows the user to specify how they
+                        would like the format.  This will only affect the output of the number, not how
+                        it is stored in the system or how it is filtered or sorted in the query.
+                      <LI>
+                        Comments - These are the comments entered for the field when the data model was
+                        entered into the system.  Contact the sysadmin for your system if you need to
+                        add or change the comments.  Any fields will no commments will appear as <I>null</I>.
+                    </UL>
+                    </P>
+                    <BR>
+                    <BR>
+                    <A NAME="Filters"><B><FONT SIZE="+1">What is a filter and why are there so many
+                    fields?</FONT></B> <BR>
+                    <P CLASS="response">
+                    A filter allows the user to make an easy adjustment to the query that will
+                    respond with specific information.  This option allows the user to specify a
+                    field and several values that may be in that field, which will allow the
+                    form user to restrict the results to those values checked or entered into the
+                    input text boxes.  For example, entering the title as 'Departure Airports' and
+                    using the corresponding field, the '=' operator, and the values, 'LAX, JFK, IAD',
+                    yields the following output on the created form:<BR>
+                    <BR>
+                    SUGGESTION:  Include a DESCRIPTIVE title, since the field will not be displayed
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/Filter.gif" BORDER="0" ALT="Filters">
+                    </CENTER>
+                    <BR>
+                    <BR>
+                    <A NAME="OrFilters"><B><FONT SIZE="+1">What is an 'OR' filter?</FONT></B> <BR>
+                    <P CLASS="response">
+                    An 'OR' filter allows the user to make an easy adjustment to the query that will
+                    respond with specific information. This option allows the user to specify that
+                    two fields are equal to (or other operator relationshipto ) a single value. The
+                    principle difference between this filter and the standard Filter is the standard
+                    filter allows for a single field to equal two or more values whereas the 'OR'
+                    filter allows two fields to equal one value. For example, entering the title as 'Departure
+                    or Arrival Airport is' and using the corresponding fields, the '=' operators, and
+                    the values, 'LAX, JFK, IAD', yields the following output on the created form,
+                    which allows the form user to restrict the query results to those records where
+                    the arrival or departure airport is one of the values listed, or as entered into
+                    the text input box. An example:<BR>
+                    <BR>
+                    SUGGESTION:  Include a DESCRIPTIVE title, since the fields will not be displayed
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/OrFilter.gif" BORDER="0" ALT="OR Filters">
+                    </CENTER>
+                    <BR>
+                    <BR>
+                    <A NAME="RangeFilter"><B><FONT SIZE="+1">What is a Range filter?</FONT></B> <BR>
+                    <P CLASS="response">
+                    A range Filter allows the user to designate a source field by which a range can
+                    be used.  This feature can be used on anything from longitude and latitude
+                    degrees to counts or number fields.  The chosen field will be used but the
+                    desired field label will be displayed on the created form.  An example:
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/RangeFilter.gif" BORDER="0" ALT="Range Filter">
+                    </CENTER>
+                    <BR>
+                    <BR>
+                    <A NAME="TimeFilter"><B><FONT SIZE="+1">What is the 'Time' Filter?</FONT></B> <BR>
+                    <P CLASS="response">
+                    The Time Filter allows the user to add the availability of a time constraint on
+                    a date and time field.  All aspects of the Time Filter will be configurable,
+                    including the enter Start and End Date.  The "Time Based on Event" field will be
+                    populated by all the Time/Date fields not ignored when created the form.  An
+                    example:
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/TimeFilter.gif" BORDER="0" ALT="Time Filter">
+                    </CENTER>
+                    <BR>
+                    <BR>
+                    <A NAME="AnalysisOutput"><B><FONT SIZE="+1">What is the 'Analysis Output'?</FONT></B> <BR>
+                    <P CLASS="response">
+					The Analysis Output option is simply gives the user the ability to include the 
+					data analysis capabilities in the created form.  The algorithms are limited to 
+					the capabilities of the system but will be completely configurable from within 
+					the system.  Each analysis output will present the user with a configuration 
+					page that will showcase the selected data fields as well as the appropriate 
+					parameters. An example of the included options in the created form: 
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/analysis_output.gif" BORDER="0" ALT="Analysis Output">
+                    </CENTER>
+                    <!-- PM: Adding pivot support. -->
+                    <BR>
+                    <BR>
+                    <A NAME="Pivot"><B><FONT SIZE="+1">What does it mean to 'Pivot Results'?</FONT></B> <BR>
+                    <P CLASS="response">
+                    The Pivot Results option transforms the results into a spreadsheet-like view.
+                    In many cases, it is good database design to have a table in which one
+                    column is an entity identifier, another column indicates a type of annotation
+                    that pertains to that object, and a third column is the value of that annotation.
+                    For example, a database for a customer survey might have a table of the form
+                    <code>Survey(customer_id, question, response)</code>.  This design allows new questions
+                    to be added easily, and allows for easier aggregation.  However, many users want to
+                    view the data as a spreadsheet with one row for each object and one column for each
+                    annotation.  Continuing the example, the survey needs to be transformed into a table
+                    of the form <code>Questions(customer_id, question1, question2, ..., questionN)</code>.
+                    <BR>
+                    The Pivot Results option lets the form designer indicate which column of a query corresponds
+                    to the entitiy identifier (e.g., the customer_id), which corresponds to the attribute
+                    identifier (e.g., the question), and which to the value (e.g., the response).  Two key
+                    assumptions are made.  First, all three fields must originate from the same underlying
+                    table.  Second, the entity identifier must functionally determine the remaining columns.
+                    This allows, for example, one to join the Survey relation with the Customer relation to link
+                    in demographic data.
+                    </P>
+                    <!-- This stuff is commented out because I don't have an example.
+                    <CENTER>
+                      <IMG SRC="images/pivot.gif" BORDER="0" ALT="Pivot">
+                    </CENTER>
+                    -->
+                    <!-- PM: End of pivot support. -->
+                    <!-- PM: Adding field comparison support. -->
+                    <BR>
+                    <BR>
+                    <A NAME="Pivot"><B><FONT SIZE="+1">What is a field comparison?</FONT></B> <BR>
+                    <P CLASS="response">
+                    This filter compares the value in one field to the value in another field.  For example,
+                    you could retrieve employees where emp.salary > mgr.salary.
+                    </P>
+                    <!-- PM: End of field comparison support. -->
+                  </TD>
+                </TR>
+              </TABLE>
+            </TD>
+          </TR>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  </BODY>
+</HTML>

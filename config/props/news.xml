@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<news  xsi:noNamespaceSchemaLocation="news.xsd">
+    <newsday date="2/08/2007" archive="no">
+        <newsitem>
+            <title>What is MRALD?</title>
+            <body>MRALD is a data delivery platform designed for analysts and other domain experts regardless of technical knowledge.</body>
+        </newsitem>
+        <newsitem>
+            <title>Where to start?</title>
+            <body>
+                We recommed you start with the tutorial on the left.  It will guide you through using a data retrieval form and show you many of the features that distinguish this platform from other products.  There's an integrated form builder, also on the left, to create these forms.
+            </body>
+        </newsitem>
+        <newsitem>
+            <title>What else is there?</title>
+            <body>
+                <![CDATA[<ul>
+                    <li>MRALD ships with the Cewolf chart generating software. We've included the sample set of charts
+                    <a href="cewolfset.jsp">here.</a></li>
+                    <li>It also ships with the
+                    <a href="http://ws.apache.org/axis2" target="_blank"/">Apache Axis2</a>
+                    web services platform, which is based on SOAP.</li>
+                    <li>MRALD was built to be extended and customized. If you don't see what you want,
+                    <a href="mailto:mrald-dev-list@lists.mitre.org">let us know</a>
+                    and we will work with you to see how easy or difficult your idea would be.</li>
+                </ul>]]>
+            </body>
+        </newsitem>
+    </newsday>
+    <newsday date="12/17/2004" archive="yes">
+        <newsitem>
+            <title>What is MRALD?</title>
+            <body>MRALD gives the user the power to search a database without requiring prior knowledge or expertise with databases. It runs on almost any platform and will access any database with a reasonably complete JDBC driver. MRALD allows for any database to be accessed easily via a web browser. Each project can have the same main page (like it's own Portal, where each user will see a personalized version of this main page).</body>
+        </newsitem>
+        <newsitem>
+            <title>How do I use it?</title>
+            <body>See the user guide link on the left.</body>
+        </newsitem>
+    </newsday>
+</news>
+

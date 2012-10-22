@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+        xmlns:jsp="http://java.sun.com/JSP/Page" 
+        xmlns:mrald="urn:jsptld:/WEB-INF/mrald.tld" 
+        xmlns:lattice="urn:jsptld:/WEB-INF/lattice.tld" xml:lang="en" lang="en">
+    <jsp:output omit-xml-declaration="true" />
+    <jsp:directive.page contentType="text/text" />
+    <jsp:directive.page import="org.mitre.mrald.util.*,java.sql.*" />
+    <jsp:scriptlet>
+        String table = request.getParameter("table");
+        String field = request.getParameter("field");
+        String value = request.getParameter("value");
+        response.setContentType("text/xml");
+        response.setHeader("Cache-Control", "no-cache");
+    
+        MraldConnection mconn = new MraldConnection();
+        String query = "select * from " + table + " where " + field + "='" + value + "'";
+        System.out.println(query);
+        ResultSet rs = mconn.executeQuery(query);
+        if( rs.next() )
+        {
+           out.write("No good - that already exists.");
+        }
+        else
+        out.write("OK");
+    </jsp:scriptlet>
+</html>
+

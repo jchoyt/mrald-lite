@@ -1,0 +1,108 @@
+<div id="outer" class="rightSideBar">
+    <p class="sideBarTitle" style="margin-top:0;">Include in Results
+    <img alt="help" src="images/green-help.jpeg" />
+    </p>
+    <p class="sideBarText">
+    <input value="true" name="showQuery" type="checkbox" checked="checked" />
+    The query
+    <br />
+    <input type="checkbox" name="showDuplicates" value="true" />
+    Duplicate rows</p>
+    <p class="sideBarTitle">Output size limit</p>
+    <p class="sideBarText">
+    <input type="radio" value="none" name="outputSize" />
+    None
+    <br />
+    <input type="radio" value="lines" name="outputSize" checked="checked" />
+    <input name="outputLinesCount" type="text" size="6" value="500" />
+    Lines
+    <br />
+    <input type="radio" value="mb" name="outputSize" />
+    <input name="outputMBSize" type="text" size="5" value="1" />
+    MB</p>
+    <p class="sideBarTitle">Format</p>
+    <p class="sideBarText">
+    <strong>Browser</strong>
+    <br />
+    <input type="radio" name="Format" value="browserHtml" checked="checked" />
+    HTML
+    <br />
+    <input type="radio" name="Format" value="browseRecordHtml">Record (HTML)</input>
+    <br />
+    <input type="radio" name="Format" value="browserCsv" />
+    CSV (
+    <input name="browserFormatDelimiter" type="text" value="," size="2" />
+    )
+    <br />
+    <input type="radio" name="Format" value="browserText" />
+    Text (tab delimited)
+    <br />
+    <input type="radio" name="Format" value="XmlRaw" />
+    XML
+    <br />
+    <input type="radio" name="Format" value="MITRE_PA" />
+    Pathalizer
+    <br />
+    <input type="radio" id="chartId" name="Format" value="chart" onClick="if (EnableStats.value == 1) toggle('inner', '../images/')" />
+    Chart
+    <a onClick="toggle('inner', '../images/')">
+        <img id="innerImage" src="../images/plus.gif">
+        </img>
+    </a>
+    <div id="inner" style="display:none;">
+    <p class="sideBarTitle">Graph Parameters</p>
+    <p class="sideSubBarText">
+    <br />
+    Chart Type
+    <select name="chartType">
+        <option value='stackedverticalbar3d'>Stacked 3D</option>
+        <option value='verticalbar3d'>3D Vertical Bar</option>
+        <option value='area'>Area</option>
+        <option value='horizontalbar'>Horizontal Bar</option>
+        <option value='horizontalbar3d'>3D Horizontal Bar</option>
+        <option value='line'>Line</option>
+        <option value='stackedhorizontalbar'>Stacked Horizontal Bar</option>
+        <option value='stackedverticalbar'>Stacked Vertical Bar</option>
+        <option value='stackedverticalbar3d'>3D Stacked Vertical Bar</option>
+        <option value='verticalbar'>Vertical Bar</option>
+        <option value='verticalbar3d'>Vertical Bar 3D</option>
+    </select>
+    </p>
+    <br />
+    Title
+    <br />
+    <input type='text' size="15" name="graphTitle" />
+    <br />
+    Label (xaxis)
+    <input type='text' size="14" name="xaxislabel" />
+    <br />
+    Label (yaxis)
+    <input type='text' size="14" name="yaxislabel" />
+    <br />
+    <br />
+    <input type='text' size="4" name="labelLimit" />
+    Limit Label Length
+    <br />
+    <input type='text' size="4" name="startCount" />
+    Start at
+    <br />
+    <input type='text' size="4" name="rowCount" />
+    Limit Output Size
+    <br />
+    </div>
+    <strong>File</strong>
+    <br />
+    <input type="radio" name="Format" value="fileCsv" />
+    CSV (
+    <input name="fileFormatDelimiter" type="text" value="," size="2" />
+    )
+    <br />
+    <!-- <input type="radio" name="Format" value="fileXml" />
+    XML<br/> -->
+    <input type="radio" name="Format" value="fileText" />
+    Text (tab delimited)</p>
+    <p class="sideBarText">
+    <input type="radio" name="Format" value="excel" />
+    Excel</p>
+</div>
+

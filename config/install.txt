@@ -1,0 +1,56 @@
+Instructions for Installing The MRALD War File with Tomcat 4.1.x
+
+(While not the best example, these steps are for use with a Windows-based system.  More confirmation is needed for the instructions to work with an UNIX based system)
+
+1) Install Java
+	- Download the latest SDK from http://java.sun.com (at print time, j2sdk1.4.2_01
+	- Follow the on screen instructions to install or unzip the package
+	- After the installation is complete:
+		~ add the bin directory in the Java directory to your system variable, PATH
+		~`add a system variable, JAVA_HOME
+
+
+2) Install Tomcat 4.1.x
+	- Download the latest version of Tomcat 4.1.x from http://jakarta.apache.org (at print time, Tomcat 4.1.18)
+	- Follow the instructions to install or unzip the package to your computer
+	- (SECURITY) Erase the examples directory from the webapps directory
+	- To comfirm correct installation, start Tomcat from the bin\startup.bat file and navigate to localhost:8080
+
+
+3) Shutdown Tomcat with the shutdown.bat file in the bin directory
+
+
+4) In order for the system to work, you must have our simplest of schema setup in your database
+	- Use this SQL:
+
+CREATE TABLE People (
+        peopleId             NUMBER(3) NOT NULL,
+        surname              VARCHAR2(50) NULL,
+        firstName            VARCHAR2(50) NULL,
+        titleRank            VARCHAR2(50) NULL,
+        phone                VARCHAR2(20) NULL,
+        email                VARCHAR2(50) NULL,
+        peopleTypeId         NUMBER(3) NULL
+);
+
+
+	- The peopleTypeId identifies the user's level ( 1 is standard, 3 is adminstrator)
+
+
+5) Copy the ROOT.war file into the {TOMCAT}\webapps directory and delete everything else
+	- Go to the {TOMCAT}\bin directory and start the startup.bat file
+	- This will unpack and place everything from the WAR in the right place
+	- navigate to localhost:8080 and you will see the "Administrative Configuration" page
+		~ Confirm the DB specific variables (i.e. DBSERVER, DBLOGIN, DBPASSWORD....)
+		~ Change the SMTP Server and the Email Address to your satisfaction
+		~ Check to make sure the BasePath is correct (should be the location of your webapps folder)
+
+
+Good to go!
+
+Any questions, comments, concerns?
+
+jchoyt@mitre.org
+tcornett@mitre.org
+
+

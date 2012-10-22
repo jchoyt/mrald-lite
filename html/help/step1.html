@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+  <LINK HREF="../mrald.css" REL="stylesheet" TYPE="text/css">
+  <STYLE>
+  P.response {
+    padding-left: 20px;
+    padding-right: 30px;
+  }
+  </STYLE>
+  <TITLE>MRALD Form Builder Step #1 Help</TITLE>
+</HEAD>
+  <BODY>
+  <TABLE CELLSPACING="0" CELLPADDING="0" BORDER="0" WIDTH="100%">
+    <TR>
+      <TD CLASS="bord">
+        <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="1" CELLPADDING="0">
+          <TR>
+            <TH><H1>MRALD Form Builder Step #1</H1></TH>
+          </TR>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  <BR>
+  <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR>
+      <TD CLASS="body">
+        <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+          <TR>
+            <TD CLASS="bord">
+              <TABLE SUMMARY="" WIDTH="100%" BORDER="0" CELLSPACING="1" CELLPADDING="5">
+                <TR>
+                  <TD><BR>
+                    <A NAME="PageTitle"><B><FONT SIZE="+1">What is the page title and why is it 
+                    required?</FONT></B> <BR>
+                    <P CLASS="response">
+                    The page title is the phrase that will appear in multiple places in the MRALD 
+                    system after the form has been created.  Although it is only a line in the xml 
+                    file, the page title will appear both as the title and header of the created 
+                    form as well as the text for the link to the form from the main page.  In 
+                    addition, if you desire to 'bookmark' or add the page to your 'favorites', the 
+                    page title will also appear as the name of the bookmark.
+                    </P>
+                    <BR>
+                    <BR>
+                    <A NAME="Depth"><B><FONT SIZE="+1">How does the size of the depth affect my 
+                    search and the related results?</FONT></B> <BR>
+                    <P CLASS="response">
+                    The depth of the related table search is the number of joins that the database 
+                    will use to determine the relationship between a set of tables.  The results of 
+                    the query will be based on the tables linked to the ones checked within <I><B>n</B></I> 
+                    joins. <I>( n being the depth entered )</I>  If the structure of the table 
+                    relationship is such that a shallow depth produces a relatively large number of 
+                    tables, the succeeding step in the form builder may take longer than expected.
+                    </P>
+                    <CENTER>
+                      <IMG SRC="images/depth.gif" BORDER="0" ALT="Table Depth">
+                    </CENTER>
+                    <BR>
+                    <BR>
+                    <A NAME="Tables"><B><FONT SIZE="+1">What are the listing for each of the tables?</FONT></B>
+                    <BR>
+                    <P CLASS="response">
+                    Each row of this table represents a specific table or view in the database.  The 
+                    checkbox allows the user to carry the specified table over to the next Form 
+                    Builder step.  The center column is the system name for the table and the far 
+                    right column represents the system comments for the table.  These comments are 
+                    filled in by the database administrator when the table are created.  No comments 
+                    will be displayed as <I>null</I>.
+                    </P>
+                    <BR>
+                    <BR>
+                  </TD>
+                </TR>
+              </TABLE>
+            </TD>
+          </TR>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  </BODY>
+</HTML>

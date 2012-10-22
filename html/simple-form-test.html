@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-tramsotopma;.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="mrald.css" type="text/css" />
+    <title>Algorithm</title>
+<script xml:space="preserve" type="text/javascript" language="Javascript">
+    function Enable(objElement)
+    {
+    objElement.disabled = false;
+    objElement.value = '1';
+    }
+    function Disable(objElement)
+    {
+    objElement.disabled = true;
+    objElement.value = '0';
+    }
+</script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 class="headerTitle">Algorithm - Simple Form</h1>
+    </div>
+    <div class="subHeader">
+    <span class="doNotDisplay">Navigation:</span>
+    MRALD - Finding the gems in your data |
+    <a href="form-test.html">Advanced Form</a> |
+    <a href="index.jsp">Home</a>
+    |
+    <a href="http://mitre.org">MITRE</a> | <a href="mailto:mrald-dev-list@lists.mitre.org">Contact Developers</a>
+    </div>
+    <form method="post" action="../FormSubmit" enctype="application/x-www-form-urlencoded">
+      <input name="Schema" type="hidden" value="public" />
+      <input name="form" type="hidden" value="Algorithm" />
+      <input type="hidden" name="workflow" value="Building SQL" />
+      <input name="outputFormat21" type="hidden" value="fieldname:algorithm_id~nicename:algorithm_id~type:String" />
+      <input name="outputFormat22" type="hidden" value="fieldname:name~nicename:name~type:String" />
+      <input name="outputFormat23" type="hidden" value="fieldname:version~nicename:version~type:String" />
+      <input name="outputFormat24" type="hidden" value="fieldname:description~nicename:description~type:String" />
+      <div class="leftSideBar">
+        <p class="sideBarTitle">Simple Form</p>
+        <p class="sideBarText">This form selects a fixed set of data according to the filter selections chosen by the user.  For more control, use the <a href="form-test.html">advanced version of this form</a></p>
+      </div>
+     <div class="leftSideBar" style="text-align:left;">
+        <p class="sideBarTitle">Output size limit</p>
+        <p class="sideBarText">
+        <input type="radio" value="none" name="outputSize" />
+        Show all rows
+        <br />
+        <input type="radio" value="lines" name="outputSize" checked="checked" />
+        Show only <input name="outputLinesCount" type="text" size="6" value="500" /> rows
+        <br />
+        </p>
+        <p class="sideBarText">
+        <input type="hidden" name="Format" value="browserHtml" />
+        <input value="true" name="showQuery" type="checkbox" checked="checked" />
+        Show me the query
+        </p>
+        <p style="text-align:center;">
+        <input type="submit" value="Retrieve Data" />
+        <br />
+        <br />
+        <input type="reset" value="Reset Form" />
+        </p>
+        </div>
+      <!-- hidden defaults -->
+      <input value="true" name="showQuery" type="hidden" checked="checked" />
+      <input type="hidden" value="none" name="outputSize" />
+      <input type="hidden" name="Format" value="browserHtml" checked="checked" />
+      <input name="Select1" type="hidden" value="Table:subject~Field:subject_id~Order:1" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      <input name="Select2" type="hidden" value="Table:subject~Field:initial_exam~Order:2" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      <input name="Select7" type="hidden" value="Table:subject~Field:primary_language~Order:7" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      <input name="Select13" type="hidden" value="Table:subject~Field:handedness~Order:13" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+
+      <div id="main-copy">
+      <h1 style="border-top: none; padding-top: 0;margin-top:.5em;">Filter Selections <img alt="help" src="images/green-help.jpeg"/></h1>
+      <p>
+      </p>
+      <div class="filter">
+      <strong>Time Filter</strong>
+      <br />
+      Time entered based on:
+      <select name="Time1">
+        <option value="Table:subject~Field:initial_exam">initial_exam</option>
+        <option value="Table:subject~Field:birthdate">birthdate</option>
+      </select>
+      <p>
+      </p>
+      <table>
+        <tr>
+          <td valign="top" style="padding-right:3em;border-right:1px solid rgb(216,210,195);">
+          <strong>Start Date &amp; Time</strong>
+          <br />
+          <input name="Time1~StartDate" type="text" size="13" value="12/17/2001" />
+          (mm/dd/yyyy)
+          <br />
+          <input name="Time1~StartTime" type="text" size="13" value="00:00" />
+          (hh:mm[:ss])</td>
+          <td valign="top" style="padding-left:3em;">
+          <strong>End by</strong>
+          <br />
+          <input name="EnableTime" type="radio" value="EndTime" checked="checked" />
+          Date &amp; Time:
+          <br />
+          <div style="padding-left:3em">
+          <input name="Time1~EndDate" type="text" size="13" value="12/17/2004" />
+          (mm/dd/yyyy)
+          <br />
+          <input name="Time1~EndTime" type="text" size="13" value="23:59" />
+          (hh:mm[:ss])</div>
+          <input name="EnableTime" type="radio" value="AddTime" />
+          Duration:
+          <br />
+          <div style="padding-left:3em">
+          <input name="Time1~Month" type="text" size="5" value="" />
+          Months
+          <br />
+          <input name="Time1~Day" type="text" size="5" value="" />
+          Days
+          <br />
+          <input name="Time1~Hour" type="text" size="5" value="" />
+          Hours
+          <br />
+          <input name="Time1~Minute" type="text" size="5" value="" />
+          Minutes
+          <br />
+          <input name="Time1~Second" type="text" size="5" value="" />
+          Seconds</div>
+          </td>
+        </tr>
+      </table>
+      </div>
+      <p class="filter">
+      <strong>Subject ID starts with</strong>
+      <br />
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:MNI" />
+      MNI
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:JHU" />
+      JHU
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:UCLA" />
+      UCLA
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:UT" />
+      UT
+      <br />
+      Others:
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      </p>
+      <p class="filter">
+      <strong>Speaks</strong>
+      <br />
+      <input type="radio" name="FilterOrFilter1" value="" checked="checked" />
+      none
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      English
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Spanish
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Danish
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Japenese
+      <br />
+      <input type="radio" name="FilterOrFilter1" value="Table1:subject~Field1:primary_language~Operator1:=Table2:subject~Field2:~Operator2:=" />
+      Other
+      <input type="text" name="FilterOrFilter1" />
+      </p>
+      </div>
+    </form>
+  </body>
+</html>
+

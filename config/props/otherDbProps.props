@@ -1,0 +1,5 @@
+##
+#   Set this to true to have Oracle report column comments in the formbuiler
+#   Warning:  this will make Oracle meta data loading VERY slow (10 to 30 minutes)
+##
+remarksReporting=false

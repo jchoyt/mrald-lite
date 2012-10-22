@@ -1,0 +1,18 @@
+### Set this property to the path of the
+### DocBook-XSL stylesheets
+### the correct directory will have a
+### subdirectory named xsl and in there
+### a file named docbook.xsl
+
+docbookHome=/usr/share/apps/ksgmltools2/docbook
+
+
+###If you have a firewall and need a proxy
+###to get through, replace 'gatekeeper' with the name of your
+###proxy server in the in the line below
+
+proxy-host=gatekeeper
+
+
+### if you aren't connected to the network, you have to provide a dtd
+#/usr/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/docbookx.dtd

@@ -1,0 +1,590 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-tramsotopma;.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="mrald.css" type="text/css" />
+    <title>Algorithm</title>
+<script xml:space="preserve" type="text/javascript" language="Javascript">
+    function Enable(objElement)
+    {
+    objElement.disabled = false;
+    objElement.value = '1';
+    }
+    function Disable(objElement)
+    {
+    objElement.disabled = true;
+    objElement.value = '0';
+    }
+</script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 class="headerTitle">Algorithm</h1>
+    </div>
+    <div class="subHeader">
+    <span class="doNotDisplay">Navigation:</span>
+    MRALD - Finding the gems in your data |
+    <a href="/index.jsp">Home</a>
+    |
+    <a href="http://mitre.org">MITRE</a> | <a href="mailto:mrald-dev-list@lists.mitre.org">Contact Developers</a>
+    </div>
+    <form method="post" action="../FormSubmit" enctype="application/x-www-form-urlencoded">
+      <input name="Schema" type="hidden" value="public" />
+      <input name="form" type="hidden" value="Algorithm" />
+      <input type="hidden" name="workflow" value="Building SQL" />
+      <input name="outputFormat21" type="hidden" value="fieldname:algorithm_id~nicename:algorithm_id~type:String" />
+      <input name="outputFormat22" type="hidden" value="fieldname:name~nicename:name~type:String" />
+      <input name="outputFormat23" type="hidden" value="fieldname:version~nicename:version~type:String" />
+      <input name="outputFormat24" type="hidden" value="fieldname:description~nicename:description~type:String" />
+      <div class="rightSideBar">
+        <p class="sideBarTitle" style="margin-top:0;">Include in Results
+        <img alt="help" src="images/green-help.jpeg" />
+        </p>
+        <p class="sideBarText">
+        <input value="true" name="showQuery" type="checkbox" checked="checked" />
+        The query
+        <br />
+        <input type="checkbox" name="showDuplicates" value="true" />
+        Duplicate rows</p>
+        <p class="sideBarTitle">Output size limit</p>
+        <p class="sideBarText">
+        <input type="radio" value="none" name="outputSize" />
+        None
+        <br />
+        <input type="radio" value="lines" name="outputSize" checked="checked" />
+        <input name="outputLinesCount" type="text" size="6" value="500" />
+        Lines
+        <br />
+        <input type="radio" value="mb" name="outputSize" />
+        <input name="outputMBSize" type="text" size="5" value="1" />
+        MB</p>
+        <p class="sideBarTitle">Format and Destination</p>
+        <p class="sideBarText">
+        <strong>Browser</strong>
+        <br />
+        <input type="radio" name="Format" value="browserHtml" checked="checked" />
+        HTML
+        <br />
+        <input type="radio" name="Format" value="browserCsv" />
+        CSV (
+        <input name="browserFormatDelimiter" type="text" value="," size="2" />
+        )
+        <br />
+        <input type="radio" name="Format" value="browserText" />
+        Text (tab delimited)
+        <br />
+        <input type="radio" name="Format" value="XmlRaw" />
+        XML</p>
+        <p class="sideBarText">
+        <strong>File</strong>
+        <br />
+        <input type="radio" name="Format" value="fileCsv" />
+        CSV (
+        <input name="fileFormatDelimiter" type="text" value="," size="2" />
+        )
+        <br />
+        <input type="radio" name="Format" value="fileText" />
+        Text (tab delimited)</p>
+        <p class="sideBarText">
+        <input type="radio" name="Format" value="excel" />
+        Excel</p>
+      </div>
+      <div class="leftSideBar">
+      <p class="sideBarTitle">Include in output
+      <img alt="help" src="images/green-help.jpeg" />
+      </p>
+      <input name="Select1" type="checkbox" value="Table:subject~Field:subject_id~Order:1" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      subject_id
+      <br />
+      <input name="Select2" type="checkbox" value="Table:subject~Field:initial_exam~Order:2" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      initial_exam
+      <br />
+      <input name="Select3" type="checkbox" value="Table:subject~Field:birthdate~Order:3" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      birthdate
+      <br />
+      <input name="Select4" type="checkbox" value="Table:subject~Field:nation_of_residence~Order:4" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      nation_of_residence
+      <br />
+      <input name="Select5" type="checkbox" value="Table:subject~Field:gender~Order:5" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      gender
+      <br />
+      <input name="Select6" type="checkbox" value="Table:subject~Field:race~Order:6" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      race
+      <br />
+      <input name="Select7" type="checkbox" value="Table:subject~Field:primary_language~Order:7" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      primary_language
+      <br />
+      <input name="Select8" type="checkbox" value="Table:subject~Field:second_language~Order:8" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      second_language
+      <br />
+      <input name="Select9" type="checkbox" value="Table:subject~Field:third_language~Order:9" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      third_language
+      <br />
+      <input name="Select10" type="checkbox" value="Table:subject~Field:fourth_language~Order:10" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      fourth_language
+      <br />
+      <input name="Select11" type="checkbox" value="Table:subject~Field:marital_status~Order:11" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      marital_status
+      <br />
+      <input name="Select12" type="checkbox" value="Table:subject~Field:education~Order:12" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      education
+      <br />
+      <input name="Select13" type="checkbox" value="Table:subject~Field:handedness~Order:13" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked="checked" />
+      handedness
+      <br />
+      <br />
+      <p class="sideBarTitle">Sort Criteria
+      <img alt="help" src="images/green-help.jpeg" />
+      </p>
+      Sort by
+      <select name="Sort1">
+        <option>
+        </option>
+        <option value="Table:algorithm~Field:algorithm_id~Order:1">algorithm_id</option>
+        <option value="Table:algorithm~Field:name~Order:1">name</option>
+        <option value="Table:algorithm~Field:version~Order:1">version</option>
+        <option value="Table:algorithm~Field:description~Order:1">description</option>
+      </select>
+      <input name="Sort1" type="checkbox" value="OrderType:DESC" />
+      Desc
+      <br />
+      then by
+      <select name="Sort2">
+        <option>
+        </option>
+        <option value="Table:algorithm~Field:algorithm_id~Order:2">algorithm_id</option>
+        <option value="Table:algorithm~Field:name~Order:2">name</option>
+        <option value="Table:algorithm~Field:version~Order:2">version</option>
+        <option value="Table:algorithm~Field:description~Order:2">description</option>
+      </select>
+      <input name="Sort2" type="checkbox" value="OrderType:DESC" />
+      Desc
+      <br />
+      then by
+      <select name="Sort3">
+        <option>
+        </option>
+        <option value="Table:algorithm~Field:algorithm_id~Order:3">algorithm_id</option>
+        <option value="Table:algorithm~Field:name~Order:3">name</option>
+        <option value="Table:algorithm~Field:version~Order:3">version</option>
+        <option value="Table:algorithm~Field:description~Order:3">description</option>
+      </select>
+      <input name="Sort3" type="checkbox" value="OrderType:DESC" />
+      Desc
+      <br />
+      <br />
+      <p style="text-align:center;">
+        <input type="submit" value="Retrieve Data" />
+        <br />
+        <br />
+        <input type="reset" value="Reset Form" />
+      </p>
+      </div>
+      <div id="main-copy">
+      <h1 style="border-top: none; padding-top: 0;margin-top:.5em;">Filter Selections
+      <img alt="help" src="images/green-help.jpeg" />
+      </h1>
+      <p>
+      </p>
+      <div class="filter">
+      <strong>Time Filter</strong>
+      <br />
+      Time entered based on:
+      <select name="Time1">
+        <option value="Table:subject~Field:initial_exam">initial_exam</option>
+        <option value="Table:subject~Field:birthdate">birthdate</option>
+      </select>
+      <p>
+      </p>
+      <table>
+        <tr>
+          <td valign="top" style="padding-right:3em;border-right:1px solid rgb(216,210,195);">
+          <strong>Start Date &amp; Time</strong>
+          <br />
+          <input name="Time1~StartDate" type="text" size="13" value="12/17/2001" />
+          (mm/dd/yyyy)
+          <br />
+          <input name="Time1~StartTime" type="text" size="13" value="00:00" />
+          (hh:mm[:ss])</td>
+          <td valign="top" style="padding-left:3em;">
+          <strong>End by</strong>
+          <br />
+          <input name="EnableTime" type="radio" value="EndTime" checked="checked" />
+          Date &amp; Time:
+          <br />
+          <div style="padding-left:3em">
+          <input name="Time1~EndDate" type="text" size="13" value="12/17/2004" />
+          (mm/dd/yyyy)
+          <br />
+          <input name="Time1~EndTime" type="text" size="13" value="23:59" />
+          (hh:mm[:ss])</div>
+          <input name="EnableTime" type="radio" value="AddTime" />
+          Duration:
+          <br />
+          <div style="padding-left:3em">
+          <input name="Time1~Month" type="text" size="5" value="" />
+          Months
+          <br />
+          <input name="Time1~Day" type="text" size="5" value="" />
+          Days
+          <br />
+          <input name="Time1~Hour" type="text" size="5" value="" />
+          Hours
+          <br />
+          <input name="Time1~Minute" type="text" size="5" value="" />
+          Minutes
+          <br />
+          <input name="Time1~Second" type="text" size="5" value="" />
+          Seconds</div>
+          </td>
+        </tr>
+      </table>
+      </div>
+      <p class="filter">
+      <strong>Subject ID starts with</strong>
+      <br />
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:MNI" />
+      MNI
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:JHU" />
+      JHU
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:UCLA" />
+      UCLA
+      <input type="checkbox" name="Filter1" value="Table:subject~Field:subject_id~Operator:=~Value:UT" />
+      UT
+      <br />
+      Others:
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      <input type="hidden" name="Filter1" value="Table:subject~Field:subject_id~Operator:=" />
+      <input type="text" name="Filter1" size="5" />
+      </p>
+
+
+      <p class="filter">
+        <strong>Title:</strong>
+        <input name="Filter0~Label" type="text" size="30" />
+        <br />
+        <br />
+        <strong>Filter on:</strong>
+        <br />
+        Field:
+        <select name="Filter0">
+          <option>
+          </option>
+          <option value="Table:attribute~Field:attribute_id">attribute.attribute_id</option>
+          <option value="Table:attribute~Field:name">attribute.name</option>
+          <option value="Table:attribute~Field:description">attribute.description</option>
+          <option value="Table:attribute~Field:entity_id">attribute.entity_id</option>
+          <option value="Table:attribute~Field:units">attribute.units</option>
+        </select>
+        <img alt="" src="spacer.gif" width="25" height="1"/>
+          Operator:
+          <select name="Filter0">
+            <option value="Operator:=">=</option>
+            <option value="Operator:!=">Not equal (!=)</option>
+            <option value="Operator:&lt;">&lt;</option>
+            <option value="Operator:&gt;">&gt;</option>
+            <option value="Operator:&lt;=">&lt;=</option>
+            <option value="Operator:&gt;=">&gt;=</option>
+            <option value="Operator:like">Contains</option>
+            <option value="Operator:starts">Starts With</option>
+            <option value="Operator:IS NULL">IS NULL</option>
+            <option value="Operator:IS NOT NULL">IS NOT NULL</option>
+          </select>
+        <br />
+        <br />
+        <strong>Values from:</strong>
+        <br />
+        Table: <input name="Filter0" type="text" size="22" /><img alt="" src="images/spacer.gif" width="33" height="1"/>
+        Field: <input name="Filter0" type="text" size="22" /><br />
+        Label: <input name="Filter0" type="text" size="22" /><img alt="" src="images/spacer.gif" width="33" height="1"/>
+        <a href="listTables.jsp" target="_blank">Show me a list of all tables and columns</a>
+  </p>
+
+
+      <p class="filter">
+      <strong>Speaks</strong>
+      <br />
+      <input type="radio" name="FilterOrFilter1" value="" checked="checked" />
+      none
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      English
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Spanish
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Danish
+      <input type="radio" name="FilterOrFilter1" value="Table1:~Field1:~Operator1:Table2:~Field2:~Operator2:" />
+      Japenese
+      <br />
+      <input type="radio" name="FilterOrFilter1" value="Table1:subject~Field1:primary_language~Operator1:=Table2:subject~Field2:~Operator2:=" />
+      Other
+      <input type="text" name="FilterOrFilter1" />
+      </p>
+      <table class="filter">
+        <tr>
+          <td colspan="3">
+            <strong>General Filters</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Field</strong>
+          </td>
+          <td>
+            <strong>Operator</strong>
+          </td>
+          <td>
+            <strong>Value</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Filter1">
+              <option>
+              </option>
+              <option value="Table:algorithm~Field:algorithm_id">algorithm_id</option>
+              <option value="Table:algorithm~Field:name">name</option>
+              <option value="Table:algorithm~Field:version">version</option>
+              <option value="Table:algorithm~Field:description">description</option>
+            </select>
+          </td>
+          <td>
+            <select name="Filter1">
+              <option>
+              </option>
+              <option value="Operator:=">=</option>
+              <option value="Operator:!=">Not equal (!=)</option>
+              <option value="Operator:&lt;">&lt;</option>
+              <option value="Operator:&gt;">&gt;</option>
+              <option value="Operator:&lt;=">&lt;=</option>
+              <option value="Operator:&gt;=">&gt;=</option>
+              <option value="Operator:like">Contains</option>
+              <option value="Operator:starts">Starts With</option>
+              <option value="Operator:IN">IN</option>
+              <option value="Operator:IS NULL">IS NULL</option>
+              <option value="Operator:IS NOT NULL">IS NOT NULL</option>
+            </select>
+          </td>
+          <td>
+            <input name="Filter1" type="text" size="22" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Filter2">
+              <option>
+              </option>
+              <option value="Table:algorithm~Field:algorithm_id">algorithm_id</option>
+              <option value="Table:algorithm~Field:name">name</option>
+              <option value="Table:algorithm~Field:version">version</option>
+              <option value="Table:algorithm~Field:description">description</option>
+            </select>
+          </td>
+          <td>
+            <select name="Filter2">
+              <option>
+              </option>
+              <option value="Operator:=">=</option>
+              <option value="Operator:!=">Not equal (!=)</option>
+              <option value="Operator:&lt;">&lt;</option>
+              <option value="Operator:&gt;">&gt;</option>
+              <option value="Operator:&lt;=">&lt;=</option>
+              <option value="Operator:&gt;=">&gt;=</option>
+              <option value="Operator:like">Contains</option>
+              <option value="Operator:starts">Starts With</option>
+              <option value="Operator:IN">IN</option>
+              <option value="Operator:IS NULL">IS NULL</option>
+              <option value="Operator:IS NOT NULL">IS NOT NULL</option>
+            </select>
+          </td>
+          <td>
+            <input name="Filter2" type="text" size="22" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Filter3">
+              <option>
+              </option>
+              <option value="Table:algorithm~Field:algorithm_id">algorithm_id</option>
+              <option value="Table:algorithm~Field:name">name</option>
+              <option value="Table:algorithm~Field:version">version</option>
+              <option value="Table:algorithm~Field:description">description</option>
+            </select>
+          </td>
+          <td>
+            <select name="Filter3">
+              <option>
+              </option>
+              <option value="Operator:=">=</option>
+              <option value="Operator:!=">Not equal (!=)</option>
+              <option value="Operator:&lt;">&lt;</option>
+              <option value="Operator:&gt;">&gt;</option>
+              <option value="Operator:&lt;=">&lt;=</option>
+              <option value="Operator:&gt;=">&gt;=</option>
+              <option value="Operator:like">Contains</option>
+              <option value="Operator:starts">Starts With</option>
+              <option value="Operator:IN">IN</option>
+              <option value="Operator:IS NULL">IS NULL</option>
+              <option value="Operator:IS NOT NULL">IS NOT NULL</option>
+            </select>
+          </td>
+          <td>
+            <input name="Filter3" type="text" size="22" />
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="EnableStats" value="0" />
+      <h1>Statistical Functions
+      <img alt="help" src="images/green-help.jpeg" />
+      </h1>
+      <table width="100%">
+        <tr>
+          <td width="25%">
+            <strong>Function</strong>
+          </td>
+          <td>
+            <strong>Field</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Stat1" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+              <option>
+              </option>
+              <option value="Function:Count(*)~Order:1~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject">Count(*)</option>
+              <option value="Function:Count~Order:1">Count</option>
+              <option value="Function:Count(DISTINCT~Order:1">Count Distinct</option>
+              <option value="Function:Max~Order:1">Max</option>
+              <option value="Function:Min~Order:1">Min</option>
+              <option value="Function:Avg~Order:1">Average</option>
+              <option value="Function:Stddev~Order:1">Standard Deviation</option>
+              <option value="Function:Sum~Order:1">Sum</option>
+              <option value="Function:Variance~Order:1">Variance</option>
+            </select>
+          </td>
+          <td>
+            <select name="Stat1" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+              <option>
+              </option>
+              <option value="Table:subject~Field:education~Order:1">education</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Stat2" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+              <option>
+              </option>
+              <option value="Function:Count(*)~Order:2~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject">Count(*)</option>
+              <option value="Function:Count~Order:2">Count</option>
+              <option value="Function:Count(DISTINCT~Order:2">Count Distinct</option>
+              <option value="Function:Max~Order:2">Max</option>
+              <option value="Function:Min~Order:2">Min</option>
+              <option value="Function:Avg~Order:2">Average</option>
+              <option value="Function:Stddev~Order:2">Standard Deviation</option>
+              <option value="Function:Sum~Order:2">Sum</option>
+              <option value="Function:Variance~Order:2">Variance</option>
+            </select>
+          </td>
+          <td>
+            <select name="Stat2" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+              <option>
+              </option>
+              <option value="Table:subject~Field:education~Order:2">education</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select name="Stat3" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+              <option>
+              </option>
+              <option value="Function:Count(*)~Order:3~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject~Table:subject">Count(*)</option>
+              <option value="Function:Count~Order:3">Count</option>
+              <option value="Function:Count(DISTINCT~Order:3">Count Distinct</option>
+              <option value="Function:Max~Order:3">Max</option>
+              <option value="Function:Min~Order:3">Min</option>
+              <option value="Function:Avg~Order:3">Average</option>
+              <option value="Function:Stddev~Order:3">Standard Deviation</option>
+              <option value="Function:Sum~Order:3">Sum</option>
+              <option value="Function:Variance~Order:3">Variance</option>
+            </select>
+          </td>
+          <td>
+            <select name="Stat3" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+              <option>
+              </option>
+              <option value="Table:subject~Field:education~Order:3">education</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      Group by
+      <select name="Group4" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+        <option>
+        </option>
+        <option value="Table:subject~Field:subject_id~Order:4">subject_id</option>
+        <option value="Table:subject~Field:fourth_language~Order:4">fourth_language</option>
+        <option value="Table:subject~Field:marital_status~Order:4">marital_status</option>
+        <option value="Table:subject~Field:education~Order:4">education</option>
+        <option value="Table:subject~Field:handedness~Order:4">handedness</option>
+        <option value="Table:subject~Field:initial_exam~Order:4">initial_exam</option>
+        <option value="Table:subject~Field:birthdate~Order:4">birthdate</option>
+        <option value="Table:subject~Field:nation_of_residence~Order:4">nation_of_residence</option>
+        <option value="Table:subject~Field:gender~Order:4">gender</option>
+        <option value="Table:subject~Field:race~Order:4">race</option>
+        <option value="Table:subject~Field:primary_language~Order:4">primary_language</option>
+        <option value="Table:subject~Field:second_language~Order:4">second_language</option>
+        <option value="Table:subject~Field:third_language~Order:4">third_language</option>
+      </select>
+      then by
+      <select name="Group5" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+        <option>
+        </option>
+        <option value="Table:subject~Field:subject_id~Order:5">subject_id</option>
+        <option value="Table:subject~Field:fourth_language~Order:5">fourth_language</option>
+        <option value="Table:subject~Field:marital_status~Order:5">marital_status</option>
+        <option value="Table:subject~Field:education~Order:5">education</option>
+        <option value="Table:subject~Field:handedness~Order:5">handedness</option>
+        <option value="Table:subject~Field:initial_exam~Order:5">initial_exam</option>
+        <option value="Table:subject~Field:birthdate~Order:5">birthdate</option>
+        <option value="Table:subject~Field:nation_of_residence~Order:5">nation_of_residence</option>
+        <option value="Table:subject~Field:gender~Order:5">gender</option>
+        <option value="Table:subject~Field:race~Order:5">race</option>
+        <option value="Table:subject~Field:primary_language~Order:5">primary_language</option>
+        <option value="Table:subject~Field:second_language~Order:5">second_language</option>
+        <option value="Table:subject~Field:third_language~Order:5">third_language</option>
+      </select>
+      then by
+      <select name="Group6" onchange="if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true}">
+        <option>
+        </option>
+        <option value="Table:subject~Field:subject_id~Order:6">subject_id</option>
+        <option value="Table:subject~Field:fourth_language~Order:6">fourth_language</option>
+        <option value="Table:subject~Field:marital_status~Order:6">marital_status</option>
+        <option value="Table:subject~Field:education~Order:6">education</option>
+        <option value="Table:subject~Field:handedness~Order:6">handedness</option>
+        <option value="Table:subject~Field:initial_exam~Order:6">initial_exam</option>
+        <option value="Table:subject~Field:birthdate~Order:6">birthdate</option>
+        <option value="Table:subject~Field:nation_of_residence~Order:6">nation_of_residence</option>
+        <option value="Table:subject~Field:gender~Order:6">gender</option>
+        <option value="Table:subject~Field:race~Order:6">race</option>
+        <option value="Table:subject~Field:primary_language~Order:6">primary_language</option>
+        <option value="Table:subject~Field:second_language~Order:6">second_language</option>
+        <option value="Table:subject~Field:third_language~Order:6">third_language</option>
+      </select>
+      <br />
+      <span style="font-size:70%">*When grouping on a particular column, that column will automatically be included in the output</span>
+      </div>
+    </form>
+  </body>
+</html>

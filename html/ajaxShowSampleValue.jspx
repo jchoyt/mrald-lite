@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:jsp="http://java.sun.com/JSP/Page"
+        xmlns:mrald="urn:jsptld:/WEB-INF/mrald.tld"
+        xmlns:lattice="urn:jsptld:/WEB-INF/lattice.tld" xml:lang="en" lang="en">
+    <jsp:output omit-xml-declaration="true" />
+    <jsp:directive.page contentType="text/text" />
+    <jsp:directive.page import="org.mitre.mrald.util.*, org.mitre.mrald.control.*" />
+    <jsp:directive.page import="java.sql.*" />
+    <jsp:scriptlet>
+
+        String imageDir = Config.getProperty( "BaseUrl" ) + "/images/";
+    	String dir = Config.getProperty( "BaseUrl" ) +"/";
+    	String lessThan = "&lt;";
+    	String greaterThan = "&gt;";
+    	String objid = request.getParameter("objId");
+    	String id = request.getParameter("popUpId");
+    	String filter = request.getParameter("filter");
+        String datasource = request.getParameter("Datasource");
+
+        String inputStrText = lessThan + "span class=\"popUpBoxText\"" + greaterThan + "List values starting with " + lessThan + "/span" + greaterThan;
+        String inputFilterStr =  inputStrText + lessThan + "input type=\"text\" size=\"20\" id=\"inputFilter\" " + greaterThan  + "." + lessThan + "/input" +  greaterThan;
+
+    	String reRetrieveBtn = lessThan + "span class=\"popUpBoxBtnText\" name=\"test\" onclick=\"showSample('" + id +"', '" + objid +"','" + dir + "', 'inputFilter')\"" + greaterThan + "List Values" + lessThan + "/span" + greaterThan;
+
+    	String label = request.getParameter("label");
+        String centerStart = "";
+        String centerEnd = "";
+
+    	String header = lessThan + "span id =\"sampleBox\" class=\"popUpBox\"" + greaterThan;
+
+    	String button = lessThan + "span class=\"popUpBoxBtnText\" onclick=\"closeList('" + id +"')\"" + greaterThan + "Close" + lessThan + "/span" + greaterThan ;
+    	String footer = lessThan + "/span" + greaterThan;
+
+    	String firstLine = lessThan + "span class=\"popUpBoxTitle\"" + greaterThan + " Sample Data  " + lessThan + "/span" + greaterThan;
+
+    	String startLine = lessThan + "span class=\"popUpBoxText\" id='sample";
+    	String endStartLine = "' " + greaterThan;
+    	String smallButtonStart = lessThan + "img src='" + imageDir +"mrald_sample_select.jpg' width='12' height='12' alt='Select' onclick=\"setFilterValueFromSample('" +  objid + "Value','";
+    	String smallButtonEnd = "')\"" + greaterThan + lessThan + "/img" + greaterThan;
+
+    	String rightAlignStart = "";
+    	String rightAlignEnd = "";
+
+    	String endLine =  lessThan + "/span" + greaterThan;
+
+    	String table = request.getParameter("table");
+        String field = request.getParameter("field");
+
+
+        String noOfValuesStr = request.getParameter("number");
+        int noOfValues = Integer.parseInt(noOfValuesStr);
+
+        response.setContentType("text/xml");
+        response.setHeader("Cache-Control", "no-cache");
+
+        MraldConnection mconn = new MraldConnection(datasource, new MsgObject( request, response ) );
+        String query = "select distinct " + table + "." + field + " from " + table;
+
+        if (!filter.equals("undefined"))
+        {
+	     	query +=  " where " + table + "." + field + " like '" + filter + "%'";
+	    }
+        System.out.println(query);
+
+        StringBuffer buff = new StringBuffer(header +  firstLine +  centerStart + inputFilterStr + reRetrieveBtn );
+        ResultSet rs = mconn.executeQuery(query);
+        int count =0;
+        while( rs.next() )
+        {
+          if (count > noOfValues) break;
+           String sampleValue = rs.getString(1);
+
+           buff.append(startLine + count + endStartLine + sampleValue + "   "  + smallButtonStart + sampleValue + smallButtonEnd +  endLine );
+           count++;
+        }
+
+        buff.append(centerEnd +  button);
+        buff.append(footer);
+        System.out.println("Buffer: " + buff.toString() );
+        out.write(buff.toString());
+
+    </jsp:scriptlet>
+</html>
+

@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!--
+ :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+<!ENTITY app_what_is_mrald SYSTEM "appendix_what_is_mrald.xml"
+>
+]>
+<book>
+  <title>MRALD History</title>
+  <bookinfo>
+    <author>
+      <firstname>Jeffrey</firstname>
+      <surname>Hoyt</surname>
+    </author>
+  </bookinfo>
+  <chapter>
+    <title>History of MRALD</title>
+    <para>Good stuff goes here</para>
+  </chapter>
+  <chapter>
+    <title>MRALD Time line</title>
+    <section>
+      <title>1999</title>
+      <para>
+      <emphasis>September 1999</emphasis>
+      Requirements (Use Cases) Gathering for Common Repository
+      (CRS)</para>
+    </section>
+    <section>
+      <title>2000</title>
+      <para>
+      <emphasis>August 2000</emphasis>
+      Designed auto-query capability based on HTML
+      meta-information</para>
+      <para>
+      <emphasis>October 2000</emphasis>
+      First director demonstration of front-end
+      capabilities</para>
+      <para>
+      <emphasis>November 2000</emphasis>
+      CRS 1.0 depoyed.</para>
+      <para>
+      <emphasis>December 2000</emphasis>
+      Re-architectured and re-implemented front-end to include
+      work flow capability, use of reflection for query
+      components, more robust handling of query components and
+      output components, and re-designed HTML
+      meta-information</para>
+    </section>
+    <section>
+      <title>2001</title>
+      <para>
+      <emphasis>January 2001</emphasis>
+      First public release of system as the CAASD Repository
+      System (CRS)</para>
+      <para>
+      <emphasis>April 2001</emphasis>
+      Added intelligent handling of join path. Added drill-down
+      capability, lat-long box, and a few other new
+      widgets</para>
+      <para>
+      <emphasis>June 2001</emphasis>
+      Version 1 of the Form Builder implemented</para>
+      <para>
+      <emphasis>August 2001</emphasis>
+      Logins and personalized forms added. Now tracking
+      individual usage</para>
+      <para>
+      <emphasis>September 2001</emphasis>
+      Form Builder refined enough to release to users, and users
+      can share their forms with other users. Later in the month,
+      the system plays an integral part in determining who within
+      MITRE had access to ETMS flight data after the terrorist
+      attack of 9/11/01</para>
+    </section>
+    <section>
+      <title>2002</title>
+      <para>
+      <emphasis>February 2002</emphasis>
+      Released DirectQuery for public use. This facility had been
+      in use by the developers and many of the more knowledgeable
+      users for quite some time. Also wrote a facility for
+      uploading many queries at once (direct query upload)</para>
+      <para>
+      <emphasis>April 2002</emphasis>
+      Added custom outputs to feed produce input files for
+      analysis tools</para>
+      <para>
+      <emphasis>June 2002</emphasis>
+      MITRE files a patent applied to United States Patent and
+      Trademark Office for technology MRALD implements</para>
+      <para>
+      <emphasis>July 2002</emphasis>
+      First really good, successful customization with new work
+      flows. Added a work flow step to modify queries adding in
+      clues for the query optimizer to use when querying large
+      data sets. This resulted in a 50 to 99% decrease in query
+      execution time. Also added personal query history, some
+      enhanced widgets, and filter operators for NULLs in the
+      database</para>
+      <para>
+      <emphasis>November 2002</emphasis>
+      Neuroinformatics project starts to take over much of the
+      drive and funding for furthering MRALD. CRS ceases to be
+      the driving factor in pushing MRALD features and
+      development.</para>
+    </section>
+    <section>
+      <title>2003</title>
+      <para>
+      <emphasis>May 2003</emphasis>
+      MRALD was formally extracted from the CRS codebase and
+      started as a separate, pilot project in the MITRE Internal
+      SourceForge (iSF) repository</para>
+      <formalpara>
+        <title>Version 1.0 released</title>
+        <para>
+          <emphasis>July 2003</emphasis>
+          <itemizedlist>
+            <listitem>
+              <para>Enhancements 
+              <itemizedlist>
+                <listitem>
+                  <para>New, much more powerful form
+                  builder</para>
+                </listitem>
+                <listitem>
+                  <para>Fixed the code so it parsed date formats
+                  much more flexibly</para>
+                </listitem>
+                <listitem>
+                  <para>Added Count(*) capability</para>
+                </listitem>
+                <listitem>
+                  <para>Added an IN filter so the user can
+                  provide a list of values or even a nested
+                  query</para>
+                </listitem>
+                <listitem>
+                  <para>Form navigation on all html pages</para>
+                </listitem>
+                <listitem>
+                  <para>A new type of OR filter that allows you
+                  to select multiple table.fields match a single
+                  value (e.g., Departure or Arrival airport is
+                  IAD)</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </formalpara>
+      <formalpara>
+        <title>Version 1.0.1 released</title>
+        <para>
+          <emphasis>August 2003</emphasis>
+          <itemizedlist>
+            <listitem>
+              <para>Enhancements 
+              <itemizedlist>
+                <listitem>
+                  <para>Added ability to sort descending as well
+                  as ascending</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </formalpara>
+      <formalpara>
+        <title>Version 1.1 released</title>
+        <para>
+          <emphasis>October 2003</emphasis>
+          <itemizedlist>
+            <listitem>
+              <para>Enhancements 
+              <itemizedlist>
+                <listitem>
+                  <para>Edit Form capability. Users can now edit
+                  their personal forms after they've been created
+                  using an almost identical interface to the one
+                  that created it</para>
+                </listitem>
+                <listitem>
+                  <para>Formbuilder validation. There's a new
+                  work flow step to catch forms that are invalid.
+                  Feedback is given to the user building the form
+                  on why a form is invalid and how to fix it. A
+                  valid form has a single, acyclic join path
+                  between all tables on the form</para>
+                </listitem>
+                <listitem>
+                  <para>New exception handling facility. Two new
+                  classes provide a consistent error handling
+                  philosophy taking into account the
+                  opportunities the MRALD architecture provides
+                  and the chained exception facility of Java 1.4.
+                  Over the next few releases, all MRALD classes
+                  will be retrofitted to take advantage of this
+                  facility. These new exception handling classes
+                  also provide more detailed output when a
+                  problem occurs, making diagnostics and
+                  debugging easier</para>
+                </listitem>
+                <listitem>
+                  <para>Package level documentation in
+                  javadocs</para>
+                </listitem>
+                <listitem>
+                  <para>Enhanced administration area. A few
+                  goodies for the Administrators</para>
+                </listitem>
+                <listitem>
+                  <para>Added ability to log out</para>
+                </listitem>
+                <listitem>
+                  <para>Added buffered, multi-leveled
+                  logger</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+            <listitem>
+              <para>Major Bug Fix 
+              <itemizedlist>
+                <listitem>
+                  <para>Formbuilder: Or Filters now pick up the
+                  operator correctly</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </formalpara>
+    </section>
+    <section>
+      <title>2004</title>
+      <para>
+      <emphasis>February 2004</emphasis>
+      Commercial Intellectual Property rights for patent
+      application sold to private IT company</para>
+      <formalpara>
+        <title>Version 2.0 released</title>
+        <para>
+          <emphasis>May 2004</emphasis>
+          <itemizedlist>
+            <listitem>
+              <para>Major Bug Fixes 
+              <itemizedlist>
+                <listitem>
+                  <para>Fixed two instances where a connection to
+                  the database could be opened but never
+                  closed.</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+          <itemizedlist>
+            <listitem>
+              <para>Enhancements 
+              <itemizedlist>
+                <listitem>
+                  <para>filler</para>
+                </listitem>
+                <listitem>
+                  <para>Administrative Control. As an
+                  administrator, the user will be allowed to
+                  change many of the MRALD system
+                  properties</para>
+                </listitem>
+                <listitem>
+                  <para>MRALD workflows can be edited. You can
+                  add or remove steps and add or remove entire
+                  workflows.</para>
+                </listitem>
+                <listitem>
+                  <para>Any .props or .properties files in the
+                  properties directory can be edited. This
+                  includes any files you may have for local
+                  customizations of MRALD.</para>
+                </listitem>
+                <listitem>
+                  <para>News can now be edited in the web
+                  browser</para>
+                </listitem>
+                <listitem>
+                  <para>Improved Log Manipulation and Management.
+                  With the new error catching method, log files
+                  are created and easily managed through the
+                  administrative interface.</para>
+                </listitem>
+                <listitem>
+                  <para>Passwords. MRALD now requires the use of
+                  passwords for users to log in. If you want to
+                  disable this, you'll have to recompile MRALD
+                  with the Config.usingSecurity property set to
+                  false. Note that existing deployments will have
+                  to add a "password" column to their people
+                  table; type is VARCHAR(50).</para>
+                </listitem>
+                <listitem>
+                  <para>Improved Security Measures. The system
+                  was restructured to enable the web server to
+                  run under the JVM security manager. This allows
+                  SSL connections as well as strict restrictions
+                  on system access from the JVM. Users now must
+                  provide a password in order to login to the
+                  MRALD system. There also exists facilities to
+                  retrieve, change, and register
+                  passwords.</para>
+                </listitem>
+                <listitem>
+                  <para>Passwords. MRALD now requires the use of
+                  passwords for users to log in. If you want to
+                  disable this, you'll have to recompile MRALD
+                  with the Config.usingSecurity property set to
+                  false.</para>
+                </listitem>
+                <listitem>
+                  <para>Simplified Setup. The first time someone
+                  attempts to connect to a new MRALD instance
+                  (assumed to be the administrator who installed
+                  it), a setup page will allow the user to change
+                  the configuration properties. MRALD also will
+                  now create the critical People table in your
+                  database if it has not already been
+                  created.</para>
+                </listitem>
+                <listitem>
+                  <para>API to add custom JDBC Connection
+                  strings. This is especially important for
+                  Oracle databases, which take all sorts of
+                  interesting properties.</para>
+                </listitem>
+                <listitem>
+                  <para>Update/Delete Form Builder. These
+                  dynamically created forms follow the same
+                  process as the FormBuilder but give the
+                  capability to update or delete existing data in
+                  the database.</para>
+                </listitem>
+                <listitem>
+                  <para>Insert Form Builder. Now you can create
+                  dynamic insertion forms that will allow the
+                  user to enter in data through a web
+                  form.</para>
+                </listitem>
+                <listitem>
+                  <para>User Guide. We now have version 1 of the
+                  MRALD Users Guide ready. Two other manuals, one
+                  for deplores and one for developers, are
+                  planned.</para>
+                </listitem>
+                <listitem>
+                  <para>Added checks to ensure the user puts in a
+                  structurally valid email address</para>
+                </listitem>
+              </itemizedlist>
+              </para>
+            </listitem>
+          </itemizedlist>
+        </para>
+      </formalpara>
+    </section>
+    <section>
+      <title>2005</title>
+      <formalpara>
+        <title>Version 3.0pre1 released</title>
+        <para>
+        <emphasis>February 2005</emphasis>
+        <itemizedlist>
+          <listitem>
+            <para>Major Bug Fixes 
+            <itemizedlist>
+              <listitem>
+                <para>Fixed two instances where a connection to
+                the database could be opened but never
+                closed.</para>
+              </listitem>
+              <listitem>
+                <para>Due to deficiencies found in load testing,
+                changes were made to ensure MRALD is a highly
+                scalable system that can operate under extreme
+                loads with many concurrent users.</para>
+              </listitem>
+              <listitem>
+                <para>Fixed memory leak in OutputManager.</para>
+              </listitem>
+              <listitem>
+                <para>Fixed code for deployments on Windows and
+                for compatibility with IE.</para>
+              </listitem>
+              <listitem>
+                <para>Fix so people table is automatically
+                created properly on all databases. Non
+                SQL-standard data types were used.</para>
+              </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+        </itemizedlist>
+        <itemizedlist>
+          <listitem>
+            <para>Enhancements 
+            <itemizedlist>
+              <listitem>
+                <para>Extreme load testing and resulting changes
+                ensure that MRALD is a highly scalable system
+                that can operate under extreme loads with many
+                concurrent users.</para>
+              </listitem>
+              <listitem>
+                <para>New look and simple forms. MRALD has a new
+                look and feel throughout. In addition, data
+                retrieval forms now come in two flavors - simple
+                and advanced. The advanced forms are identical in
+                functionality to the old forms. The simple forms
+                retrieve a set number of data fields (those that
+                are defaulted when building the form), there are
+                no statistical functions, and output is html
+                only. All explicitly built filters are inlcuded,
+                but none of the generic ones are.</para>
+              </listitem>
+              <listitem>
+                <para>New keyword search features a search
+                throughout the entire database for a single word
+                or phrase. The search is case sensitive and
+                checkes only the text fields in the database. The
+                result is a list of all tables where the word
+                appears and all the rows in the table that
+                contain the word.</para>
+              </listitem>
+              <listitem>
+                <para>New Drill down output type. This output
+                type will provide links for all primary or
+                foreign keys in your query. Following these links
+                will take the user to all data linked directly
+                off that table. Works only from MRALD forms -
+                doesn't work off DirectQuery.</para>
+              </listitem>
+              <listitem>
+                <para>Database schema browser added.</para>
+              </listitem>
+              <listitem>
+                <para>New license. Added licenseing information
+                for MRALD and all included components.</para>
+              </listitem>
+              <listitem>
+                <para>Added documentation for the form of common
+                JDBC connection strings to help in initial setup.
+                Notes and links were added to initial setup pages
+                as well as when editing config.properties from
+                the interface.</para>
+              </listitem>
+              <listitem>
+                <para>Split out the config.properties into two
+                files. &nbsp;config.properties contains all the
+                things that are normally changed;
+                standard.properties contains properties that
+                should only be changed if you really know what
+                you are doing. It is optional, so if you keep all
+                your settings in config.properties, it's
+                OK.</para>
+              </listitem>
+              <listitem>
+                <para>Incorporated the User's Guide into the
+                standard build.</para>
+              </listitem>
+              <listitem>
+                <para>Query history now does a better job parsing
+                multi-line queries and properly feeds them in to
+                the query text box in DirectQuery</para>
+              </listitem>
+              <listitem>
+                <para>Added an option to all output types to
+                display the query with the output.</para>
+              </listitem>
+              <listitem>
+                <para>Multiple fixes for changes in Java
+                5.</para>
+              </listitem>
+              <listitem>
+                <para>Apostrophes (') are now handled in the
+                code.</para>
+              </listitem>
+              <listitem>
+                <para>Added transition page during query
+                execution.</para>
+              </listitem>
+              <listitem>
+                <para>Added NOT IN operator.</para>
+              </listitem>
+              <listitem>
+                <para>Added basic charting capability - only bar
+                charts are currently supported.</para>
+              </listitem>
+              <listitem>
+                <para>New filter type - Categorical filters. A
+                categorical filter is one where the values are
+                from a small, known set. This filter will grab
+                the values from a database and present them to
+                the user in the form of a drop down box.</para>
+              </listitem>
+              <listitem>
+                <para>Faster form building.</para>
+              </listitem>
+            </itemizedlist>
+            </para>
+          </listitem>
+          <listitem>
+            <para>Other Code Changes 
+            <itemizedlist>
+              <listitem>
+                <para>Regresses logging to old method. It was
+                slow and file system intensive but the
+                alternatives proved to be unacceptable and Tomcat
+                5 was taking over the logging.</para>
+              </listitem>
+              <listitem>
+                <para>Added a rudimentary messaging facility. Not
+                completely implemented yet.</para>
+              </listitem>
+              <listitem>
+                <para>Restructured code to allow for an
+                mrald-util.jar file. It contains the control and
+                util packages.</para>
+              </listitem>
+              <listitem>
+                <para>The code no longer uses the peopleid field.
+                The primary key for the people table is the email
+                field.</para>
+              </listitem>
+              <listitem>
+                <para>Added site title as a config property - now
+                you don't have to change every jsp to change the
+                title of the installation.</para>
+              </listitem>
+              <listitem>
+                <para>Updated member access levels in many files
+                to prevent un-intended side effects and direct
+                manipulation of variables that shouldn't be
+                modified.</para>
+              </listitem>
+              <listitem>
+                <para>During installation, an admin@mitre.org
+                user is provided to bootstrap the system.</para>
+              </listitem>
+            </itemizedlist>
+            </para>
+          </listitem>
+        </itemizedlist>
+        </para>
+      </formalpara>
+    </section>
+  </chapter>
+  <bibliography>
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <honorific>Dr</honorific>
+          <firstname>M</firstname>
+          <surname>Blake</surname>
+          <othername role="mi">Brian</othername>
+        </author>
+        <author>
+          <firstname>Patricia</firstname>
+          <surname>Ligouri</surname>
+        </author>
+      </authorgroup>
+      <title>An Automated Client-Driven Approach to Data
+      Extraction using an Autonomous Decentralized
+      Architecture</title>
+      <citetitle pubwork="journal">5 
+      <superscript>th</superscript>
+      International Symposium of Autonomous Decentralized Systems
+      (ISADS2001)</citetitle>
+      <publisher>
+        <publishername>IEEE Computer Society
+        Press</publishername>
+      </publisher>
+      <pagenums>pp 311-319</pagenums>
+      <pubdate>March 2001</pubdate>
+    </biblioentry>
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <honorific>Dr</honorific>
+          <firstname>M</firstname>
+          <surname>Blake</surname>
+          <othername role="mi">Brian</othername>
+        </author>
+        <author>
+          <firstname>Patricia</firstname>
+          <surname>Ligouri</surname>
+        </author>
+      </authorgroup>
+      <title>An Autonomous Decentralized Architecture for
+      Distributed Data Management and Dissemination</title>
+      <citetitle pubwork="journal">IEEE/IEICE Joint Special Issue
+      on Autonomous Decentralized Systems, IEICE Transactions on
+      Information and Systems, Vol. E84-D, No.10</citetitle>
+      <pagenums>pp 1394-1398</pagenums>
+      <pubdate>March 2001</pubdate>
+    </biblioentry>
+    <biblioentry>
+      <authorgroup>
+        <author>
+          <honorific>Dr</honorific>
+          <firstname>M</firstname>
+          <surname>Blake</surname>
+          <othername role="mi">Brian</othername>
+        </author>
+        <author>
+          <firstname>Gail</firstname>
+          <surname>Hamilton</surname>
+        </author>
+        <author>
+          <firstname>Jeffrey</firstname>
+          <othername role="mi">C</othername>
+          <surname>Hoyt</surname>
+        </author>
+      </authorgroup>
+      <title>Using Component-Based Development and Web
+      Technologies to Support a Distributed Data Management
+      System</title>
+      <citetitle pubwork="journal">Special Issue on
+      Object-Oriented Web-Based Software Engineering, Annals of
+      Software Engineering , Vol. 13, No. 1</citetitle>
+      <pagenums>pp 13-34</pagenums>
+      <pubdate>June 2002</pubdate>
+      <publisher>
+        <publishername>Kluwer Academic Publishers</publishername>
+      </publisher>
+    </biblioentry>
+    <biblioentry>
+      <author>
+        <honorific>Dr</honorific>
+        <firstname>M</firstname>
+        <surname>Blake</surname>
+        <othername role="mi">Brian</othername>
+      </author>
+      <title>Using Specification-Driven Concepts for Distributed
+      Data Management and Dissemination</title>
+      <citetitle pubwork="journal">Proceedings of the 2002
+      Conference on Information and Knowledge Management (CIKM
+      2002)</citetitle>
+      <pubdate>November 2002</pubdate>
+      <publisher>
+        <publishername>ACM Press</publishername>
+      </publisher>
+    </biblioentry>
+    <biblioentry>
+      <author>
+        <honorific>Dr</honorific>
+        <firstname>M</firstname>
+        <surname>Blake</surname>
+        <othername role="mi">Brian</othername>
+      </author>
+      <title>An Architecture to Support Distributed Data
+      Retrieval in Specialized Formats</title>
+      <citetitle pubwork="journal">Proceedings of the 2003
+      International Symposium on Applied Computing
+      (SAC2003)</citetitle>
+      <pubdate>March 2003</pubdate>
+      <pagenums>803-810</pagenums>
+      <publisher>
+        <publishername>ACM Press</publishername>
+      </publisher>
+    </biblioentry>
+    <biblioentry>
+      <author>
+        <honorific>Dr</honorific>
+        <firstname>M</firstname>
+        <surname>Blake</surname>
+        <othername role="mi">Brian</othername>
+      </author>
+      <title>A Specification Language and Service-Oriented
+      Architecture to Support Distributed Data Management</title>
+      <citetitle pubwork="journal">Software: Practice and
+      Experience</citetitle>
+      <pubdate>pending</pubdate>
+      <publisher>
+        <publishername>John Wiley and Sons</publishername>
+      </publisher>
+    </biblioentry>
+  </bibliography>
+</book>
+

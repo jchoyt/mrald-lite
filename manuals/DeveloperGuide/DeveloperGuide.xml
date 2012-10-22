@@ -1,0 +1,158 @@
+ <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- jEdit editor properties - don't delete
+ :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->
+<book>
+  <title>MRALD Developer's Guide</title>
+  <bookinfo>
+    <author>
+      <firstname>Todd</firstname>
+      <surname>Cornett</surname>
+      <Email>tcornett@mitre.org</Email>
+    </author>
+    <author>
+      <firstname>Gail</firstname>
+      <surname>Hamilton</surname>
+      <Email>ghamilton@mitre.org</Email>
+    </author>
+    <author>
+      <firstname>Jeffrey</firstname>
+      <surname>Hoyt</surname>
+      <Email>jchoyt@mitre.org</Email>
+    </author>
+    <corpname>The MITRE Corporation</corpname>
+  </bookinfo>
+
+  <preface>
+    <title>Foreword</title>
+    As a project that has been more than 4 years in the making, the MITRE Resource for Accessing Loaded Data (MRALD) system is a dynamic, flexible option for applications which need easy and controlled access to data.  It provides incredible access with little knowledge of the underlying system.  The following developer's guide is meant to help anyone willing and interested in expanding MRALD to fit their needs.  Any involvement in this document requires a rather deep understanding of HTML syntax, HTTP interaction, and Java development.  The appendices include a few tidbits of information about how to utilize the power of the available resources as well as how to adapt the environment and look to fit your application.  Any additional questions that this document does not answer may be directed to <email>mrald-dev-list@mitre.org</email>.
+  </preface>
+
+  <chapter id="OpeningChapter">
+    <title>A Day in the Life of MRALD</title>
+    <para>Many pieces, both obvious and subtle, are needed to complete a full path through the MRALD system.  A basic run through of the system goes like this.</para>
+    <para>The user starts at a pre built form.  The 'pre built' idea comes from the fact that the underlying HTML encoding has the necessary information about the tables, fields, conditions, and other information necessary to interpreting the user's input as a database query.  Based on the user's input, the form is submit to the MRALD system where it is first parsed for relevant information.</para>
+    <para>The first piece of information extract will be the workflow.  This small piece of information tells the MRALD system which path to follow in processing the data retrieval. The rest of the relevant information is saved in the MsgObject.</para>
+    <para></para>
+  </chapter>
+
+  <chapter id="Workflow">
+    <title>Workflow</title>
+    This chapter is meant to describe the Workflow, including all pieces that make up and process the paths.  Will discuss in detail the workflow.xml file as well as the MsgObject and the Core Servlet.
+    <section>
+      <title>The MsgObject</title>
+      Description fo the MsgObject and the inner working of the information and content passed along with it.
+    </section>
+    <section>
+      <title>Creating a new Workflow Step</title>
+      Describe what needs to be extended.  What functions need to be over written and under what circumstances.
+    </section>
+  </chapter>
+
+  <chapter id="QueryTag">
+    <title>MRALD Query Tag Objects</title>
+    This chapter is meant to describe all things associated with tags and forms.  Will detail all of the existing tags and their attributes as well as how to build, add, and use your own tags.
+    <section>
+      <title>SQL Element Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+      Table
+      Field
+      Order
+      As
+      OrderType
+      Value
+    </section>
+    <section>
+      <title>Link Element Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+      Link
+      PrimaryLink
+      SecondaryLink
+    </section>
+    <section>
+      <title>Filter Element Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+    </section>
+    <section>
+      <title>Output Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+    </section>
+    <section>
+      <title>Multiple Query Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+    </section>
+    <section>
+      <title>Other Tags</title>
+      This section is meant to explain the name and value of the HTML name/value pairs.  It will not discuss the parsing of this object.
+    </section>
+  </chapter>
+
+  <chapter id="Parsing">
+    <title>Parsing</title>
+    This chapter will discuss the parsing of all the MRALD Query Tags, including but not limited to the ':' and '=' characters.  Will incorporate the parser.props file and the effects of the changes on the system. Will also cover the use of selects, checkboxes, and hidden values.
+    <section>
+      <title>Grammar of the MRALD Parsing</title>
+      This section will talk about the the structure of the name/value pairs and the ability to link to different 'instances' or items through a naming scheme.
+    </section>
+    <section>
+      <title>Why and How to create a new Derivation of Parser Element</title>
+      Will show examples and describe the use of the ParserElement class as an extension and also how/when to override a function. It will also cover which functions are required.
+    </section>
+  </chapter>
+
+  <chapter id="QueryAssembly">
+    <title>Query Assembly</title>
+    This chapter will cover what happens after the parsing happens.  It will walk through the steps to preprocess, process, and postprocess.
+    <section>
+      <title>Anatomy of a QueryBuilder Element</title>
+    </section>
+    <section>
+      <title>How to Build a QueryBuilder Element</title>
+    </section>
+  </chapter>
+  
+  <chapter id="DDLBuilder">
+    <title>DDL Builder</title>
+    This chapter will cover what happens after the parsing happens.  it will walk through the steps to preprocess, process, and postprocess.
+    <section>
+      <title>Anatomy of a DDLBuilder Element</title>
+    </section>
+    <section>
+      <title>How to Build a DDLBuilder Element</title>
+    </section>
+  </chapter>
+  
+  <chapter id="FormBuilder">
+    <title>Form Building and Its Elements</title>
+    This chapter will discuss the different ways to incorporate your latest innovation into the form building mechanism. Will begin with the way FormBuilder currently works and then will show the insertion points for additions and ways it can be changed to benefit humanity.
+  </chapter>
+  
+  <chapter id="OutputManager">
+    <title>The Output Manager and Its Children</title>
+    This chapter will discuss what this means and what the final step of the workflow must do and accomplish.  It will cover necessary functions for the extended classes.
+    <section>
+      <title>How to create a custom OutputManager derivation</title>
+      This section should at least go through the necessities of making a new derivation of OutputManager. ON HOLD - most likely changing to accept changes needed for the NeuroInformatics Grid aspect.
+    </section>
+  </chapter>
+  
+  <appendix id="JSPTag">
+    <title>Custom JSP Tag Library</title>
+    This appendix will discuss the various tags that MRALD and Neuroinformatics have scattered throughout the software.   Including but not limited to the TLD file, syntax in the HTML/JSP code, behavior (operations and timing), and the Java class itself with the available functions and execution explanations of those functions.
+    <section>
+      <title>How to create a new Tag</title>
+      Should be a detailed, almost scripted list of changes for implement a new tag.  Walk through the JSP, TLD, and Java class changes needed.
+    </section>
+  </appendix>
+  
+  <appendix id="UtilPackage">
+    <title>The Glory of the Util Package</title>
+    This appendix will discuss all of the classes in the org.mitre.mrald.util package available to the developer.  It can be a tremendous resource to someone because many times a small piece of functionality has already been tested and implemented through one of these classes.  Saves much time and expenses.
+  </appendix>
+  
+  <appendix id="ExtendingMRALD">
+    <title>Extending Your Vision (With MRALD, of course)</title>
+    This appendix is meant to discuss the areas we envision someone would want to extend the MRALD platform as well as any ideas we can help fuel by providing examples or future progressions of the MRALD software.
+  </appendix>
+</book>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkFlow>
+  <WfPath>
+    <WfName>Direct SQL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.directquery.DirectQuery</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.OutputController</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Building SQL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.query.QueryBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.OutputController</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Update SQL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.query.UpdateBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.OutputController</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+<WfPath>
+    <WfName>Delete SQL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.query.DeleteBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.OutputController</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+<WfPath>
+    <WfName>Building DDL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.ddlbuilder.InsertBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.DdlOutput</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+<WfPath>
+    <WfName>Building Multi DDL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.ddlbuilder.MultiInsertBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.DdlOutput</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>BuildQuery</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.query.QueryBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Multi SQL</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.query.MultiQueryBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.output.OutputController</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Form Builder</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.formbuilder.CheckFormJoinStructureStep</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.formbuilder.XmlFileBuilder</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Multi Spec Output</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.multiquery.MultiQueryBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.specOutput.Mqp</ObjectName>
+      <Order>3</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>Workflow Admin</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.admin.WorkflowBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+  </WfPath>
+  <WfPath>
+    <WfName>News Admin</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.parser.MraldParser</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.admin.NewsBuilder</ObjectName>
+      <Order>2</Order>
+    </WfObject>
+  </WfPath>
+</WorkFlow>

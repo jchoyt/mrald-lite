@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+<link href="test.css" type="text/css" rel="stylesheet">
+<link href="neuro.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" language="JavaScript">
+var myColor, decColor, pctColor="" ;
+
+function SetColor( myColor, decColor ) {
+   if (document.forms[0].setColor.value != "Reset")  { 
+      document.forms[0].hex_value.value=myColor ;
+      document.forms[0].dec_value.value=decColor ;
+      document.forms[0].myformat.value= " \<font color=\"#" + document.forms[0].hex_value.value + "\"\>" 
+      //document.bgColor= document.forms[0].hex_value.value 
+      ChangeColors(myColor)
+   }
+}
+
+function GetClick( ) { 
+   if (document.forms[0].setColor.value == "Reset") {
+      document.forms[0].myformat.value= "   Please Click Reset!" }
+   else {
+      document.forms[0].myformat.value= " \<font color=\"" + document.forms[0].hex_value.value + "\"\>" 
+   } ; 
+   document.forms[0].setColor.value="Reset" ;
+} 
+
+function ChangeColors(myColor)
+{
+
+	document.getElementById('0').style.backgroundColor=myColor
+
+}
+
+function updateParent() {
+    idVal =  opener.document.forms[0].idValue.value
+    opener.document.getElementById(idVal).style.backgroundColor=document.forms[0].hex_value.value;
+    self.close();
+    return false;
+}
+
+//
+</script>
+</head>
+
+<body>
+<form Name="COLORS"  onSubmit="return updateParent();">
+
+<table align="left"
+       border="0">
+<tr>
+<td class="center"
+    rowspan="2">
+
+<img src="images/starcolor.gif"
+     usemap="#color_pick"
+     alt=""
+     width="352"
+     height="256">
+
+<input type="hidden" name="hex_value" value="" size="9" onClick="document.forms[0].hex_value.value='Not Set'; document.forms[0].myformat.value=''; document.forms[0].setColor.value=''">
+<input type="hidden" name="dec_value" value="" size="12" onClick="document.forms[0].dec_value.value='Not Set'; document.forms[0].myformat.value=''; document.forms[0].setColor.value=''">
+<input type="hidden" name="myformat" size="25" value="" >
+<input type="HIDDEN" name="setColor" value="">
+
+<map name="color_pick">
+
+            
+<area shape="poly" coords="96,12,88,16,88,24,96,28,104,24,104,16" onclick="SetColor( '#FFCCCC', '170,136,204')" alt="FFCCCC">
+<area shape="poly" coords="240,12,232,16,232,24,240,28,248,24,248,16" onclick="SetColor( '#FFCCFF' , '170,136,204')">
+<area shape="poly" coords="104,24,96,28,96,36,104,40,112,36,112,28" onclick="SetColor( '#FF9999', '170,136,204')" alt="FF6666">
+<area shape="poly" coords="168,24,160,28,160,36,168,40,176,36,176,28" onclick="SetColor( '#FF99CC', '170,136,204')" alt="FF99CC">
+<area shape="poly" coords="232,24,224,28,224,36,232,40,240,36,240,28" onclick="SetColor( '#FF99FF', '170,136,204')" alt="FF99FF">
+<area shape="poly" coords="112,36,104,40,104,48,112,52,120,48,120,40" onclick="SetColor( '#FF6666', '170,136,204')" alt="FF4444">
+<area shape="poly" coords="160,36,152,40,152,48,160,52,168,48,168,40" onclick="SetColor( '#FF6699', '170,136,204')" alt="FF4466">
+<area shape="poly" coords="176,36,168,40,168,48,176,52,184,48,184,40" onclick="SetColor( '#FF66CC', '170,136,204')" alt="FF66CC">
+<area shape="poly" coords="224,36,216,40,216,48,224,52,232,48,232,40" onclick="SetColor( '#FF66FF', '170,136,204')" alt="FF66FF">
+<area shape="poly" coords="120,48,112,52,112,60,120,64,128,60,128,52" onclick="SetColor( '#FF3333', '170,136,204')" alt="FF2222">
+
+<area shape="poly" coords="152,48,144,52,144,60,152,64,160,60,160,52" onclick="SetColor( '#FF3366', '170,136,204')" alt="FF2244">
+<area shape="poly" coords="168,48,160,52,160,60,168,64,176,60,176,52" onclick="SetColor( '#FF3399', '170,136,204')" alt="FF2266">
+<area shape="poly" coords="184,48,176,52,176,60,184,64,192,60,192,52" onclick="SetColor( '#FF33CC', '170,136,204')" alt="FF33CC">
+<area shape="poly" coords="216,48,208,52,208,60,216,64,224,60,224,52" onclick="SetColor( '#FF33FF', '170,136,204')" alt="FF33FF">
+<area shape="poly" coords="128,60,120,64,120,72,128,76,136,72,136,64" onclick="SetColor( '#FF0000', '170,136,204')" alt="FF0">
+<area shape="poly" coords="144,60,136,64,136,72,144,76,152,72,152,64" onclick="SetColor( '#FF0033', '170,136,204')" alt="FF22">
+<area shape="poly" coords="160,60,152,64,152,72,160,76,168,72,168,64" onclick="SetColor( '#FF0066', '170,136,204')" alt="FF44">
+<area shape="poly" coords="176,60,168,64,168,72,176,76,184,72,184,64" onclick="SetColor( '#FF0099', '170,136,204')" alt="FF66">
+<area shape="poly" coords="192,60,184,64,184,72,192,76,200,72,200,64" onclick="SetColor( '#FF00CC', '170,136,204')" alt="FF00CC">
+<area shape="poly" coords="208,60,200,64,200,72,208,76,216,72,216,64" onclick="SetColor( '#FF00FF', '170,136,204')" alt="FF00FF">
+<area shape="poly" coords="72,72,64,76,64,84,72,88,80,84,80,76" onclick="SetColor( '#FFCC99', '170,136,204')" alt="FFCC66">
+<area shape="poly" coords="88,72,80,76,80,84,88,88,96,84,96,76" onclick="SetColor( '#FF9966', '170,136,204')" alt="FF6644">
+<area shape="poly" coords="104,72,96,76,96,84,104,88,112,84,112,76" onclick="SetColor( '#FF6633', '170,136,204')" alt="FF4422">
+<area shape="poly" coords="120,72,112,76,112,84,120,88,128,84,128,76" onclick="SetColor( '#FF3300', '170,136,204')" alt="FF2200">
+<area shape="poly" coords="136,72,128,76,128,84,136,88,144,84,144,76" onclick="SetColor( '#CC0000', '170,136,204')" alt="CC0">
+<area shape="poly" coords="152,72,144,76,144,84,152,88,160,84,160,76" onclick="SetColor( '#CC0033', '170,136,204')" alt="CC22">
+<area shape="poly" coords="168,72,160,76,160,84,168,88,176,84,176,76" onclick="SetColor( '#CC0066', '170,136,204')" alt="CC44">
+
+<area shape="poly" coords="184,72,176,76,176,84,184,88,192,84,192,76" onclick="SetColor( '#CC0099', '170,136,204')" alt="CC66">
+<area shape="poly" coords="200,72,192,76,192,84,200,88,208,84,208,76" onclick="SetColor( '#CC00CC', '170,136,204')" alt="CC00CC">
+<area shape="poly" coords="216,72,208,76,208,84,216,88,224,84,224,76" onclick="SetColor( '#CC00FF', '170,136,204')" alt="CC00FF">
+<area shape="poly" coords="232,72,224,76,224,84,232,88,240,84,240,76" onclick="SetColor( '#CC33FF', '170,136,204')" alt="CC33FF">
+<area shape="poly" coords="248,72,240,76,240,84,248,88,256,84,256,76" onclick="SetColor( '#CC66FF', '170,136,204')" alt="CC66FF">
+<area shape="poly" coords="264,72,256,76,256,84,264,88,272,84,272,76" onclick="SetColor( '#CC99FF', '170,136,204')" alt="CC99FF">
+<area shape="poly" coords="80,84,72,88,72,96,80,100,88,96,88,88" onclick="SetColor( '#FFCC66', '170,136,204')" alt="FFCC44">
+<area shape="poly" coords="96,84,88,88,88,96,96,100,104,96,104,88" onclick="SetColor( '#FF9933', '170,136,204')" alt="FF6622">
+<area shape="poly" coords="112,84,104,88,104,96,112,100,120,96,120,88" onclick="SetColor( '#FF6600', '170,136,204')" alt="FF4400">
+<area shape="poly" coords="128,84,120,88,120,96,128,100,136,96,136,88" onclick="SetColor( '#CC3300', '170,136,204')" alt="CC2200">
+<area shape="poly" coords="144,84,136,88,136,96,144,100,152,96,152,88" onclick="SetColor( '#990000', '170,136,204')" alt="660000">
+<area shape="poly" coords="160,84,152,88,152,96,160,100,168,96,168,88" onclick="SetColor( '#990033', '170,136,204')" alt="660022">
+<area shape="poly" coords="176,84,168,88,168,96,176,100,184,96,184,88" onclick="SetColor( '#990066', '170,136,204')" alt="660044">
+<area shape="poly" coords="192,84,184,88,184,96,192,100,200,96,200,88" onclick="SetColor( '#990099', '170,136,204')" alt="660066">
+<area shape="poly" coords="208,84,200,88,200,96,208,100,216,96,216,88" onclick="SetColor( '#9900CC', '170,136,204')" alt="9900CC">
+<area shape="poly" coords="224,84,216,88,216,96,224,100,232,96,232,88" onclick="SetColor( '#9900FF', '170,136,204')" alt="9900FF">
+<area shape="poly" coords="240,84,232,88,232,96,240,100,248,96,248,88" onclick="SetColor( '#9933FF', '170,136,204')" alt="9933FF">
+
+<area shape="poly" coords="256,84,248,88,248,96,256,100,264,96,264,88" onclick="SetColor( '#9966FF', '170,136,204')" alt="9966FF">
+<area shape="poly" coords="88,96,80,100,80,108,88,112,96,108,96,100" onclick="SetColor( '#FFCC33', '170,136,204')" alt="FFCC22">
+<area shape="poly" coords="104,96,96,100,96,108,104,112,112,108,112,100" onclick="SetColor( '#FF9900', '170,136,204')" alt="FF6600">
+<area shape="poly" coords="120,96,112,100,112,108,120,112,128,108,128,100" onclick="SetColor( '#CC6600', '170,136,204')" alt="CC4400">
+<area shape="poly" coords="136,96,128,100,128,108,136,112,144,108,144,100" onclick="SetColor( '#993300', '170,136,204')" alt="662200">
+<area shape="poly" coords="152,96,144,100,144,108,152,112,160,108,160,100" onclick="SetColor( '#660000', '170,136,204')" alt="440000">
+<area shape="poly" coords="168,96,160,100,160,108,168,112,176,108,176,100" onclick="SetColor( '#660033', '170,136,204')" alt="440022">
+<area shape="poly" coords="184,96,176,100,176,108,184,112,192,108,192,100" onclick="SetColor( '#660066', '170,136,204')" alt="440044">
+<area shape="poly" coords="200,96,192,100,192,108,200,112,208,108,208,100" onclick="SetColor( '#660099', '170,136,204')" alt="440066">
+<area shape="poly" coords="216,96,208,100,208,108,216,112,224,108,224,100" onclick="SetColor( '#6600CC', '170,136,204')" alt="6600CC">
+<area shape="poly" coords="232,96,224,100,224,108,232,112,240,108,240,100" onclick="SetColor( '#6600FF', '170,136,204')" alt="6600FF">
+<area shape="poly" coords="248,96,240,100,240,108,248,112,256,108,256,100" onclick="SetColor( '#6633FF', '170,136,204')" alt="6633FF">
+<area shape="poly" coords="96,108,88,112,88,120,96,124,104,120,104,112" onclick="SetColor( '#FFCC00', '170,136,204')" alt="FFCC0">
+<area shape="poly" coords="112,108,104,112,104,120,112,124,120,120,120,112" onclick="SetColor( '#CC9900', '170,136,204')" alt="CC6600">
+<area shape="poly" coords="128,108,120,112,120,120,128,124,136,120,136,112" onclick="SetColor( '#996600', '170,136,204')" alt="664400">
+<area shape="poly" coords="144,108,136,112,136,120,144,124,152,120,152,112" onclick="SetColor( '#663300', '170,136,204')" alt="442200">
+<area shape="poly" coords="160,108,152,112,152,120,160,124,168,120,168,112" onclick="SetColor( '#330000', '170,136,204')" alt="220000">
+
+<area shape="poly" coords="176,108,168,112,168,120,176,124,184,120,184,112" onclick="SetColor( '#330033', '170,136,204')" alt="220022">
+<area shape="poly" coords="192,108,184,112,184,120,192,124,200,120,200,112" onclick="SetColor( '#330066', '170,136,204')" alt="220044">
+<area shape="poly" coords="208,108,200,112,200,120,208,124,216,120,216,112" onclick="SetColor( '#330099', '170,136,204')" alt="220066">
+<area shape="poly" coords="224,108,216,112,216,120,224,124,232,120,232,112" onclick="SetColor( '#3300CC', '170,136,204')" alt="3300CC">
+<area shape="poly" coords="240,108,232,112,232,120,240,124,248,120,248,112" onclick="SetColor( '#3300FF', '170,136,204')" alt="3300FF">
+<area shape="poly" coords="24,120,16,124,16,132,24,136,32,132,32,124" onclick="SetColor( '#FFFFCC', '170,136,204')" alt="FFFFCC">
+<area shape="poly" coords="40,120,32,124,32,132,40,136,48,132,48,124" onclick="SetColor( '#FFFF99', '170,136,204')" alt="FFFF66">
+<area shape="poly" coords="56,120,48,124,48,132,56,136,64,132,64,124" onclick="SetColor( '#FFFF66', '170,136,204')" alt="FFFF44">
+<area shape="poly" coords="72,120,64,124,64,132,72,136,80,132,80,124" onclick="SetColor( '#FFFF33', '170,136,204')" alt="FFFF22">
+<area shape="poly" coords="88,120,80,124,80,132,88,136,96,132,96,124" onclick="SetColor( '#FFFF00', '170,136,204')" alt="FFFF0">
+<area shape="poly" coords="104,120,96,124,96,132,104,136,112,132,112,124" onclick="SetColor( '#CCCC00', '170,136,204')" alt="CCCC0">
+<area shape="poly" coords="120,120,112,124,112,132,120,136,128,132,128,124" onclick="SetColor( '#999900', '170,136,204')" alt="666600">
+<area shape="poly" coords="136,120,128,124,128,132,136,136,144,132,144,124" onclick="SetColor( '#666600', '170,136,204')" alt="444400">
+<area shape="poly" coords="152,120,144,124,144,132,152,136,160,132,160,124" onclick="SetColor( '#333300', '170,136,204')" alt="222200">
+<area shape="poly" coords="168,120,160,124,160,132,168,136,176,132,176,124" onclick="SetColor( '#000000', '170,136,204')" alt="0">
+<area shape="poly" coords="184,120,176,124,176,132,184,136,192,132,192,124" onclick="SetColor( '#000033', '170,136,204')" alt="22">
+<area shape="poly" coords="200,120,192,124,192,132,200,136,208,132,208,124" onclick="SetColor( '#000066', '170,136,204')" alt="44">
+
+<area shape="poly" coords="216,120,208,124,208,132,216,136,224,132,224,124" onclick="SetColor( '#000099', '170,136,204')" alt="66">
+<area shape="poly" coords="232,120,224,124,224,132,232,136,240,132,240,124" onclick="SetColor( '#0000CC', '170,136,204')" alt="0000CC">
+<area shape="poly" coords="248,120,240,124,240,132,248,136,256,132,256,124" onclick="SetColor( '#0000FF', '170,136,204')" alt="0000FF">
+<area shape="poly" coords="264,120,256,124,256,132,264,136,272,132,272,124" onclick="SetColor( '#3333FF', '170,136,204')" alt="3333FF">
+<area shape="poly" coords="280,120,272,124,272,132,280,136,288,132,288,124" onclick="SetColor( '#6666FF', '170,136,204')" alt="6666FF">
+<area shape="poly" coords="296,120,288,124,288,132,296,136,304,132,304,124" onclick="SetColor( '#9999FF', '170,136,204')" alt="9999FF">
+<area shape="poly" coords="312,120,304,124,304,132,312,136,320,132,320,124" onclick="SetColor( '#CCCCFF', '170,136,204')" alt="CCCCFF">
+<area shape="poly" coords="328,120,320,124,320,132,328,136,336,132,336,124" onclick="SetColor( '#FFFFFF', '170,136,204')" alt="FFFFFF">
+<area shape="poly" coords="96,132,88,136,88,144,96,148,104,144,104,136" onclick="SetColor( '#CCFF00', '170,136,204')" alt="CCFF0">
+<area shape="poly" coords="112,132,104,136,104,144,112,148,120,144,120,136" onclick="SetColor( '#99CC00', '170,136,204')" alt="99CC0">
+<area shape="poly" coords="128,132,120,136,120,144,128,148,136,144,136,136" onclick="SetColor( '#669900', '170,136,204')" alt="446600">
+<area shape="poly" coords="144,132,136,136,136,144,144,148,152,144,152,136" onclick="SetColor( '#336600', '170,136,204')" alt="224400">
+<area shape="poly" coords="160,132,152,136,152,144,160,148,168,144,168,136" onclick="SetColor( '#003300', '170,136,204')" alt="2200">
+<area shape="poly" coords="176,132,168,136,168,144,176,148,184,144,184,136" onclick="SetColor( '#003333', '170,136,204')" alt="2222">
+<area shape="poly" coords="192,132,184,136,184,144,192,148,200,144,200,136" onclick="SetColor( '#003366', '170,136,204')" alt="2244">
+<area shape="poly" coords="208,132,200,136,200,144,208,148,216,144,216,136" onclick="SetColor( '#003399', '170,136,204')" alt="2266">
+<area shape="poly" coords="224,132,216,136,216,144,224,148,232,144,232,136" onclick="SetColor( '#0033CC', '170,136,204')" alt="0033CC">
+
+<area shape="poly" coords="240,132,232,136,232,144,240,148,248,144,248,136" onclick="SetColor( '#0033FF', '170,136,204')" alt="0033FF">
+<area shape="poly" coords="88,144,80,148,80,156,88,160,96,156,96,148" onclick="SetColor( '#CCFF33', '170,136,204')" alt="CCFF22">
+<area shape="poly" coords="104,144,96,148,96,156,104,160,112,156,112,148" onclick="SetColor( '#99FF00', '170,136,204')" alt="99FF0">
+<area shape="poly" coords="120,144,112,148,112,156,120,160,128,156,128,148" onclick="SetColor( '#66CC00', '170,136,204')" alt="66CC0">
+<area shape="poly" coords="136,144,128,148,128,156,136,160,144,156,144,148" onclick="SetColor( '#339900', '170,136,204')" alt="226600">
+<area shape="poly" coords="152,144,144,148,144,156,152,160,160,156,160,148" onclick="SetColor( '#006600', '170,136,204')" alt="4400">
+<area shape="poly" coords="168,144,160,148,160,156,168,160,176,156,176,148" onclick="SetColor( '#006633', '170,136,204')" alt="4422">
+<area shape="poly" coords="184,144,176,148,176,156,184,160,192,156,192,148" onclick="SetColor( '#006666', '170,136,204')" alt="4444">
+<area shape="poly" coords="200,144,192,148,192,156,200,160,208,156,208,148" onclick="SetColor( '#006699', '170,136,204')" alt="4466">
+<area shape="poly" coords="216,144,208,148,208,156,216,160,224,156,224,148" onclick="SetColor( '#0066CC', '170,136,204')" alt="0066CC">
+<area shape="poly" coords="232,144,224,148,224,156,232,160,240,156,240,148" onclick="SetColor( '#0066FF', '170,136,204')" alt="0066FF">
+<area shape="poly" coords="248,144,240,148,240,156,248,160,256,156,256,148" onclick="SetColor( '#3366FF', '170,136,204')" alt="3366FF">
+<area shape="poly" coords="80,156,72,160,72,168,80,172,88,168,88,160" onclick="SetColor( '#CCFF66', '170,136,204')" alt="CCFF44">
+<area shape="poly" coords="96,156,88,160,88,168,96,172,104,168,104,160" onclick="SetColor( '#99FF33', '170,136,204')" alt="99FF22">
+<area shape="poly" coords="112,156,104,160,104,168,112,172,120,168,120,160" onclick="SetColor( '#66FF00', '170,136,204')" alt="66FF0">
+<area shape="poly" coords="128,156,120,160,120,168,128,172,136,168,136,160" onclick="SetColor( '#33CC00', '170,136,204')" alt="33CC0">
+<area shape="poly" coords="144,156,136,160,136,168,144,172,152,168,152,160" onclick="SetColor( '#009900', '170,136,204')" alt="6600">
+
+<area shape="poly" coords="160,156,152,160,152,168,160,172,168,168,168,160" onclick="SetColor( '#009933', '170,136,204')" alt="6622">
+<area shape="poly" coords="176,156,168,160,168,168,176,172,184,168,184,160" onclick="SetColor( '#009966', '170,136,204')" alt="6644">
+<area shape="poly" coords="192,156,184,160,184,168,192,172,200,168,200,160" onclick="SetColor( '#009999', '170,136,204')" alt="6666">
+<area shape="poly" coords="208,156,200,160,200,168,208,172,216,168,216,160" onclick="SetColor( '#0099CC', '170,136,204')" alt="0099CC">
+<area shape="poly" coords="224,156,216,160,216,168,224,172,232,168,232,160" onclick="SetColor( '#0099FF', '170,136,204')" alt="0099FF">
+<area shape="poly" coords="240,156,232,160,232,168,240,172,248,168,248,160" onclick="SetColor( '#3399FF', '170,136,204')" alt="3399FF">
+<area shape="poly" coords="256,156,248,160,248,168,256,172,264,168,264,160" onclick="SetColor( '#6699FF', '170,136,204')" alt="6699FF">
+<area shape="poly" coords="72,168,64,172,64,180,72,184,80,180,80,172" onclick="SetColor( '#CCFF99', '170,136,204')" alt="CCFF66">
+<area shape="poly" coords="88,168,80,172,80,180,88,184,96,180,96,172" onclick="SetColor( '#99FF66', '170,136,204')" alt="99FF44">
+<area shape="poly" coords="104,168,96,172,96,180,104,184,112,180,112,172" onclick="SetColor( '#66FF33', '170,136,204')" alt="66FF22">
+<area shape="poly" coords="120,168,112,172,112,180,120,184,128,180,128,172" onclick="SetColor( '#33FF00', '170,136,204')" alt="33FF0">
+<area shape="poly" coords="136,168,128,172,128,180,136,184,144,180,144,172" onclick="SetColor( '#00CC00', '170,136,204')" alt="00CC0">
+<area shape="poly" coords="152,168,144,172,144,180,152,184,160,180,160,172" onclick="SetColor( '#00CC33', '170,136,204')" alt="00CC22">
+<area shape="poly" coords="168,168,160,172,160,180,168,184,176,180,176,172" onclick="SetColor( '#00CC66', '170,136,204')" alt="00CC44">
+<area shape="poly" coords="184,168,176,172,176,180,184,184,192,180,192,172" onclick="SetColor( '#00CC99', '170,136,204')" alt="00CC66">
+<area shape="poly" coords="200,168,192,172,192,180,200,184,208,180,208,172" onclick="SetColor( '#00CCCC', '170,136,204')" alt="00CCCC">
+<area shape="poly" coords="216,168,208,172,208,180,216,184,224,180,224,172" onclick="SetColor( '#00CCFF', '170,136,204')" alt="00CCFF">
+
+<area shape="poly" coords="232,168,224,172,224,180,232,184,240,180,240,172" onclick="SetColor( '#33CCFF', '170,136,204')" alt="33CCFF">
+<area shape="poly" coords="248,168,240,172,240,180,248,184,256,180,256,172" onclick="SetColor( '#66CCFF', '170,136,204')" alt="66CCFF">
+<area shape="poly" coords="264,168,256,172,256,180,264,184,272,180,272,172" onclick="SetColor( '#99CCFF', '170,136,204')" alt="99CCFF">
+<area shape="poly" coords="128,180,120,184,120,192,128,196,136,192,136,184" onclick="SetColor( '#00FF00', '170,136,204')" alt="00FF0">
+<area shape="poly" coords="144,180,136,184,136,192,144,196,152,192,152,184" onclick="SetColor( '#00FF33', '170,136,204')" alt="00FF22">
+<area shape="poly" coords="160,180,152,184,152,192,160,196,168,192,168,184" onclick="SetColor( '#00FF66', '170,136,204')" alt="00FF44">
+<area shape="poly" coords="176,180,168,184,168,192,176,196,184,192,184,184" onclick="SetColor( '#00FF99', '170,136,204')" alt="00FF66">
+<area shape="poly" coords="192,180,184,184,184,192,192,196,200,192,200,184" onclick="SetColor( '#00FFCC', '170,136,204')" alt="00FFCC">
+<area shape="poly" coords="208,180,200,184,200,192,208,196,216,192,216,184" onclick="SetColor( '#00FFFF', '170,136,204')" alt="00FFFF">
+<area shape="poly" coords="120,192,112,196,112,204,120,208,128,204,128,196" onclick="SetColor( '#33FF33', '170,136,204')" alt="33FF22">
+<area shape="poly" coords="152,192,144,196,144,204,152,208,160,204,160,196" onclick="SetColor( '#33FF66', '170,136,204')" alt="33FF44">
+<area shape="poly" coords="168,192,160,196,160,204,168,208,176,204,176,196" onclick="SetColor( '#33FF99', '170,136,204')" alt="33FF66">
+<area shape="poly" coords="184,192,176,196,176,204,184,208,192,204,192,196" onclick="SetColor( '#33FFCC', '170,136,204')" alt="33FFCC">
+<area shape="poly" coords="216,192,208,196,208,204,216,208,224,204,224,196" onclick="SetColor( '#33FFFF', '170,136,204')" alt="33FFFF">
+<area shape="poly" coords="112,204,104,208,104,216,112,220,120,216,120,208" onclick="SetColor( '#66FF66', '170,136,204')" alt="66FF44">
+<area shape="poly" coords="160,204,152,208,152,216,160,220,168,216,168,208" onclick="SetColor( '#66FF99', '170,136,204')" alt="66FF66">
+<area shape="poly" coords="176,204,168,208,168,216,176,220,184,216,184,208" onclick="SetColor( '#66FFCC', '170,136,204')" alt="66FFCC">
+
+<area shape="poly" coords="224,204,216,208,216,216,224,220,232,216,232,208" onclick="SetColor( '#66FFFF', '170,136,204')" alt="66FFFF">
+<area shape="poly" coords="104,216,96,220,96,228,104,232,112,228,112,220" onclick="SetColor( '#99FF99', '170,136,204')" alt="99FF66">
+<area shape="poly" coords="168,216,160,220,160,228,168,232,176,228,176,220" onclick="SetColor( '#99FFCC', '170,136,204')" alt="99FFCC">
+<area shape="poly" coords="232,216,224,220,224,228,232,232,240,228,240,220" onclick="SetColor( '#99FFFF', '170,136,204')" alt="99FFFF">
+<area shape="poly" coords="96,228,88,232,88,240,96,244,104,240,104,232" onclick="SetColor( '#CCFFCC', '170,136,204')" alt="CCFFCC">
+<area shape="poly" coords="240,228,232,232,232,240,240,244,248,240,248,232" onclick="SetColor( '#CCFFFF', '170,136,204')" alt="CCFFFF">
+</map>
+</td>
+</tr>
+
+</table>
+<center>
+<tr align="center">
+<td align="center"><INPUT TYPE="SUBMIT" VALUE="Update Color">
+<div ID="swatch0" class="swatch">
+    <div class="border">
+    <div ID="0" class="color" >&nbsp;</div>
+    </div>    
+</div>    
+</td>
+
+</tr>
+</center>
+</form>
+</body>
+
+</html>
+

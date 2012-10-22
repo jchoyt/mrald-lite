@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<analysisParameters>
+
+	<MITRE_FD>
+		<parameter>
+			<name>Focused Attribute</name>
+			<fieldname>parameter_f</fieldname>
+			<type>FieldDropDown</type>
+		</parameter>
+		<parameter>
+			<name>Number of Tests in Results</name>
+			<fieldname>parameter_t</fieldname>
+			<type>textfield</type>
+			<default>1</default>
+			<size>5</size>
+		</parameter>
+		<parameter>
+			<name>Top Unusual Distributions (%)</name>
+			<fieldname>parameter_a</fieldname>
+			<type>textfield</type>
+			<default>0.05</default>
+			<size>5</size>
+		</parameter>
+		<parameter>
+			<name>Count</name>
+			<fieldname>parameter_c</fieldname>
+			<type>textfield</type>
+			<default>5</default>
+			<size>5</size>
+		</parameter>
+		<parameter>
+			<name>Tabular Output</name>
+			<fieldname>parameter_s</fieldname>
+			<type>checkbox</type>
+		</parameter>
+	</MITRE_FD>
+	
+	<WEKA_J48>
+		<parameter>
+			<name>Focused Attribute</name>
+			<fieldname>focused_field</fieldname>
+			<type>FieldDropDown</type>
+		</parameter>
+	</WEKA_J48>
+	
+	<WEKA_ID3>
+		<parameter>
+			<name>Focused Attribute</name>
+			<fieldname>focused_field</fieldname>
+			<type>FieldDropDown</type>
+		</parameter>
+	</WEKA_ID3>
+	
+</analysisParameters>

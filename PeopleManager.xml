@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UpdateForm>
+    <title>People Manager</title>
+    <datasource>db_admin.props</datasource>
+    <formElements>
+        <stat useStats="yes" />
+        <field checked="yes" filter="yes" groupby="yes" output="yes" sort="yes" stats="no">
+            <column>email</column>
+            <table>people</table>
+            <label>email</label>
+            <type>String</type>
+            <primaryKey>EMAIL</primaryKey>
+            <order>1</order>
+        </field>
+        <field checked="yes" filter="yes" groupby="yes" output="yes" sort="yes" stats="yes">
+            <column>peopletypeid</column>
+            <table>people</table>
+            <label>peopletypeid</label>
+            <type>Numeric</type>
+            <order>2</order>
+        </field>
+        <field checked="yes" filter="yes" groupby="yes" output="yes" sort="yes" stats="no">
+            <column>password</column>
+            <table>people</table>
+            <label>password</label>
+            <type>String</type>
+            <order>3</order>
+        </field>
+        <filter>
+            <table>people</table>
+            <column>email</column>
+            <label>Email contains</label>
+            <operator>like</operator>
+            <value>mitre.org</value>
+        </filter>
+        <filter>
+            <table>people</table>
+            <column>peopletypeid</column>
+            <label>User is</label>
+            <operator>=</operator>
+            <value>1</value>
+            <value>3</value>
+        </filter>
+    </formElements>
+</UpdateForm>
+

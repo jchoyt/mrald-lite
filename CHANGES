@@ -1,0 +1,33 @@
+Overview of changes between MRALD v3.1 and v3.2
+
+Summary of Major Changes:
+    *   Better query history facilities (MRALD keeps a history of queries so you can go back and re-run them, with or without modification).
+    *   Admins can removed a data source (database configuration)
+    *   Pivot tables ( taking data stored in rows and showing it in columns) - output and filters
+    *   Java specification standard XML output
+    *   Automatic backup facility to back up custom JDBC drivers, logs, custom forms, etc.
+    *   Zebra striped for HTML output
+    *   Better utilities for managing logs
+    *   upgraded shipped postgresql driver to 8.1 (was 7.4)
+    *   added filter to compare two columns (other filters compare a column to a set value(s))
+
+User enhancements
+    *   New filter type to compare two fields
+    *   XML output now complies with Sun WebRowSet standard (on Sun standard JREs)
+    *   New capabilities for EAV tables
+    *   New log file viewing capabilities
+    *   Added "Does not contain" and "Does not start with" filter operators
+    *   Capability to back up local configurations and customizations
+    *   Zebra stripes for HTML output
+
+Major bug fixes
+    *   Added checks for HSQL .lck files - deletes the lck files if they are found
+
+Minor bug fixes
+    *   Updated baseball datavase script - the version I had wasn't cleared for public release.
+
+Important API Code Changes
+    *   Included PostgreSQL drvier version updated to 8.1
+    *   Can't ship weka.jar anymore.  We have it in CVS, but installers will have to download and install it on their own.
+
+

@@ -1,0 +1,1001 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3. 2 Final//EN">
+<html>
+    <head>
+        <meta name="generator" content="HTML Tidy, see www. w3. org"><!--
+            @(#)package. html1. 60 98/01/27
+            This is the copyright work of The MITRE Corporation, and was produced for
+            the U.  S.  Government under Contract Number DTFA01-01-C-00001, and is subject
+            to Federal Aviation Administration Acquisition Management System Clause 3. 5-13
+            Rights in Data ? General, (October 1996), Alt.  III and IV. No other use other
+            than that granted to the U.  S.  Government, or to those acting on behalf of the
+            U.  S.  Government, under that Clause is authorized without the express written
+            permission of The MITRE Corporation.  For further information, please contact
+            The MITRE Corporation, Technology Transfer Office
+            7515 Colshire Drive. , McLean, VA22102
+            (703) 883-6000.
+            -->
+        <title>
+        </title>
+    </head>
+    <body bgcolor="white">
+        Provides a set of ParserElement-derived classes that build SQL data retrieval statements. This package also
+        provides a class for building a good join path among all the tables in a user selection based on the joins
+        provided by the form.
+        <br>
+        <br>
+        <h1>
+        MRALD Form Building Restrictions imposed by MraldDijkstra </h1>
+        An MRALD form represents a set of database tables and a unique way of joining them together to retrieve data
+        around a certain concept. Trying to force a single form to do more than this will cause unpredictable or
+        incorrect results (it is possible to build an MRALD form that will build mulitple queries and therefore bypass
+        these issues, however these forms must be hand built). Therefore, when more than one table is listed in an
+        MRALD form, each listed table must be connected to the others by a single, acyclic path. There are two problems
+        that give rise to this restriction:
+        <h2>
+        Incomplete join path </h2>
+        This occurs when there is not a complete join path amongst all the tables included on the form. The result of
+        an incomplete join path is a cross-product. This will result in a set containing every possible combination of
+        the records in the pair of relations being joined without regard to the context of the relationships. Such a
+        result is basically useless in terms of retrieving useful data from normal data models.
+        <h2>
+        Non-unique join path </h2>
+        This occurs when there is more than one join path between any two tables. While the query built will be valid
+        and not produce a cross-product, which join path to use, and therefore the query result, is indeterminate.
+        Should MRALD use both paths, or one? And if only one, which one? When creating an MRALD form, the user should
+        have a single concept of how these tables are to be joined and all other join paths should be set to be ignored
+        in the second step in the form building process.
+        <br>
+        <br>
+        Below is the specifics for each SqlElement:
+        <br>
+        <h1>
+        General rules in MRALD HTML tags </h1>
+        <ul>
+            <li>
+                Case counts. In almost all cases, the names and values are case sensitive.
+            </li>
+        </ul>
+        <h1>
+        Standard MRALD names in HMTL forms </h1>
+        <table border="1">
+            <tr>
+                <th>
+                    Tag
+                </th>
+                <th>
+                    What it means
+                </th>
+                <th>
+                    Required?
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Table
+                </td>
+                <td>
+                    Name of the table to be used.
+                </td>
+                <td>
+                    Yes, unless Count(*)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Synonym
+                </td>
+                <td>
+                    Synonym to be used instead of the table name. If used properly, this can be used to have multiple
+                    "copies" of a table in a single query.
+                </td>
+                <td>
+                    No
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Field
+                </td>
+                <td>
+                    Name of the field to be used.
+                </td>
+                <td>
+                    Yes, unless Count(*)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    As
+                </td>
+                <td>
+                    Synonym to be used instead of the table name. This can be used to put a decent name on special
+                    elements, such as ConcatElements or stats.
+                </td>
+                <td>
+                    No
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Order
+                </td>
+                <td>
+                    Order in which this item is to be inserted into the query. It is not necessary for the Orders to be
+                    sequential.
+                </td>
+                <td>
+                    Yes, and unique, or fields in the output will be overwritten
+                </td>
+            </tr>
+        </table>
+        <h1>
+        StatElement tag structure. The StatElement is responsible for adding statistical functions to queries. </h1>
+        <table border="1">
+            <tr>
+                <th>
+                    Tag
+                </th>
+                <th>
+                    What it means
+                </th>
+                <th>
+                    Required?
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Table
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    Yes, unless Count(*)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Syn
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    No
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Field
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    Yes, unless Count(*)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    As
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    No
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    GroupSelect
+                </td>
+                <td>
+                </td>
+                <td>
+                    Yes
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Group
+                </td>
+                <td>
+                </td>
+                <td>
+                    Yes
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Order
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    Yes, and unique, or fields in the output will be overwritten
+                </td>
+            </tr>
+        </table>
+        <h1>
+        StaticSelectElement tag structure. The StatElement is responsible for adding a static string to the SELECT
+        clause without modification. </h1>
+        <table border="1">
+            <tr>
+                <th>
+                    Tag
+                </th>
+                <th>
+                    What it means
+                </th>
+                <th>
+                    Required?
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Table
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    Yes, unless Count(*)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Syn
+                </td>
+                <td>
+                    standard
+                </td>
+                <td>
+                    No
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Value
+                </td>
+                <td>
+                    Value will be added to the SELECT clause exactly as specified.
+                </td>
+                <td>
+                    Yes.
+                </td>
+            </tr>
+        </table>
+        <hr/>
+        This is the validity check for the OrFilterElementTest
+        <table border="2" cellspacing="0" cellpadding="0" class="ta1">
+            <tr>
+                <td colspan="2">
+                    <p>Is operator IS NULL</p>
+                </td>
+                <td colspan="3">
+                    <p>Is value empty</p>
+                </td>
+                <td/>
+                <td class="Default"/>
+            </tr>
+            <tr>
+                <td>
+                    <p>o1</p>
+                </td>
+                <td>
+                    <p>o2</p>
+                </td>
+                <td>
+                    <p>v</p>
+                </td>
+                <td>
+                    <p>v1</p>
+                </td>
+                <td>
+                    <p>v2</p>
+                </td>
+                <td>
+                    <p>valid?</p>
+                </td>
+                <td class="Default"/>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td rowspan="8">
+                    <p>If both operators are "IS NULL" then the values don't matter</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y </p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td rowspan="4">
+                    <p>Value is a fallback - if it has a value, it's OK</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td class="Default">
+                    <p>if both values are provided - all is well</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is not a  NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is not a  NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>nobody has a value and at least on op is not a NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td rowspan="4">
+                    <p>Value is a fallback - if it has a value, it's OK</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td class="Default">
+                    <p>if both values are provided - all is well</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is NULL - all is well</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is not a  NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>nobody has a value and at least on op is not a NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td rowspan="4">
+                    <p>Value is a fallback - if it has a value, it's OK</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>y</p>
+                </td>
+                <td class="Default">
+                    <p>if both values are provided - all is well</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is not a  NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>Y</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>missing value is where operator is not a  NULL - BAD</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>N</p>
+                </td>
+                <td>
+                    <p>n</p>
+                </td>
+                <td class="Default">
+                    <p>nobody has a value and at least on op is not a NULL - BAD</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+

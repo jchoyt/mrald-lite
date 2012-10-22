@@ -1,0 +1,292 @@
+BEFORE YOU BEGIN
+SUPPORTING SOFTWARE
+INSTALLING MRALD
+CONFIGURATION
+TESTING
+TROUBLESHOOTING
+
+
+This installation guide is designed and written for intermediate level
+computer administrators.  For more detailed information on the specifics of
+outside software, please refer to the software vendor's website.  All of the
+software we recommend provide extensive detail and support through the vendor's
+site and/or publicly available forums.
+
+
+BEFORE YOU BEGIN
+
+Most of the appeal and creativity of the MRALD system is that it is platform
+independent and can interface with most available databases.  With that said,
+we can not envision every problem, customization, or feature someone may have on
+their system.  Also, given the wide variety of tools usable with the system, not
+all of these tools will work on ALL platforms. Issues and situations, like
+installing PostgreSQL 7.x on Windows, are ones that each user must approach and
+deal with on their own.  There are many software solutions at your disposal that
+may work in any number of combinations (i.e. web servers, databases, etc.)  but
+we will not be able to walk you through each situation's specific information.
+We are open to ALL questions, we just may not have an easy answer for everything.
+We encourage use of open-source software solutions for your components as they
+are much better at providing installation and usability guides to fix anything
+their software may encounter.
+
+Also, in order for this installation to be a flying success, we RECOMMEND that
+you have root/Administrator access on the destination machine.  Some specific
+problems could be the inability to make the MRALD installation available to
+everyone, difficultly accessing the software from TCP/IP connections (web
+connections), and/or database configuration priviledges. These errors vary
+based on operating systems and software versions. It is not exactly required,
+but we think you will find better results and less issues if you do.  Some of
+the needed software may require a certain level of privledge to initial install.
+
+Lastly, we have done our best to document everything we have encountered so if
+you encounter something new or simply have a question about our system,
+please feel free to ask us at mrald-dev-list@lists.mitre.org or refer to our
+FAQs on the website.  Happy Installation Day!
+
+
+SUPPORTING SOFTWARE
+
+Required Software:
+	- Java 6 SDK
+	- JSP 1.2 or later Supporting Web Server
+	- JDBC-compliant Database
+
+Optional Software (Required for recompiling/development)
+	- Apache Ant
+	- JUnit
+
+Java SDK (Standard Development Kit)
+
+Since the entirety of the MRALD System is developed in Java, we ( and most
+likely, the web server, you choose ) require the Java SDK to be installed on ANY
+machine where MRALD will be installed.  NOTE: You must have the complete SDK,
+not the JRE, for the system to work correctly.  The difference between a JRE
+and a JDK is that a JRE is simply the translator for the compiled Java classes
+while the JDK is required to COMPILE the Java class.  Because of the nature of
+general JSPs, the JDK is required for our system.
+
+Required For: 	MRALD Core and JSP compilation
+Recommended Version: Java 1.6 SDK
+SUN's Download Link: http://java.sun.com/j2se
+
+Additional Installation Instructions:
+	1. Set the JAVA_HOME environment to the installation directory
+	2. Add $JAVA_HOME/bin to your PATH environment.
+
+JSP 1.2 or later Supporting Web Server
+
+For its flexibility, we recommend and test primarily on the Apache Tomcat
+Project.  It is a lightweight, highly configurable web server that provides all
+the functionality needed.  This will be the workhorse of the system because all
+users will use this application to access your deployment. If you decide to go
+another route, the webs server must support the standards, Servlet 2.3 or later
+and JSP 1.2 or later.
+
+Required For: All Access to the MRALD System
+Recommended Version: Apache Tomcat 5.5+ (although has been tested with previous version)
+Apache Tomcat Link: http://tomcat.apache.org/
+
+IMPORTANT NOTE:
+	- Tomcat's web server is defaulted to listen to the 8080 port as opposed
+	  to the standard 80 port, which most web browser connect to.  You will
+	  need to configure this to have it listen to port 80. Specifically for
+	  Tomcat, to change the default port 8080 to 80,  you must change the
+	  Service tag's port attribute from "8080" to "80" the 'TOMCAT DIR'/conf/server.xml
+	  file.  This is also assuming that there is not another server or program which has
+	  register or reserved the port.  Contact the machine administrator for more
+	  information.
+	- For security purposes, it is important to remove all folders except the ROOT and
+	  MANAGER folders under 'TOMCAT DIR'/webapps.  Their removal will not effect TOMCAT's
+	  performance.
+	- During or after installing on WINDOWS, it is important that the 'TOMCAT DIR' path not
+	  have spaces (' ') in the path.  We recommend something like 'C:\Tomcat'.
+
+
+JDBC-Compliant Database
+
+In the interest of keeping this an open source and low cost project, we do the
+majority of our testing and development with the PostgreSQL database.  We have also
+installed and use the MRALD system on the MySQL (free) and Oracle systems.  The only
+complexity comes with getting the correct JDBC drivers.  The instructions and
+links below refer to the PostgreSQL database installation on a typical Linux system
+The appropriate configuration should be adapted to fit whatever database you choose
+to use. For more information about the desired JDBC driver, please refer to the
+vendor's website.
+
+Required For: DATA and Data Access
+Recommended Version: PostgreSQL 8
+PostgreSQL's Website: http://www.postgresql.org/
+PostgreSQL's Installation Instructions: http://www.postgresql.org/docs/
+
+IMPORTANT NOTE:
+	- For PostgreSQL to accept TCP/IP requests (even from the localhost),
+	you must have the listener/server set up to look for and handle the
+	request.  Follow the additional instructions below to accomplish this.
+
+Additional Installation Instructions:
+    1. Allow clients to connect via TCP/IP-based connections:
+		a) As root, edit <POSTGRESQL_HOME>/data/postgresql.conf.
+		b) Find the line: #tcpip_socket = false
+		c) Save it like this: tcpip_socket = true
+		d) For more information, see the PostgreSQL documentation.
+    2. Tell the database to listen for requests on the host machine by modifying
+	   the host-based authentication file, pg_hba.conf.
+       	a) As root, edit /var/lib/pgsql/data/pg_hba.conf.
+		b) Find the host stanza (or record) and enter it with the IP address for
+		   any users from any machines that should have access to the database
+		   (the default value is 127.0.0.1).
+		c) Remove the # character from the beginning of the line.
+			Example:
+			# IPv4-style local connections:
+			host    all         all         127.0.0.1         255.255.255.255   trust
+		d) For more information, see the PostgreSQL documentation.
+	3. After saving the file, start the database.
+
+
+-------------------------------------------------------------------------------
+
+
+Apache Ant
+
+Apache Ant is a script-like building tool that allows for the creation and
+development of the MRALD.  Ant can be designed to be integrated and connected
+to CVS and use to deploy jar and war files.  The initial build script are
+available with the MRALD code.
+
+Required For: Additional Development or Source Builds with MRALD
+Recommended Version: Apache Ant 1.6.x
+Apache's Download Link: http://ant.apache.org/bindownload.cgi
+Apache's Installation Instructions: http://ant.apache.org/manual/index.html
+
+Additional Installation Instructions:
+		1. Set the ANT_HOME environment to the installation directory.
+		2. Add $ANT_HOME/bin to your PATH environment.
+
+
+
+JUnit
+
+JUnit is a Java-based testing framework that facilitates regression and
+redundancy tests. These tests are designed to confirm that changes made
+to the existing software will not effect critical aspects of the software.
+Not all areas are covered and further testing  will be required but it will
+identify major areas. If you run tests from source, the junit.jar class
+must be included with Ant for the MRALD installation or continued development.
+
+Required For: MRALD Source Compilation
+Recommended Version: JUnit 3.8.1
+JUnit's Download Link: http://www.junit.org/index.htm
+JUnit's Installation Instructions: http://junit.sourceforge.net/README.html
+
+Additional Installation Instructions:
+	1. Copy junit.jar to the $ANT_HOME/lib or include it on the $CLASSPATH.
+
+
+
+INSTALLATION OF MRALD
+
+And onto the meat of the installation process, installing MRALD.  The instructions
+below are again for our testing/development tools (Apache, PostgreSQL, etc.):
+
+	1. Download the latest MRALD War file
+	2. Stop your web server (Tomcat)
+	3. Move the MRALD War file into the webapps directory
+	3a. Change the name from mrald.war to ROOT.war
+		- This will cause the address of your MRALD deployement to be
+		your website's address ( www.yoursite.com ) as opposed to <your
+		url>/mrald. ( www.yoursite.com/mrald ).  This is only possible
+		if you are not using the ROOT directory for anything else.
+	4. Copy the JDBC jar file for your database into the \
+	   'TOMCAT DIR'/webapps/ROOT/WEB-INF/lib
+	5. Start your web server (Tomcat)
+
+Thats It! The structure of the War file tells Tomcat how to unpack the documents
+and where to put them.  If you look the webapps directory now, you will see the
+original War file and a directory by the same name.  The directory will be
+filled with JSP files and directories.
+
+
+CONFIGURATION
+
+After you have followed the installation instructions above, you should
+immediately go to the index of your website, what it may be (
+www.yoursite.com OR www.yoursite.com/mrald OR www.yoursite.com:8080 ) depending
+on how you followed the instructions above.
+
+Two initial modifications to your database will be the addition/creation of the
+People and Message table.  These tables, shockingly, handle the registration and
+log-in of the system's users and handle the intra-system messaging system.  For
+more information, please see the MRALD User Guide.
+
+Once you have successfully found your main page, you will encounter a page with
+a series of PROPERTY values.  These properties are INTEGRAL to the successful
+setup of a MRALD installation.  We will go on to point out the relatively
+important properties but we encourage you to look at all of them and review the
+additional documentation included in the MRALD system to see how you can
+customize your installation.
+
+Database-Related Properties:
+	DBLOGIN - This refers the username for the account that has access to the
+			  intended database
+	DBPASSWORD - This refers to the password for the appropriate user mentioned above.
+	DBSERVER - This is the server connection string.  It is DB-SPECIFIC and
+	           SYSTEM-SPECIFIC.  Requires to conform to not only the specifications of
+			   the database but also your local machine (if you have made changes to
+			   the ports on the database).
+		Examples
+		Oracle: jdbc:oracle:thin:@server:1521:SID
+		PostgreSQL: jdbc:postgresql://127.0.0.1:5432/testfederated
+	DBDRIVER - This is the address of the JDBC class.  Again, it is DB-SPECIFIC and
+		       depends on the type and version of your JDBC Driver.
+		Examples
+		Oracle: oracle.jdbc.driver.OracleDriver
+		PostgreSQL: org.postgresql.Driver
+	SCHEMA - This again is dependent on the database decision.  The default schema is
+	         different for each of the database: PostgreSQL - public, Oracle is tied
+			 to a specific user, etc.  Please do you own investigation of the database
+			 and version to determine what the appropriate schema name is for your deployment.
+
+Site-Related Properties:
+	BasePath - This property refers to the actual location of the directory of the deployment
+	           in your web server.  It should be the FULL path ( e.g. /usr/lib/tomcat/webapps/mrald ).
+			   NOTE: This is automatically filled in based on Tomcat installation so please review
+			   and confirm the validity of the path.
+	BaseUrl - This property refers to the URL of your deployment ( e.g. http://www.yoursite.com ).
+	          This will need to be customized.
+	MAILTO - This refers to the email address of the system administrator.  Doesnt have to be
+	         your system administrator for your lab or location but simply the person who will
+			 oversee this MRALD deployment.
+	SMTPHOST - IMPORTANT: This refers to address of your outgoing mail server.  It must not require
+	           any authentication (username / password) and is necessary as email communication is
+			   part of the new user registration process.
+
+Look-And-Feel Properties:
+	formStylesheet - This XSL file used to translate the custom built forms.  Modifying this form
+	                 will change the look and feel of the forms.  NOTE: Only change this form if you
+					 fully understand your changes and how they affect the system.
+	CSS - This is the CSS for the system.  If you design or want to change the color scheme for the
+	      site, this is the file or property you want to change accordingly.
+
+
+
+TESTING AND FURTHER CONFIGURATION
+
+
+Changing a User's PeopleType
+
+If you refer to the schema or simply review the People table in the database, you will see the concept of a 'PeopleType' ID.  This is an internal reference that the MRALD system uses to determine who has administrative prilivedges.  Administrators have more options and control over the system.  They will be able to change individual user priviledges, system properties (seen above), among other featues.  it is important that this priviledge be restricted to only the individuals trusted not to compromise the system or the data contained.
+
+After the initial setup, there is one default administrator set up, however you it can be helpful to have administrator privledges on your regular log in account.
+	1. Once installation and configuration is completed, the intended admin should register with the MRALD system through the main web portal page.  Use your intended username.
+	2. When you are returned to the login screen, login as the administrator as user 'admin@mitre.org' with a password of 'admin'.  You should see a new panel of administrative tools to the lower right of the main page.
+    3. Use the People Manager on that page to update your new login to have administrator privledge.  To do this, click on the People Manager link and immediately use the 'Retrieve data' button to get a lsit of all users on the system.  Use the update button on the appropriate row to get to a page which will allow you to update the user information.  Change the peopletypeid field from 1 to 3 and apply the changes.  Now go back to the main page, log out, and log in with the newly created user account and you should see all the administration facilities.  IT IS IMPORTANT AT THIS POINT TO EITHER DELETE THE DEFAULT ADMIN ACCOUNT OR AT THE VERY LEAST CHANGE THE PASSWORD.
+From this point on, any admin will be able to update any user's priviledges through the People Manager link in the 'Admin Box'.
+
+Changing a User's COI
+
+The Lattice Security option is a feature that may or may not be included in the distribution you are installing.  If it is, you notice the 'Lattice Manager' link in the 'Admin Box' when logged in as an administrator.  To change an particular user's Community of Interest (COI), which restricts their viewing and accessibility level, simply use the People Manager and you will see the 'latticegroupid' property.  NOTE: Before changing the COI, please refer to the User Guide and Security Information about the effects of your changes and the difference in security levels and restrictions.
+
+
+TROUBLESHOOTING
+
+Please refer to our FAQs on the website. (http://mrald.developer.mitre.org)  The Development Team can also be reached through mrald-dev-list@lists.mitre.org.

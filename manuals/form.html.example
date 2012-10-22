@@ -1,0 +1,1114 @@
+<![CDATA[
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      OOOI Data Retrieval Form
+    </title>
+    <link href="mrald.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function Enable(objElement)
+    {
+    objElement.disabled = false;
+    objElement.value = '1';
+    }
+    function Disable(objElement)
+    {
+    objElement.disabled = true;
+    objElement.value = '0';
+    }
+
+</script>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <table cellpadding="0" cellspacing="0" border="0" width="90%">
+        <tr>
+          <td class="bord">
+            <table cellpadding="5" cellspacing="1" border="0" width="100%">
+              <tr>
+                <th class="title">
+                  <h1>
+                    CAASD Repository System<br>
+                    OOOI Data Retrieval Form
+                  </h1>
+                </th>
+              </tr>
+            </table>
+<script src="navi.js" type="text/javascript" language="JavaScript1.2">
+</script>
+          </td>
+        </tr>
+      </table>
+      <form enctype="x-www-form-urlencoded" action="FormSubmit" method="POST">
+        <input name="Schema" type="hidden" value="CRS_PROD">
+        <input name="form" type="hidden" value="OOOI Data Retrieval Form">
+        <input value="Building SQL" name="workflow" type="hidden">
+        <input name="Link1" type="hidden" value="PrimaryLink:OOOICOMMON.OOOIDATAID~SecondaryLink:OOOIDERIVEDTIMEGMT.OOOIDATAID">
+        <input name="outputFormat1" type="hidden" value="fieldname:OUTTIME~nicename:Out Time~type:Date~formatpattern:MM/dd/yyyy hh:mm:ss a">
+        <input name="outputFormat2" type="hidden" value="fieldname:OFFTIME~nicename:Off Time~type:Date~formatpattern:MM/dd/yyyy hh:mm:ss a">
+        <input name="outputFormat3" type="hidden" value="fieldname:ONTIME~nicename:On Time~type:Date~formatpattern:MM/dd/yyyy hh:mm:ss a">
+        <input name="outputFormat4" type="hidden" value="fieldname:INTIME~nicename:In Time~type:Date~formatpattern:MM/dd/yyyy hh:mm:ss a">
+        <input name="outputFormat5" type="hidden" value="fieldname:GMTDate~nicename:GMT Date~type:Date~formatpattern:MM/dd/yyyy hh:mm:ss a">
+        <input name="outputFormat21" type="hidden" value="fieldname:OOOIDATAID~nicename:OOOIDATAID~type:Numeric">
+        <input name="outputFormat22" type="hidden" value="fieldname:AIRBORNETIME~nicename:Airborne Time~type:Numeric">
+        <input name="outputFormat23" type="hidden" value="fieldname:BLOCKTIME~nicename:Block Time~type:Numeric">
+        <input name="outputFormat24" type="hidden" value="fieldname:OOOIDATAID~nicename:OOOIDATAID~type:Numeric">
+        <input name="outputFormat25" type="hidden" value="fieldname:CARRIER~nicename:Carrier~type:String">
+        <input name="outputFormat26" type="hidden" value="fieldname:FLIGHTNO~nicename:Flight Number~type:String">
+        <input name="outputFormat27" type="hidden" value="fieldname:TAILNO~nicename:TAILNO~type:String">
+        <input name="outputFormat28" type="hidden" value="fieldname:DEPTAIRPORT~nicename:Departure Airport~type:String">
+        <input name="outputFormat29" type="hidden" value="fieldname:ARRAIRPORT~nicename:Arrival Airport~type:String">
+        <input name="outputFormat210" type="hidden" value="fieldname:TAXIOUTTIME~nicename:Taxi Out Time~type:Numeric">
+        <input name="outputFormat211" type="hidden" value="fieldname:TAXIINTIME~nicename:Taxi In Time~type:Numeric">
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+          <tr>
+            <td class="bord">
+              <table cellspacing="1" cellpadding="3" border="0" width="100%">
+                <tr>
+                  <th>
+                    Time Selections
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%">
+                      <tr>
+                        <td width="100%">
+                          <strong>Start Date &amp; Time</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Month/Day/Year <input name="Time1~StartDate" type="text" size="13" value="02/01/2001"> Hours:Minutes <input value="00:00" size="16" type="text" name="Time1~StartTime">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <hr>
+                           <strong>End by:</strong> <br>
+                          <input checked value="EndTime" onclick="Enable(EndTimeSelected)" type="radio" name="EnableTime"> Date &amp; Time: <input value="1" type="hidden" name="EndTimeSelected"> Month/Day/Year <input name="Time1~EndDate" type="text" size="13" value="02/01/2001" onfocus="if ( EndTimeSelected.disabled ) this.blur()"> Hours:Minutes <input onfocus="if ( EndTimeSelected.disabled ) this.blur()" value="23:59" size="16" type="text" name="Time1~EndTime"> <br>
+                          <input value="AddTime" onclick="Disable(EndTimeSelected)" type="radio" name="EnableTime"> Duration: Months <input onfocus="if ( !EndTimeSelected.disabled ) this.blur()" value="" size="5" type="text" name="Time1~Month"> Days <input onfocus="if ( !EndTimeSelected.disabled ) this.blur()" value="" size="5" type="text" name="Time1~Day"> Hours <input onfocus="if ( !EndTimeSelected.disabled ) this.blur()" value="" size="5" type="text" name="Time1~Hour"> Minutes <input onfocus="if ( !EndTimeSelected.disabled ) this.blur()" value="" size="5" type="text" name="Time1~Minute"> Seconds <input onfocus="if ( !EndTimeSelected.disabled ) this.blur()" value="" size="5" type="text" name="Time1~Second">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <hr>
+                           <strong>Options</strong> <br>
+                           Time entered based on event <select name="Time1">
+                            <option value="Table:OOOICOMMON~Field:GMTDate">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+          <tr>
+            <td class="bord">
+              <table cellspacing="1" cellpadding="3" border="0" width="100%">
+                <tr>
+                  <th>
+                    Output Data Selections
+                  </th>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <input name="Select1" type="checkbox" value="Table:OOOICOMMON~Field:CARRIER~Order:2" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Carrier <br>
+                          <input name="Select2" type="checkbox" value="Table:OOOICOMMON~Field:FLIGHTNO~Order:3" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Flight Number <br>
+                          <input name="Select3" type="checkbox" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:5" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Departure Airport <br>
+                          <input name="Select4" type="checkbox" value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:6" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Arrival Airport <br>
+                          <input name="Select5" type="checkbox" value="Table:OOOICOMMON~Field:GMTDate~Order:7" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>GMT Date <br>
+                        </td>
+                        <td valign="top">
+                          <input name="Select6" type="checkbox" value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:8" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Taxi Out Time <br>
+                          <input name="Select7" type="checkbox" value="Table:OOOICOMMON~Field:TAXIINTIME~Order:9" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Taxi In Time <br>
+                          <input name="Select8" type="checkbox" value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:10" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Airborne Time <br>
+                          <input name="Select9" type="checkbox" value="Table:OOOICOMMON~Field:BLOCKTIME~Order:11" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Block Time <br>
+                          <input name="Select10" type="checkbox" value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:13" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Out Time <br>
+                        </td>
+                        <td valign="top">
+                          <input name="Select11" type="checkbox" value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:14" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>Off Time <br>
+                          <input name="Select12" type="checkbox" value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:15" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>On Time <br>
+                          <input name="Select13" type="checkbox" value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:16" onmouseover="if (EnableStats.value == 1) {}" onfocus="if (EnableStats.value == 1) {this.click(), this.blur()}" ondblclick="if (EnableStats.value == 1) {this.click(), this.blur()}" checked>In Time <br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <hr>
+                          Sort by <select name="Sort1">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:1">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:1">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:1">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:1">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:1">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:1">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:1">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:1">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:1">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:1">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:1">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:1">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:1">
+                              In Time
+                            </option>
+                          </select> then by <select name="Sort2">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:2">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:2">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:2">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:2">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:2">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:2">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:2">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:2">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:2">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:2">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:2">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:2">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:2">
+                              In Time
+                            </option>
+                          </select> then by <select name="Sort3">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:3">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:3">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:3">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:3">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:3">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:3">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:3">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:3">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:3">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:3">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:3">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:3">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:3">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+          <tr>
+            <td class="bord">
+              <table cellspacing="1" cellpadding="3" border="0" width="100%">
+                <tr>
+                  <th>
+                    Filter Selections
+                  </th>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <table width="100%">
+                      <tr>
+                        <td colspan="3">
+                          <strong>Departure Airport</strong> <br>
+                          <input type="checkbox" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=~Value:DFW">DFW
+                          <input type="checkbox" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=~Value:JFK">JFK
+                          <input type="checkbox" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=~Value:MIA">MIA
+                          <input type="checkbox" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=~Value:PHL">PHL
+                          <input type="checkbox" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=~Value:PIT">PIT
+                          <input type="hidden" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=">
+                          <input type="text" name="Filter1" size="5">
+                          <input type="hidden" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=">
+                          <input type="text" name="Filter1" size="5">
+                          <input type="hidden" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=">
+                          <input type="text" name="Filter1" size="5">
+                          <input type="hidden" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=">
+                          <input type="text" name="Filter1" size="5">
+                          <input type="hidden" name="Filter1" value="Table:OOOICOMMON~Field:DEPTAIRPORT~Operator:=">
+                          <input type="text" name="Filter1" size="5">
+                          <hr>
+                          <strong>Arrival Airport</strong> <br>
+                          <input type="checkbox" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=~Value:DFW">DFW
+                          <input type="checkbox" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=~Value:JFK">JFK
+                          <input type="checkbox" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=~Value:MIA">MIA
+                          <input type="checkbox" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=~Value:PHL">PHL
+                          <input type="checkbox" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=~Value:PIT">PIT
+                          <input type="hidden" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=">
+                          <input type="text" name="Filter2" size="5">
+                          <input type="hidden" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=">
+                          <input type="text" name="Filter2" size="5">
+                          <input type="hidden" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=">
+                          <input type="text" name="Filter2" size="5">
+                          <input type="hidden" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=">
+                          <input type="text" name="Filter2" size="5">
+                          <input type="hidden" name="Filter2" value="Table:OOOICOMMON~Field:ARRAIRPORT~Operator:=">
+                          <input type="text" name="Filter2" size="5">
+                          <hr>
+                          <strong>Arrival OR Departure Airport</strong> <br>
+                          <input type="radio" name="OrFilter1" value="" checked>none
+                          <input type="radio" name="OrFilter1" value="Value:DFW~Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">DFW
+                          <input type="radio" name="OrFilter1" value="Value:JFK~Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">JFK
+                          <input type="radio" name="OrFilter1" value="Value:MIA~Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">MIA
+                          <input type="radio" name="OrFilter1" value="Value:PHL~Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">PHL
+                          <input type="radio" name="OrFilter1" value="Value:PIT~Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">PIT
+                          <input type="radio" name="OrFilter1" value="Table1:OOOICOMMON~Field1:ARRAIRPORT~Operator1:=~Table2:OOOICOMMON~Field2:DEPTAIRPORT~Operator2:=">
+                          <input type="text" name="OrFilter1">
+                          <hr>
+                           <strong>Other Filters</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="25%">
+                          <strong>Field</strong>
+                        </td>
+                        <td width="25%">
+                          <strong>Operator</strong>
+                        </td>
+                        <td width="50%">
+                          <strong>Value</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Filter3">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Filter3">
+                            <option>
+                            </option>
+                            <option value="Operator:=">
+                              =
+                            </option>
+                            <option value="Operator:!=">
+                              Not equal (!=)
+                            </option>
+                            <option value="Operator:&lt;">
+                              &lt;
+                            </option>
+                            <option value="Operator:&gt;">
+                              &gt;
+                            </option>
+                            <option value="Operator:&lt;=">
+                              &lt;=
+                            </option>
+                            <option value="Operator:&gt;=">
+                              &gt;=
+                            </option>
+                            <option value="Operator:like">
+                              Contains
+                            </option>
+                            <option value="Operator:starts">
+                              Starts With
+                            </option>
+                            <option value="Operator:IN">
+                              IN
+                            </option>
+                            <option value="Operator:IS NULL">
+                              IS NULL
+                            </option>
+                            <option value="Operator:IS NOT NULL">
+                              IS NOT NULL
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <input name="Filter3" type="text" size="22">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Filter4">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Filter4">
+                            <option>
+                            </option>
+                            <option value="Operator:=">
+                              =
+                            </option>
+                            <option value="Operator:!=">
+                              Not equal (!=)
+                            </option>
+                            <option value="Operator:&lt;">
+                              &lt;
+                            </option>
+                            <option value="Operator:&gt;">
+                              &gt;
+                            </option>
+                            <option value="Operator:&lt;=">
+                              &lt;=
+                            </option>
+                            <option value="Operator:&gt;=">
+                              &gt;=
+                            </option>
+                            <option value="Operator:like">
+                              Contains
+                            </option>
+                            <option value="Operator:starts">
+                              Starts With
+                            </option>
+                            <option value="Operator:IN">
+                              IN
+                            </option>
+                            <option value="Operator:IS NULL">
+                              IS NULL
+                            </option>
+                            <option value="Operator:IS NOT NULL">
+                              IS NOT NULL
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <input name="Filter4" type="text" size="22">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Filter5">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Filter5">
+                            <option>
+                            </option>
+                            <option value="Operator:=">
+                              =
+                            </option>
+                            <option value="Operator:!=">
+                              Not equal (!=)
+                            </option>
+                            <option value="Operator:&lt;">
+                              &lt;
+                            </option>
+                            <option value="Operator:&gt;">
+                              &gt;
+                            </option>
+                            <option value="Operator:&lt;=">
+                              &lt;=
+                            </option>
+                            <option value="Operator:&gt;=">
+                              &gt;=
+                            </option>
+                            <option value="Operator:like">
+                              Contains
+                            </option>
+                            <option value="Operator:starts">
+                              Starts With
+                            </option>
+                            <option value="Operator:IN">
+                              IN
+                            </option>
+                            <option value="Operator:IS NULL">
+                              IS NULL
+                            </option>
+                            <option value="Operator:IS NOT NULL">
+                              IS NOT NULL
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <input name="Filter5" type="text" size="22">
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <input value="0" name="EnableStats" type="hidden">
+        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+          <tr>
+            <td class="bord">
+              <table cellspacing="1" cellpadding="3" border="0" width="100%">
+                <tr>
+                  <th>
+                    Statistical Functions
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%">
+                      <tr>
+                        <td width="25%">
+                          <strong>Function</strong>
+                        </td>
+                        <td>
+                          <strong>Field</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Stat1" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Function:Count(*)~Order:1~Table:OOOIDERIVEDTIMEGMT~Table:OOOIDERIVEDTIMEGMT~Table:OOOIDERIVEDTIMEGMT~Table:OOOIDERIVEDTIMEGMT~Table:OOOIDERIVEDTIMEGMT~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON~Table:OOOICOMMON">
+                              Count(*)
+                            </option>
+                            <option value="Function:Count~Order:1">
+                              Count
+                            </option>
+                            <option value="Function:Count(DISTINCT~Order:1">
+                              Count Distinct
+                            </option>
+                            <option value="Function:Max~Order:1">
+                              Max
+                            </option>
+                            <option value="Function:Min~Order:1">
+                              Min
+                            </option>
+                            <option value="Function:Avg~Order:1">
+                              Average
+                            </option>
+                            <option value="Function:Stddev~Order:1">
+                              Standard Deviation
+                            </option>
+                            <option value="Function:Sum~Order:1">
+                              Sum
+                            </option>
+                            <option value="Function:Variance~Order:1">
+                              Variance
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Stat1" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:1">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:1">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:1">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:1">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:1">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:1">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:1">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:1">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:1">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:1">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:1">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:1">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:1">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Stat2" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Function:Count(*)~Order:2~Table:OOOIDERIVEDTIMEGMT~Table:OOOICOMMON">
+                              Count(*)
+                            </option>
+                            <option value="Function:Count~Order:2">
+                              Count
+                            </option>
+                            <option value="Function:Count(DISTINCT~Order:2">
+                              Count Distinct
+                            </option>
+                            <option value="Function:Max~Order:2">
+                              Max
+                            </option>
+                            <option value="Function:Min~Order:2">
+                              Min
+                            </option>
+                            <option value="Function:Avg~Order:2">
+                              Average
+                            </option>
+                            <option value="Function:Stddev~Order:2">
+                              Standard Deviation
+                            </option>
+                            <option value="Function:Sum~Order:2">
+                              Sum
+                            </option>
+                            <option value="Function:Variance~Order:2">
+                              Variance
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Stat2" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:2">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:2">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:2">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:2">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:2">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:2">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:2">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:2">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:2">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:2">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:2">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:2">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:2">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select name="Stat3" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Function:Count(*)~Order:3~Table:OOOIDERIVEDTIMEGMT~Table:OOOICOMMON">
+                              Count(*)
+                            </option>
+                            <option value="Function:Count~Order:3">
+                              Count
+                            </option>
+                            <option value="Function:Count(DISTINCT~Order:3">
+                              Count Distinct
+                            </option>
+                            <option value="Function:Max~Order:3">
+                              Max
+                            </option>
+                            <option value="Function:Min~Order:3">
+                              Min
+                            </option>
+                            <option value="Function:Avg~Order:3">
+                              Average
+                            </option>
+                            <option value="Function:Stddev~Order:3">
+                              Standard Deviation
+                            </option>
+                            <option value="Function:Sum~Order:3">
+                              Sum
+                            </option>
+                            <option value="Function:Variance~Order:3">
+                              Variance
+                            </option>
+                          </select>
+                        </td>
+                        <td>
+                          <select name="Stat3" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:3">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:3">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:3">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:3">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:3">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:3">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:3">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:3">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:3">
+                              Block Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:3">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:3">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:3">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:3">
+                              In Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <hr>
+                          Group by <select name="Group4" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:4">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:4">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:4">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:4">
+                              In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:4">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:4">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:4">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:4">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:4">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:4">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:4">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:4">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:4">
+                              Block Time
+                            </option>
+                          </select> then by <select name="Group5" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:5">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:5">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:5">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:5">
+                              In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:5">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:5">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:5">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:5">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:5">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:5">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:5">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:5">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:5">
+                              Block Time
+                            </option>
+                          </select> then by <select name="Group6" onchange=" if (this.selectedIndex != 0) {Enable(EnableStats); for (i=1; i!=14; i++){ eval(&quot;Select&quot; + i).checked=false; } self.status=&quot;Cannot select Output Data whilst statistical function selected.&quot;; return true} else {Disable(EnableStats),self.status=&quot;&quot;; return true} ">
+                            <option>
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OUTTIME~Order:6">
+                              Out Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:OFFTIME~Order:6">
+                              Off Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:ONTIME~Order:6">
+                              On Time
+                            </option>
+                            <option value="Table:OOOIDERIVEDTIMEGMT~Field:INTIME~Order:6">
+                              In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:CARRIER~Order:6">
+                              Carrier
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:FLIGHTNO~Order:6">
+                              Flight Number
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:DEPTAIRPORT~Order:6">
+                              Departure Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:ARRAIRPORT~Order:6">
+                              Arrival Airport
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:GMTDate~Order:6">
+                              GMT Date
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIOUTTIME~Order:6">
+                              Taxi Out Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:TAXIINTIME~Order:6">
+                              Taxi In Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:AIRBORNETIME~Order:6">
+                              Airborne Time
+                            </option>
+                            <option value="Table:OOOICOMMON~Field:BLOCKTIME~Order:6">
+                              Block Time
+                            </option>
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table cellpadding="0" cellspacing="0" border="0" width="90%">
+          <tr>
+            <td class="bord">
+              <table cellspacing="1" cellpadding="3" border="0" width="100%">
+                <tr>
+                  <th>
+                    Output Size and Format Selections
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <strong>Output size limit</strong> <br>
+                          <input name="outputSize" value="none" type="radio">None<input checked name="outputSize" value="lines" type="radio">
+                          <input value="500" size="6" type="text" name="outputLinesCount">Lines<input name="outputSize" value="mb" type="radio">
+                          <input value="1" size="5" type="text" name="outputMBSize">MB
+                        </td>
+                        <td valign="top" colspan="2">
+                          <input value="true" name="showDuplicates" type="checkbox">Include duplicate rows in returned data
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <hr>
+                           <strong>Format and Destination</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="25%">
+                          <strong>Browser</strong> <br>
+                          <input value="browserCsv" name="Format" type="radio">CSV using delimiter<input size="2" value="," type="text" name="browserFormatDelimiter"> <br>
+                          <input value="browserText" name="Format" type="radio">Text (tab delimited) <br>
+                          <input checked value="browserHtml" name="Format" type="radio">Table (HTML) <br>
+                          <input value="XmlRaw" name="Format" type="radio">XML
+                        </td>
+                        <td valign="top" width="25%">
+                          <strong>File</strong> <br>
+                          <input value="fileCsv" name="Format" type="radio">CSV using delimiter<input size="2" value="," type="text" name="fileFormatDelimiter"> <br>
+                          <input value="fileText" name="Format" type="radio">Text (tab delimited)
+                        </td>
+                        <td align="left" valign="top" sidth="50%">
+                          <strong>Excel</strong> <br>
+                          <input value="excel" name="Format" type="radio">Excel
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <div align="center">
+          <input value="Retrieve Data" type="submit">
+          <br>
+          <br>
+          <input value="Reset Form" type="reset">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+]]>

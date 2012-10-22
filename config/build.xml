@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+This build file will descend into the custom directory and
+build a columnNames.props file from all the forms in the directory.
+
+NOTE:  The resulting file will need to be cleaned up to remove duplicates and "left labels"
+-->
+<project name="test.pipeline" default="rebuild">
+  <target name="init">
+    <property name="namesFile" value="columnNames.props" />
+    <echoproperties />
+  </target>
+  <target name="transform" depends="init">
+    <xslt extension=".props" destdir="." style="extractor.xsl">
+      <include name="custom/*.xml" />
+    </xslt>
+  </target>
+  <target name="rebuild" depends="transform">
+    <concat destfile="${namesFile}">
+      <fileset dir="custom"
+           includes="**/*.props" />
+    </concat>
+    <delete>
+      <fileset dir="xml" includes="*.props"/>
+    </delete>
+  </target>
+</project>

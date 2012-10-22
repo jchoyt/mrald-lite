@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<project name="mrald" default="compile" basedir=".">
+    <description>Builds MRALD</description>
+
+    <target name="setProps" depends="init" description="sets the various properties - custom ones should be in build.props.">
+        <property file="build.props" />
+        <dirname property="antfile.dir" file="${ant.file}"/>
+        <property name="src" value="src" description="location of source code" />
+        <property name="build" value="build" description="location to build the files to " />
+        <property name="jars" value="lib" description="location of necessary jar files" />
+        <property name="doc" value="doc" description="location of javadocs" />
+        <property name="warfile" value="mrald.war" description="name of war file to build" />
+        <property name="jarfile" value="mrald.jar" description="name of jar file to build" />
+        <property name="util-jarfile" value="mrald-util.jar" description="name of jar file to build" />
+        <property name="util-graphics-jarfile" value="graphics-util.jar" description="name of jar file to build" />
+        <property name="config" value="config" description="location of WEB-INF " />
+        <property name="html" value="html" description="location of other HTML pages"/>
+        <property name="webxml" value="${config}/web.xml" description="name of file to use as web.xml" />
+        <property name="build.compiler" value="modern" />
+        <property name="appBase" value="tomcat/webapps" />
+        <property name="appletJar" value="graphics-util.jar" />
+        <property name="webApp" value="mrald" description="name of webapp to deply as" />
+        <property name="testProps" value="${antfile.dir}/test.properties" />
+        <property name="release" value="v3_03_00" />
+        <property name="aarfile" value="broadcastQueryHandler.aar" description="name of aar file to build" />
+        <property name="services.xml" value="${src}/org/mitre/mrald/webservices/services.xml" description="services.xml file required for the .aar file" />
+        <!-- <echoproperties /> -->
+
+        <path id="jarspath">
+            <fileset dir="${jars}">
+                <include name="**/*.jar" />
+            </fileset>
+        </path>
+        <!-- Uncomment this to print the classpath  -->
+        <!--
+            <property name="myclasspath" refid="jarspath"/>
+            <echo message="Classpath = ${myclasspath}"/>
+        -->
+    </target>
+
+    <target name="jar" depends="test">
+        <jar jarfile="${jarfile}" basedir="${build}">
+            <include name="*/**" />
+            <exclude name="**/test/**" />
+        </jar>
+        <jar jarfile="${util-jarfile}" basedir="${build}">
+            <include name="**/control/***" />
+            <include name="**/util/**" />
+            <exclude name="**/test/**" />
+        </jar>
+        <jar jarfile="${util-graphics-jarfile}" basedir="${build}">
+            <include name="**/graphics/***" />
+            <include name="**/control/***" />
+            <include name="**/util/**" />
+            <exclude name="**/test/**" />
+        </jar>
+        <signjar jar="${appletJar}" alias="tomcat" storepass="changeit" keystore="keystore" />
+
+    </target>
+
+    <target name="release" depends="clean, zipSource, war, jar, zipJavadoc, clean">
+        <move file="${jarfile}" overwrite="true" tofile="mrald_jar_${release}.jar" />
+        <move file="${warfile}" overwrite="true" tofile="mrald_war_${release}.war" />
+        <move file="${util-jarfile}" overwrite="true" tofile="mrald_util_${release}.jar" />
+    </target>
+
+    <target name="zipSource" depends="setProps, clean">
+        <zip basedir="${antfile.dir}" compress="true" defaultexcludes="true" zipfile="mrald_src_${release}.zip">
+            <exclude name="testing"/>
+            <exclude name="documents"/>
+        </zip>
+    </target>
+
+    <target name="zipJavadoc" depends="doc">
+        <zip basedir="${doc}" compress="true" defaultexcludes="true" zipfile="mrald_api_${release}.zip"></zip>
+    </target>
+
+    <target name="cvs">
+        <cvs dest="." command="update -d -P" quiet="true"/>
+    </target>
+
+
+    <target name="war" depends="jar">
+        <!-- create a release file -->
+        <echo file="html/release.txt" message="Release: ${release} " />
+        <echo file="html/release.txt" append="true" message="Build date, time: ${DSTAMP}, ${TSTAMP}" />
+        <!-- copy the new $util-graphics-jarfileutil-graphics-jarfile over - CVS is told to ignore this file -->
+        <copy todir="html/graphics" file="${appletJar}" />
+        <war warfile="${warfile}" webxml="${webxml}">
+            <fileset dir="${html}" />
+            <fileset dir="manuals/build">
+                <include name="**/UserGuide/**" />
+            </fileset>
+            <lib dir="${jars}">
+                <!-- provided by Tomcat -->
+                <exclude name="servlet-api.jar" />
+                <exclude name="jsp-api.jar" />
+                <exclude name="weka.jar" />
+                <exclude name="commons-logging*" />
+                <!-- needed only for testing -->
+                <exclude name="mockobjects*" />
+                <!-- flatten out the lib directory -->
+                <exclude name="**/axis2/**"/>
+                <exclude name="**/cewolf/**"/>
+            </lib>
+            <lib file="${jarfile}"/>
+            <lib dir="${jars}/axis2" />
+            <lib dir="${jars}/cewolf" />
+            <webinf dir="${config}" excludes="web.xml" />
+        </war>
+    </target>
+    <target name="deployJar" depends="jar">
+        <exec dir="${antfile.dir}" executable="${antfile.dir}/shutdown.sh" />
+        <move file="${jarfile}" tofile="${appBase}/${webApp}/WEB-INF/lib/${jarfile}" />
+        <exec dir="${antfile.dir}" executable="${antfile.dir}/startup.sh" />
+    </target>
+    <target name="deploy" depends="war">
+        <exec dir="${antfile.dir}" executable="${antfile.dir}/shutdown.sh" />
+        <delete file="${appBase}/${webApp}.war" />
+        <delete dir="${appBase}/${webApp}" />
+        <move file="${warfile}" tofile="${appBase}/${webApp}.war" />
+        <exec dir="${antfile.dir}" executable="${antfile.dir}/startup.sh" />
+    </target>
+    <target name="init">
+        <tstamp />
+        <echo message="Build file: ${DSTAMP}, ${TSTAMP}" />
+        <available property="junit.present" classname="junit.framework.Test"/>
+    </target>
+    <!--target name="compile" if="junit.present" depends="setProps, junit-present"-->
+    <target name="compile" depends="setProps, junit-present">
+        <mkdir dir="${build}" />
+        <javac srcdir="${src}" destdir="${build}" deprecation="on" debug="on" source="1.5" target="1.5" >
+            <!-- <bootclasspath>
+                <fileset dir="/usr/local/share/jdk1.5.0_10/jre/lib">
+                    <include name="*rt.jar" />
+                </fileset>
+            </bootclasspath> -->
+            <classpath>
+                <path refid="jarspath" />
+            </classpath>
+            <include name="**/*.java" />
+        </javac>
+    </target>
+    <target name="junit-present" unless="junit.present" depends="init">
+      <echo>To run the unit tests, you must have junit.jar in ant's lib directory.  From the JUnit task description:</echo>
+      <echo>Note: You must have junit.jar and the class files for the &lt;junit&gt; task in the same classpath. You can do one of:</echo>
+      <echo>    Put both junit.jar and the optional tasks jar file in ANT_HOME/lib.</echo>
+      <echo>    Do not put either in ANT_HOME/lib, and instead include their locations in your CLASSPATH environment variable.</echo>
+      <echo>    Do neither of the above, and instead, specify their locations using a &lt;classpath&gt; element in the build file.</echo>
+    </target>
+    <target name="test" depends="compile">
+        <junit haltonfailure="yes">
+            <formatter type="plain" usefile="false" />
+            <classpath>
+                <pathelement path="${build}" />
+                <path refid="jarspath" />
+            </classpath>
+            <sysproperty key="testProps" value="${testProps}/" />
+            <sysproperty key="antfile.dir" value="${antfile.dir}" />
+            <sysproperty key="lattice.dir" value="${antfile.dir}/config/props/lattice.props" />
+            <batchtest fork="yes" todir="${build}">
+                <fileset dir="${src}">
+                    <include name="test/**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+    <target name="clean" depends="setProps">
+        <delete dir="${doc}" />
+        <delete dir="${build}" />
+        <delete>
+            <fileset dir="." includes="mrald*.zip" />
+        </delete>
+        <delete>
+            <fileset dir="." includes="mrald*.war" />
+        </delete>
+        <delete>
+            <fileset dir="." includes="mrald*.jar" />
+        </delete>
+        <delete>
+            <fileset dir="." includes="*.aar" />
+        </delete>    </target>
+    <target name="clearRights">
+        <chmod perm="774" type="both">z
+        <include name="${build}/**" />
+            <include name="${src}/**" />
+            <include name="../../**" />
+        </chmod>
+    </target>
+    <target name="doc" depends="setProps">
+        <mkdir dir="${doc}" />
+        <javadoc packagenames="org.mitre.*" sourcepath="${src}" destdir="${doc}" author="true" version="true" windowtitle="MRALD API">
+<!--<doclet name="JP.co.esm.caddies.doclets.UMLDoclet" path="lib/UmlDoclet.jar" />-->
+            <classpath>
+                <path refid="jarspath" />
+            </classpath>
+        </javadoc>
+    </target>
+</project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lattice_errors>
+  <!-- User Lattice errors -->
+    <error>
+        <number>LATT-001</number>
+        <title>Multiple Parents: Group had Multiple Parents</title>
+        <user_message>The Group you have selected to delete is owned by multiple Groups. 
+        You must first remove these groups, before deleting this group.</user_message>
+    </error>
+    <error>
+        <number>LATT-002</number>
+        <title>Invalid Lattice Structure</title>
+        <user_message>Please change the owner group.</user_message>
+    </error>
+    <error>
+        <number>LATT-003</number>
+        <title>Insufficient Group Privilidges</title>
+        <user_message>You have insufficent group privilidges to access this system.</user_message>
+    </error>
+    <error>
+        <number>LATT-004</number>
+        <title>Group not found Exception</title>
+        <user_message>The specified Group is not a valid group. Or does not have sufficent access.
+        Please contact your System Administrator.
+        </user_message>
+    </error>
+    <error>
+        <number>LATT-005</number>
+        <title>Null Group Exception</title>
+        <user_message>This group is Null. Please contact your System Administrator.</user_message>
+    </error>
+    <error>
+        <number>LATT-006</number>
+        <title>Invalid Lattice Structure Exception</title>
+        <user_message>You may not delete the link between Group and Public. If you wish to remove this node, please remove by Deletion.</user_message>
+    </error>
+  <!-- /Oracle errors -->
+</lattice_errors>

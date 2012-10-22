@@ -1,0 +1,517 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!-- jEdit editor properties - don't delete
+ :mode=xml:tabSize=2:indentSize=2:noTabs=true:
+ :folding=indent:collapseFolds=0:wrap=soft:maxLineLen=80:
+-->
+<book>
+  <title>MRALD User Guide</title>
+  <titleabbrev>Example</titleabbrev>
+  <bookinfo>
+    <author>
+      <firstname>Atul</firstname>
+      <surname>Mathuria</surname>
+    </author>
+    <author>
+      <firstname>Jeffrey</firstname>
+      <surname>Hoyt</surname>
+    </author>
+    <author>
+    <firstname>Gail</firstname>
+    <surname>Hamilton</surname>
+    </author>
+  <corpname>The MITRE Corporation</corpname>
+  <revhistory>
+    <revision>
+    <revnumber>2</revnumber>
+    <date>07/07/2004</date>
+    </revision>
+  </revhistory>
+  </bookinfo>
+  <preface>
+    <title>Foreword</title>
+    <para>This user's guide aims to provide a basic resource for understanding and operating MRALD. Deep technicality will be avoided when discussing MRALD, so the software may be presented clearly to a user who has no prior experience with the software or databases. Basic database information is provided in Appendix A for those who are interested.</para>
+    <para>This is the copyright work of The MITRE Corporation.  No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government is authorized without the express written permission of The MITRE Corporation. For further information, please contact The MITRE Corporation, Technology Transfer Office, 7515 Colshire Drive., McLean, VA  22102, (703) 883-6000.</para>
+    <para>(c) 2004 The MITRE Corporation</para>
+  </preface>
+  <chapter>
+    <title>What is MRALD?</title>
+    <para>MRALD gives the user the power to search a database without requiring prior knowledge or expertise with databases. MRALD takes an HTML <link linkend="glossaryForm">form</link> as input and parses (seperates and processes) the input fields into <link linkend="glossarySQL">SQL</link> instructions for a database query. MRALD encodes its instructions
+    in a set of <emphasis>tags</emphasis>, which have a flexible structure in case future instructions need to be added for a more sophisticated SQL query. MRALD is an automated enterprise data delivery system. It runs on almost any platform and will access any database with a reasonably complete <link linkend="glossaryJDBCDriver">JDBC driver</link>. MRALD allows for any database to be accessed easily via a web browser. Each project can have the same main page (like it's own Portal, where each user will see a personalized version of this main page). It is domain independent and is ready to deliver data, filtered based on user needs/selections, right afterinstallation. For installation, see MRALD Installation Guide.</para>
+  </chapter>
+  <chapter>
+    <title>Overview of the User Interface</title>
+    <figure><title>The User Interface</title>
+    <graphic fileref="images/userinterface.jpg" format="JPG"/>
+    </figure>
+    <para>The MRALD homepage is depicted in figure 2.1. The left section of the interface, labeled <quote>news</quote>, provides general news and updates concerning MRALD. The news is set by either the deployer or the system administrator, with entry dates clearly labeled.</para>
+    <para>The interface (fig. 2.1) provides three methods for submitting a <link linkend="glossaryQuery">query</link> by the use of a <link linkend="glossaryForm">form</link>:
+    <simplelist columns="1">
+    <member><emphasis>Pre-built Forms</emphasis>: Forms for general use should be placed here.  The deployers of the system should pre build forms that will accomodate most of the users' needs and place them here.  They can be listed by simple links, or they can be clumped and put in drop downs like the one in the Special Forms section from the default installation.</member>
+    <member><emphasis>Personal Forms</emphasis>: Users that need extra to retrieve data that the deployers didn't anticipate can build their own forms using the <link linkend="glossaryFormBuilder">form builder</link> and subsequently have their forms listed here.  To use the form builder, the user must have at least some understanding of the data in the underlying database. In addition, the user needs a good understanding of which tables this data can be obtained from. If the user does not have this understanding, then a developer, or someone familiar with the database structure should be contacted to create a personalized form.  More information is given in <xref linkend="FormBuilder" endterm="FormBuilder.title"/>. </member>
+    <member><emphasis>Special Forms</emphasis>: This section provides a location for non-standard forms.  For example, the <link linkend="glossaryDirectQuery">DirectQuery</link> and <link linkend="glossaryDirectQueryUpload">DirectQueryUpload</link> forms allow  a user to directly type in a query.  Other candidates for this area are forms that provide customized output, or lead to password protected areas of the deployment.</member>
+    </simplelist>
+    </para>
+  </chapter>
+  <chapter id="Chapter3">
+    <title>Use an Existing Form</title>
+    <para>The user may use a prexisting form if it has been built by either the deployer or a user who has used the <xref linkend="FormBuilder" endterm="FormBuilder.title"/>. If no forms have been built, no prexisting forms will appear. The prexisting forms are built for general use, and can be found in the <quote>forms</quote> box under <quote>data sets</quote> (fig. 2.1). Prexisting forms are also known as <emphasis>generic forms</emphasis>. As an example, suppose the user possesses databases about medical patients and we wish to explore the biographical data concerning the patients such as race, gender, birthdate, nation of residence, etc. <warning><para>All example data has been fabricated. Any similarity, likeness, or implication drawn from the content or data is completely unintentional. Any questions, comments, or concerns, please email us at <email>mrald-dev-list@mitre.org</email>.</para></warning></para>
+    <section id="UseStep1"><title>Step 1: Select the Right Form</title>
+    <para>The user must know which general form to use in advance, and again this information could be found through contacting the the deployer or other users knowledgable about the database. If the user knows patient information such as race, gender, and nation of origin is stored in the database, but is not sure which form to use, the user may find out by doing the following:</para>
+    <orderedlist>
+    <listitem><para>In figure 3.1, the user selects the form entitled <quote>Medical History Items</quote> guessing that this is the form he wants.</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/SelectWrongForm.jpg" format="JPG"/>
+    </figure></listitem>
+    <listitem><para>Once the form has been chosen, the user will see a screen resembling figure 3.2.</para>
+    <figure><title>Medical History Items Form</title>
+    <graphic fileref="images/GeneralForms/MedicalHistoryForm.jpg" format="JPG"/>
+    </figure></listitem>
+    <listitem><para>The green arrow in the top left of the form allows the user to navigate one page backwards (just as a normal browser).</para>
+    </listitem>
+    <listitem><para>The drop down menu in the top right of the form will allow the user to visit the MITRE homepage if the user chooses <quote>MITRE</quote> or will instead send the user to the user's MRALD homepage if the user chooses <quote>HOME</quote>.</para></listitem>
+    <listitem><para>The section entitled <quote>Output Data Selections</quote> (fig 3.2) shows what <link linkend="glossaryField">fields</link> of the data MRALD can output. Each field can either be selected or ignored for output by using the provided checkboxes. <note><para>If the user does not find the particuliar data he or she wishes to search under this section, then the user must return to the MRALD homepage and choose a different <emphasis>generic form</emphasis>. </para> </note></para>
+    <para>Here we see that the <emphasis>Medical History Items</emphasis> form has the following characteristics to describe it: <quote>Name</quote>, <quote>Aliases</quote>, and <quote>Description</quote>. Since the user's originial goal was to find out biographical information about the patients, the user knows that this is the wrong form to use. Instead, let the user return to the MRALD homepage and choose the form entitled <quote>Subject</quote> (fig. 3.3) which brings up the Subject form (fig. 3.4).</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/SelectRightForm.jpg" format="JPG"/>
+    </figure>
+    <figure><title>Subject Form</title>
+    <graphic fileref="images/GeneralForms/SubjectForm.jpg" format="JPG"/>
+    </figure></listitem>
+    <listitem><para>From the new <quote>Output Data Items</quote> section (fig. 3.4) the user can see that the correct form was chosen given her initial desire to search personal information about the patients.</para>
+    </listitem></orderedlist></section>
+    <section id="UseStep2"><title>Step 2: Select Time Interval</title>
+    <orderedlist>
+    <listitem><para><note><para>This section may or may not exist depending upon how the form was originally built.</para></note> If there exists a top section entitled <quote>Time Selections</quote> (fig. 3.4) the user may choose to filter data based on a time criterion. Any time field of the data may be used to act as a filter. The user must specify a starting date and time and then either an ending date and time or a duration in the format listed by the text boxes. For example, suppose the user wanted to find patients who took their initial exam after January 1, 1980 and before January 1, 1997. The user should enter these respective dates as the start and end dates under <emphasis>Time Selection</emphasis> (fig. 3.5).</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/TimeSelection.jpg" format="JPG"/>
+    </figure></listitem>
+    </orderedlist></section>
+    <section id="UseStep3"><title>Step 3: Use Appropriate Outputs and Filters</title>
+    <orderedlist>
+    <listitem><para><note><para>If the user wishes to compute statistics on the data then the user should skip the following section concerning Output Data Items and proceed directly to <link linkend="UseStep3-1">Normal Filters</link>.</para></note>
+    Again, the fields under <emphasis>Output Data Items</emphasis> are the fields that are available for output in the result from the query. For every matching record in the query, these fields will be displayed. Suppose the user wishes to output the fields labeled <quote>initial_exam</quote> (Initial Exam Date), <quote>birthdate</quote>, <quote>gender</quote>, <quote>primary_language</quote>, <quote>second_language</quote>, <quote>marital_status</quote>, <quote>education</quote>, <quote>handedness</quote>, and <quote>race</quote>. The user should select the checkboxes next to those fields so that they will appear in the output for every matching record in the query</para></listitem>
+    <listitem id="SortBy"><para>The <emphasis>Sort by</emphasis> option under the section <emphasis>Output Data Items</emphasis> allows the user to sort the order of returned entries from the query in the output. There are three levels of precedence, where the levels correspond to the the drop down menus from left to right. Each drop down menu allows the user to choose any field from the table to use. If the <quote>Descending</quote> checkbox is selected next to a field the field will be outputted in descending order, instead of the usual ascending order.</para>
+    <para>Suppose the user wishes to categorize his output data as: race, gender, and birthdate in their respective order. The user would specify these values resulting in figure 3.6.</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/SortBy.jpg" format="JPG"/>
+    </figure></listitem></orderedlist>
+    <section id="UseStep3-1"><title>Normal Filters</title>
+    <orderedlist>
+    <listitem><para>Under the next section in the form, <quote>Filter Selections</quote>, the user may search for <link linkend = "glossaryRecord">records</link> that must match specific criteria. For now, ignore the section entitled <quote>Other Filters</quote> and look to where the user is specified for a <quote>Field</quote>, <quote>Operator</quote>, and a <quote>Value</quote> to create a Normal Filter. In figure 3.7, the section is boxed in red. Normal Filters are for general use in filtering data for the user. The user specifies which operators will be applied to which fields to create an appropriate filter for the user's query. The operators are applied to the field and the result is compared to the input specified by the user in the <quote>Value</quote> box. If the result from the operation matches the input in <quote>Value</quote> then the record has passed through the filter and that field will be returned. If there are multiple filters then each record must pass through all filters (In effect a boolean <quote>AND</quote> is placed between filter clauses in the query).
+    The operators are:
+    <simplelist columns="1">
+    <member><emphasis role="bold"> = </emphasis> <phrase>: Standard boolean <emphasis role = "bold">equals</emphasis>, i.e. tests if the current record's field  <quote>equals</quote> the input in <emphasis>Value</emphasis> - if so then the current record will pass the filter..</phrase></member>
+    <member><emphasis role="bold"> != </emphasis>  <phrase>: Standard boolean <emphasis role = "bold">not equals</emphasis>, i.e. tests if the current record's field is <quote>not equal</quote> to the input in <emphasis>Value</emphasis> then the current record will pass the filter..</phrase></member>
+    <member><emphasis role="bold"> &lt; </emphasis>  <phrase>: Standard boolean <emphasis role = "bold">less than</emphasis>, i.e. if the current record's field is <quote>less than</quote> the input in <emphasis> Value</emphasis> then the current record will pass the filter.</phrase></member>
+    <member><emphasis role="bold"> &gt; </emphasis>  <phrase>: Standard boolean <emphasis role = "bold">greater than</emphasis>, i.e. if the current record's field is <quote>greater than</quote> the input in <emphasis>Value</emphasis> then the current record will pass the filter. </phrase></member>
+    <member><emphasis role="bold"> &lt;= </emphasis>  <phrase>: Standard boolean <emphasis role = "bold"> less than or equals to</emphasis>, i.e. if the current record's field is <quote>less than or equal to</quote> the input in <emphasis>Value</emphasis> then the current record will pass the filter </phrase></member>
+    <member><emphasis role="bold"> &gt;= </emphasis>  <phrase>: Standard boolean <emphasis role = "bold"> greater than or equals to</emphasis>, i.e. if the current record's field is <quote>greater than or equal to</quote> the input in <emphasis>Value</emphasis> then the current record will pass the filter  </phrase></member>
+    <member><emphasis role="bold"> Contains </emphasis>  <phrase> : Tests if the current record's field <quote>contains</quote> the substring dictated by the input in <emphasis>Value</emphasis>. The user should note the filter is case sensitive. </phrase> </member>
+    <member><emphasis role="bold"> Starts With </emphasis>  <phrase>: Tests if the current record's field <quote>starts with</quote> the substring dictated by the input in <emphasis> Value </emphasis>. The user should note the filter is case sensitive. </phrase> </member>
+    <member><emphasis role="bold"> IS NULL </emphasis>  <phrase>:  Tests if the current record's field exists.</phrase> </member>
+    <member><emphasis role="bold"> IS NOT NULL </emphasis>  <phrase>: Tests if the current record's field does not exist. </phrase> </member>
+    </simplelist></para>
+    <para>Let the user choose to find medical patients that are caucasion and female (note caucasion is encoded as a <quote>1</quote>). The result is shown in figure 3.7</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/FilterBy.jpg" format="JPG"/>
+    </figure></listitem></orderedlist>
+    <note><para>In some cases the user may see a pre-built Normal Filter created when the form was orignally built. In a pre-built Normal Filter the <quote>Field</quote> input has already been chosen as well as the <quote>Operator</quote> input. The user is given default options for the <quote>Value</quote> input (where these default options were chosen by the form builder); however, the user may enter his own choices for the <quote>Value</quote> input. It is the form builder's job to clearly label the relevant <quote>Field</quote> and <quote>Operator</quote> above the filter. Shown below is a pre-built filter for the <emphasis>race</emphasis> <quote>Field</quote>. Note the user may choose any number of <emphasis>race</emphasis> options to pass through the filter via checkboxes. In addition, the user may use the textboxes on the far right to enter his own choices for the <quote>Value</quote> input.</para></note>
+    <graphic fileref="images/GeneralForms/PreBuiltFilter.jpg" format="JPG"/>
+    </section>
+    <section id="UseStep3-2"><title>OR Filters</title>
+    <para>At the top of the section entitled <quote>Filter Selections</quote>, <emphasis>OR Filters</emphasis> may be available to the user. An <emphasis>OR Filter</emphasis> uses radio buttons to let the user choose a <emphasis>Value</emphasis>.</para>
+    <para>It is very similiar to a Normal Filter. The difference is that an <emphasis>OR Filter</emphasis> allows for the comparison of two fields simultaneously. If one field or both fields match the comparison by their specified operators to a specified value then the record will pass. Thus an OR Filter is like applying a standard boolean OR operator to two <emphasis>Normal Filters</emphasis>, only one value will be tested for both fields. The relevant fields to the <emphasis>OR Filter</emphasis> should be clearly labeled above the available values. It is the form builder's duty to ensure that future users will be able to ascern which fields are being used.</para>
+    <para>In addition to letting the user choose a default value specified when the form was built, an <emphasis>OR Filter</emphasis> allows the user to choose the value <quote>none</quote> (on the far left) or a custom value that must be entered into the provided text box(on the far right).</para>
+    <para>For this example, the user can see an <emphasis>OR Filter</emphasis> has been built to let the user choose a value for <emphasis role="bold">primary_language OR second_language</emphasis> (boxed in red) in figure 3.8. Let the user choose <emphasis role="bold">english</emphasis> (let it be encoded as the value <emphasis>3</emphasis>). Since 3 is not available, the user must enter a custom input by selecting the rightmost radio button and entering the value. Thus, if English is the patient's Primary Language or if it's the patient's Secondary Language, the patient will pass through the filter. See figure 3.8</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/ORFilter.jpg" format="JPG"/>
+    </figure>
+    </section>
+    <section id="UseStep3-3"><title>Range Filters</title>
+    <para><note><para>Range Filters must be built using the form builder and will not appear on a form by default. If they are built, they will appear at the top of the section entitled <quote>Filter Selections</quote>. See <link linkend="FormBuilder">Chapter 4</link> on Form Building for information on building a Range Filter.</para></note> In figure 3.9, the range filter is boxed in red. Range filters allow the user to filter records based on a maximum and minumum allowable value for a field. If the field's value for a particuliar record fall between the maximum and minimum values, then the record will pass through the filter, else it will not pass. If only a minimum value is entered, the range filter effectively becomes a normal filter that applies the <emphasis><![CDATA[Greater than or Equal to (>=)]]></emphasis> operator to the field. If only a maximum value is entered, the range filter effectively becomes a normal filter that applies the <emphasis><![CDATA[Less than  or Equal to (<=)]]></emphasis> operator to the field. Range filters will operate on text and numeric field according to the rules of the underlying database. The field will be predetermined for each filter when the form is built. The field should be specified in the label next to the text box.</para>
+    <para>Here the user can see that a Range Filter has been built for the birthdate field. Suppose the user wishes to select patients who were born after January 1, 1975 and before January 1, 1985. The user would enter these respective dates as the minimum and maximum so that any dates in between would be filtered through (see fig. 3.9).<note><para>Date format is database dependent for Range Filters. Formats should be specified clearly by a label when the form is built.</para></note>
+    Notice that using a range on a field stored as a <emphasis>date</emphasis> is exactly the same as using the <link linkend="UseStep2">Time Selection</link> feature on the same field. Range filters, however, are more versatile as they can operate on numeric and text fields as well as date fields. The restriction to Range Filters is the field must be determined at the time the form is built.</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/RangeFilter.jpg" format="JPG"/>
+    </figure>
+    </section></section>
+    <section id="UseStep4"><title>Step 4: Apply Statistical Functions</title>
+    <orderedlist>
+    <listitem><para>In addition to filtering, MRALD gives the user the power of applying statistical functions to numeric fields in the data. <note><para> Statistical functions are to be used seperately from a query. Instead of returning matching records to criterion specified by the user, MRALD will perform statistics on specified fields and return the results. If the user wishes to use statistical functions, no <emphasis>Output Data Items</emphasis> should be selected. Note that if the <link linkend="UseStep2">Time Selection</link> section exists at the beginning of the form it must be completed. Filters may be used in conjuction with statistics so the stats are only performed on certain records. The output from using MRALD's statistical function will return statistics for user defined groups only (more on <quote>Group By</quote> feature below). </para></note> </para>
+    <para>If the user wishes to use statistical functions, in the <quote>Function</quote> drop down menu under the section entitled <quote>Statistical Functions</quote> the user will find nine functions available for use. They are:</para>
+    <simplelist columns="1">
+    <member><emphasis role="bold">Count(*)</emphasis> <phrase>: Returns the total number of records for all tables in the database. <emphasis>Null</emphasis> records are included.</phrase></member>
+    <member><emphasis role="bold">Count</emphasis> <phrase>: Returns the total number of records that have a Non-<emphasis>Null</emphasis> value for the chosen field. Repeated records are counted twice.</phrase></member>
+    <member><emphasis role="bold">Count Distinct</emphasis> <phrase>: Returns the total number of distinct records that have a Non-<emphasis>NULL</emphasis> value for the chosen field.</phrase> </member>
+    <member><emphasis role="bold">Max</emphasis> <phrase>: Returns the maximum field value for all the matching records in the data set (only valid on numeric fields).</phrase></member>
+    <member><emphasis role="bold">Average</emphasis> <phrase>: Returns the average field value for all the matching records in the data set (only valid on numeric fields). </phrase></member>
+    <member><emphasis role="bold">Standard Deviation</emphasis> <phrase>: Returns the standard deviation for all the matching records in the data set (only valid on numeric fields). </phrase></member>
+    <member><emphasis role="bold">Sum</emphasis> <phrase>: Returns the sum for all matching records in the data set (only valid on numeric fields).</phrase></member>
+    <member><emphasis role="bold">Variance</emphasis> <phrase>: Returns the variance for all the matching records in the data set (only valid on numeric fields). </phrase></member>
+    </simplelist></listitem>
+    <listitem><para>After selecting the proper <emphasis>Function</emphasis>, the user must specify which field to apply the function to in the box labeled <quote>Field</quote>. Numeric fields will appear by default, however  non-numeric fields may appear as well depending upon how the form was built (see <link linkend="FormBuilder">Form Building</link> for more information).</para></listitem>
+    <listitem><para>The <quote>Group By</quote> feature under the <quote>Statistical Functions</quote> section lets the user compute statistics on particuliar groups within the set of all records. The user may group the data in up to three levels. Each level further subdivides the grouping to narrow in on more specific groups. For instance, grouping <emphasis>people</emphasis> based on <emphasis>race</emphasis> would provide statistics on each <emphasis>race</emphasis>. Grouping <emphasis>people</emphasis> based on <emphasis>race</emphasis> and then based on <emphasis>gender</emphasis> (2 levels) will provide statistics on each <emphasis>race</emphasis> for each <emphasis>gender</emphasis>. </para></listitem>
+    <listitem><para>To wrap up <emphasis>Statistical Functions</emphasis>, let the user find the <emphasis>Average</emphasis> educational level for caucasion females, <emphasis>Grouped By</emphasis> gender and then by handedness. Figure 3.10 shows the complete form for use of Statistics. Figure 3.11 shows the results.</para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/StatsForm1.jpg" format="JPG"/>
+    <graphic fileref="images/GeneralForms/StatsForm2.jpg" format="JPG"/>
+    </figure>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/ResultOfStats.jpg" format="JPG"/>
+    </figure></listitem>
+    </orderedlist></section>
+    <section id="UseStep5"><title>Step 5: Select Output Size, Format Selections, and View Results</title>
+    <orderedlist>
+    <listitem id="OutputSizeAndFormat"><para>Under the section entitled <quote>Output Size and Format Selections</quote> the user may or may not limit his or her output size by selecting one of three radio buttons under <quote>Output size limit</quote>. If no limit is necessary, select <quote>None</quote>, if the limit is to be defined by the number of matching records, select <quote>Lines</quote> and enter the maximum number of matching records (note the default is 500). Finally, if the limit is to be defined by the output file size, select the rightmost option and specify the limit in Megabytes (floats are allowed e.g. 0.01 gives roughly 10 Kilobytes worth of data).</para></listitem>
+    <listitem><para>The user may see redundant matches to his or her query by selecting <quote>Include duplicate rows in returned data</quote>. </para></listitem>
+    <listitem><para>MRALD allows three options for the destination of the query.  They are:</para>
+    <simplelist columns="1">
+    <member><emphasis role="bold">Browser: </emphasis><phrase> The results of the query will be displayed in the user's browser window.</phrase></member>
+    <member><emphasis role="bold">File: </emphasis><phrase> The results of the query will be printed to a text file. The file may be saved on the user's local disk or directly opened.</phrase></member>
+    <member><emphasis role="bold">Excel: </emphasis><phrase> The results of the query will be opened by Microsoft Excel. If the user does not have Microsoft Excel installed on their local machine or their file associations are not set up properly, the output will be downloaded as an html table.</phrase></member>
+    </simplelist>
+    <para>The three destination options are labeled as columns under the section entitled <emphasis>Output Size and Format Selections</emphasis>. Once the user has decided which destination to use, the user must decide in what format the output will be displayed. Formats are chosen by selecting the proper radio button under whichever destination has been chosen. Possible formats are:</para>
+    <simplelist columns="1">
+    <member><emphasis role="bold">CSV: </emphasis> <phrase>Comma Seperated Values i.e. the output will be printed out to either a browser or a file, with each successive matching record seperated by a line and each field for that record comma delimited (by default, a comma is used). If the user wishes to use an alternate character delimiter, the user may enter it into the provided text box. </phrase></member>
+    <member><emphasis role="bold">Text: </emphasis><phrase> The output will be opened in a browser  or downloaded into a file, with each successive matching record seperated by a line and each field for that record tab delimited. The result will read like a table without borders.</phrase></member>
+    <member><emphasis role="bold">Table: </emphasis><phrase>Output will be printed to an HTML table in the browser window with each successive matching record seperated by a line and each field represented by a column.  </phrase></member>
+    <member><emphasis role="bold">XML: </emphasis><phrase>Output will be printed in XML in the browser window.</phrase></member>
+    </simplelist></listitem>
+    <listitem><para>To finish the example query into the database of medical patients, let the user choose the browser window as the <emphasis>Destination</emphasis> and an HTML table as the <emphasis>Format</emphasis>. Also, let the user restrict his query to only 10 matching records. The user should then click <quote>Retrieve Data</quote> at the bottom of the form and will see the final result in the user's browser window. Figure 3.12 shows the matching records from the query. </para>
+    <figure><title></title>
+    <graphic fileref="images/GeneralForms/ResultOfQuery.jpg" format="JPG"/>
+    </figure></listitem>
+    </orderedlist></section>
+  </chapter>
+  <chapter id="FormBuilder">
+    <title id="FormBuilder.title">Create Your Own Form</title>
+    <para>In order for the user to create their own form, the user must be familiar with using forms. More information about using prebuilt forms can be found in <link linkend="Chapter3">Chapter 3</link>. First, click <quote>Build a new form</quote> under <quote>personal forms</quote> on the MRALD homepage (fig. 4.1). The user will then see a screen resembling figure 4.2.</para>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/SelectBuildForm.jpg" format="JPG"/>
+    </figure>
+    <section id="BuildStep1"><title>Step 1: Select Tables to Use</title>
+    <figure><title>Step 1 Interface</title>
+    <graphic fileref="images/FormBuild/FormBuildSelectTable.jpg" format="JPG"/>
+    </figure>
+    <para><emphasis role="bold">Select A Page Title: </emphasis>
+    The page title is the phrase that will appear in multiple places in the MRALD system after the form has been created.
+    Although it is only a line in the xml file, the page title will appear both as the title and header of the created form as well
+    as the text for the link to the form from the main page. In addition, if you desire to <quote>bookmark</quote> or add the page to your
+    <quote>favorites</quote>, the page title will also appear as the name of the bookmark. For this example, let the user name the form <quote>NewForm</quote> (fig. 4.2).</para>
+    <para><emphasis role="bold">Select Related Table Search Depth: </emphasis>
+    The <link linkend="glossaryJoin">joins</link> that MRALD will
+    follow to determine the set to use for the new form. If the structure of the table relationship is such that a shallow depth produces a relatively large number of tables, the succeeding step in the form builder may take longer than expected. For this example, let the user concern his query with only the selected tables, so the table search depth will be 0 (fig. 4.2).</para>
+    <para><emphasis role="bold">Select Tables To Be Used: </emphasis>
+    Each row of this table represents a specific <link linkend="glossaryTable">table </link>, or <link linkend="glossaryView"> view</link>, in the database. The checked tables are the set the new form will be built from. For this example, let the user choose to search the tables <quote>people</quote> and <quote>images</quote> (fig. 4.2). The center column is the system name for the table and the
+    far right column represents the system comments for the table. These comments are filled in by the database administrator when
+    the table are created. No comments will be displayed as <quote>Null</quote>. For Oracle databases, these comments are not shown by default. See the Deployer's Guide for guidance.</para>
+    <note><para>All example data has been fabricated. Any similarity, likeness, or implication drawn from the content or data is completely unintentional. Any questions, comments, or concerns, please email us at <email>mrald-dev-list@mitre.org</email>.</para></note>
+    <para>Once appropriate tables have been selected, click <quote>Proceed</quote> to continue. If the user wishes to clear all
+    selected tables, click <quote>Reset Form</quote> to do so (see fig. 4.3)</para>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/FormBuildSelectTableProceed.jpg" format="JPG"/>
+    </figure>
+    </section>
+    <section id="BuildStep2"><title>Step 2: Select Links, Columns, and Filters to Use</title>
+    <section id="Links"><title>Links</title>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/FormBuildLinks.jpg" format="JPG"/>
+    </figure>
+    <para><emphasis role="bold">Configure Links: </emphasis>
+    If only one table was selected in Step 1 then skip the section entitled <emphasis>Link Configuration</emphasis>. Otherwise, the links that appear in the rows of the table are the links that currently exist in the data model (fig. 4.4). The <quote>Primary</quote> and <quote>Foreign</quote> columns are the <link linkend="glossaryPrimaryKey">primary keys</link> and <link linkend="glossaryForeignKey">foreign keys</link> between the tables. For this example, the primary key is <quote>peopleid</quote> and is uniquely defined in the table for <emphasis>people</emphasis>. In the <emphasis>image</emphasis> table, each image uses a <quote>peopleid</quote> as a foreign key to map the image to a person.</para>
+    <para>In some cases, the user may choose to ignore certain links because of the irrelevance to the desired results. By choosing
+    <quote>Ignore</quote> as opposed to <quote>Full</quote>, the link will not be considered and the form and resulting queries will disregard the
+    relationship. In addition, the form provides drop-down menus for artificially creating links in the customized form. This
+    allows the user to add a relationship constraint that may not be include in the data model. For more information about form structure, see the glossary term <link linkend="glossaryForm">form</link>.</para>
+    <note><para>This only affects the created form. It does not change of the data model or any other forms created on these tables.
+    </para></note></section>
+    <section id="Columns"><title>Columns</title>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/FormBuildColumns.jpg" format="JPG"/>
+    </figure>
+    <para><emphasis role="bold">Choose General Options: </emphasis>
+    Each row pertains to a specific field in a given table (fig. 4.5). The checkboxes underneath the column titles act as a
+    "Select/Deselect All" function, which means that all the columns will be toggle to the value of the top checkbox. Each of the
+    column titles mean the following:</para>
+    <simplelist columns="1">
+    <member><emphasis role="bold">Ignore: </emphasis>
+    <phrase>If the user has no need at all for the current <link linkend="glossaryField">field</link>, he can choose to ignore it and the rest of the values or fields you set for this field will be ignored. This provides the user a quick way to disregard a field without having to check or uncheck every single box. Note that ignored fields will not be present in the resulting file, so further editing will not e possible. If the user unchecks every box, there is the possibility of using the editor to put the field back on the form. Let the user ignore the <quote>latticgroupid</quote> in the people table (see fig. 4.5).</phrase></member>
+    <member><emphasis role="bold">Table</emphasis>
+    <phrase>This is simply the table in which the current field exists. In this example there are two tables, <emphasis>images</emphasis> and <emphasis>people</emphasis>. </phrase></member>
+    <member><emphasis role = "bold">Column Name</emphasis>
+    <phrase>This is the system name for the current <link linkend="glossaryField">field</link>.</phrase></member>
+    <member><emphasis role = "bold">Column Label</emphasis>
+    <phrase>This is an available label for the current field as it will appear on the created form. This can be used to translate
+    a cryptic system name into something all users can understand. It will not effect the query or results, only the way the name
+    is displayed on the form. In addition, the label will also appear as the column header on the returned results. By default, the column label will simply be the system name. </phrase></member>
+    <member><emphasis role = "bold">Output</emphasis>
+    <phrase>If you will ever have need for the values of this field, leave this column checked. This column controls whether or
+    not the field appears in the available output selection on the created form. If this column is not checked, there will be no way to select the field as output. For this example, output all fields except for <quote>latticegroupid</quote>, because it has been <emphasis>Ignored</emphasis>.</phrase></member>
+    <member><emphasis role = "bold">Default Selection</emphasis>
+    <phrase>In order to assist some of our users as a speed up the time from start to finish, MRALD provides the ability to define
+    the pre-selected output fields. This means that whenever the created form is viewed or visited, this collection of fields will
+    already be included in the output. It's useful if the user wants to build a form that retrieves the same set of data each
+    time (Of course, this is as customizable as the rest of the form. These fields can also be unchecked if not desired). For this example, let all fields have a <emphasis>Default Selection</emphasis>. </phrase></member>
+    <member><emphasis role = "bold">Filter</emphasis>
+    <phrase>In order to reduce the clutter and confusion, MRALD gives the user an opportunity to select the fields that will show
+    up in the available filter fields. With some forms, the field list can be quite large. This column allows the user to set which
+    fields will appear under the filter drop-down menu. For this example, let all fields be available to filter operations. </phrase></member>
+    <member><emphasis role = "bold">Stats</emphasis>
+    <phrase>This column allows the user to choose which fields will be include in the created form's statistical filter.
+    Again, the user has the ability to choose which fields will appear in the drop-down menu. A standard set of statistical functions is provided. This list can be modified by contacting the system administrator for the user's deployment. By default, only numeric fields are included, however the user may want to include an field he feels a statistical function such as <emphasis>Count</emphasis> (which counts the number of matching records) which may be relevant. For this example, let all fields be available to statistical operations, as long as the field makes sense in a statistical operation. Fields such as <quote>filename</quote>, <quote>email</quote>, and <quote>password</quote> are not applicable, so they are not checked.</phrase></member>
+    <member><emphasis role = "bold">Group By</emphasis>
+    <phrase>This column allows the user to choose which fields will be included in the created form's <quote>Group By</quote> section, which allows for
+    grouping the returned results. This is usually used in conjunction with statistics, so that statistics may be performed on certain groups in the data. For normal output, using the <link linkend="SortBy">Sort</link> option
+    under the section entitled <emphasis>Output Data Items</emphasis> is faster. Again, the user has the ability to choose which fields will appear in the drop-down menu. For this example, every field is checked, and will be accessible to grouping in the form. </phrase></member>
+    <member><emphasis role = "bold">Order</emphasis>
+    <phrase>This column determines the order of the fields that will appear available in the output from left to right. This column also allows for decimal numbers, i.e. 1.02 is after 1 but before 2. If a field is ignored or not included in the output, the associated order number will be ignored, so there is no need to make the numbers continuous. The list will be sorted from smallest to largest so missing numbers will not affect the performance or results. For this example, the order will stand as is. </phrase></member>
+    <member><emphasis role = "bold">Sort</emphasis>
+    <phrase>This column allows the user to choose which fields will be included in the created form's sorting feature. This feature
+    allows the user to sort the results of the query by a desired field. Again, the user has the ability to choose which fields will appear in the drop-down menu. For more information about sorting, see <link linkend="SortBy">Sort By</link> in Chapter 3. For this example, every field is checked, and will be available to sorting in the form</phrase></member>
+    <member><emphasis role = "bold">Format</emphasis>
+    <phrase>For numbers and dates, this column allows the user to specify how they would like the format. This will only affect the
+    output of the number, not how it is stored in the system or how it is filtered or sorted in the query. It is especially useful for outputting dates. For this example, let the format be by default.</phrase></member>
+    <member><emphasis role = "bold">Comments</emphasis>
+    <phrase>These are the comments entered for the field when the data model was entered into the system. Contact the sysadmin for
+    your system if you need to add or change the comments. Any fields will no commments will appear as null. For this example, there are no comments for any of the fields.</phrase></member>
+    </simplelist>
+    <para>For this example, see figure 4.5 for the final result.</para>
+    </section>
+    <section id="Filters"><title>Filters</title>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/Filters/FormBuildFilters.jpg" format="JPG"/>
+    </figure>
+    <para>A filter (fig. 4.6) allows the user to make an easy adjustment to the query that will respond with specific information. By creating a filter with the form builder, when the form is built the filter will always be displayed by default without the user having to create his own every time. Suppose the user wishes to create a filter for airport data, filtering only certain airports through. Entering the title as 'Departure Airports' and using the corresponding field, the <quote>=</quote> operator, and the values, <quote>LAX</quote>, <quote>JFK</quote>, <quote>IAD</quote> (different airports), yields the following output on the created form:</para>
+    <note><para>Include a DESCRIPTIVE title, since the field will not be displayed</para></note>
+    <graphic fileref="images/FormBuild/Filters/FormBuildFiltersExample.jpg" format="JPG"></graphic>
+    <para>Consider entries for each of the fields you feel your users will want to do frequent filtering on.  This type of filter makes the form <emphasis>much</emphasis> easier to use, as it provides a convenient way for the users to filter their data, and gives examples of the type of data stored.  The result of this type of filter is a query clause like <programlisting format="linespecific" lang="SQL">AND (dep_airport='LAX' or dep_airport='DFW' or dep_airport='IAD' or ...)</programlisting>  In other words, one field can have any one of many values.</para>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/Filters/FormBuildORFilters.jpg" format="JPG"/>
+    </figure>
+    <para>An <quote>OR</quote> filter (fig. 4.7) allows the user to make an easy adjustment to the query that will respond with specific information.
+    This option allows the user to specify that two fields are equal to (or other operator relationship to ) a single value. The
+    principle difference between this filter and the standard Filter is the standard filter allows for a single field to equal two
+    or more values whereas the <quote>OR</quote> filter allows two fields to equal one value. For example, entering the title as <quote>Departure and
+    Arrival Airports</quote> and using the corresponding fields, the '=' operators, and the values, <quote>LAX, JFK, IAD</quote>, yields the following output on the created form, which allows the form user to restrict the query results to those records where the arrival or
+    departure airport is one of the values listed, or as entered into the text input box. An example:</para>
+    <note><para>Include a DESCRIPTIVE title, since the field will not be displayed</para></note>
+    <para>The result of this type of filter is a query clause like <programlisting format="linespecific" lang="SQL">AND (dep_airport='LAX' or arr_airport='LAX')</programlisting></para>
+    <graphic fileref="images/FormBuild/Filters/FormBuildORFiltersExample.jpg" format="JPG"/>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/Filters/RangeFilters.jpg" format="JPG"/>
+    </figure>
+    <para>A Range Filter (fig. 4.8) allows the user to designate a source field by which a range can be used. This feature can be used on
+    anything from longitude and latitude degrees to counts or number fields. The chosen field will be used but the desired field
+    label will be displayed on the created form with the words <quote>Range of</quote> preceding whatever the user chose as text for the label. <note><para>If the user selects a field that can have multiple formats (such as a date), it is imperative that the user specifies the format clearly in the label</para></note>
+    An example:</para>
+    <graphic fileref="images/FormBuild/Filters/RangeFiltersExample.jpg" format="JPG"/>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/Filters/TimeFilters.jpg" format="JPG"/>
+    </figure>
+    <para>A Time Filter (fig. 4.9) allows the user to add the availability of a time constraint on a date and time field. A Time Filter will appear under the section <quote>Time Selection</quote> in the built form.
+    All aspects of the Time Filter will be configurable, including the enter Start and End Date. The "Time Based on Event" field will be populated
+    by all the Time/Date fields not ignored when created the form. MRALD will find all date based fields and provide them in the drop down box. Leaving these text boxes blank will prevent a date filter from appearing on the resulting form, even if date-based fields are available. As an example: </para>
+    <graphic fileref="images/FormBuild/Filters/TimeFiltersExample.jpg" format="JPG"/>
+    <para>Once all filters have been set, click <quote>Build Form</quote> to create your permanent form for use. The form will appear at the user's MRALD homepage under the section entitled <quote>personal forms</quote> (see fig. 4.10)</para>
+    <figure><title></title>
+    <graphic fileref="images/FormBuild/Filters/SelectPersonalForm.jpg" format="JPG"/>
+    </figure>
+    </section>
+    </section>
+    <section id="BuildStep3">
+      <title>Step 3: Use, Edit, Delete, Upload, Download, or Share Your New Form</title>
+      <figure><title></title>
+      <graphic fileref="images/PersonalForms/PersonalForm.jpg" format="JPG"/>
+      </figure>
+      <section id="UseForm"><title>Use Form</title>
+      <para>From the main menu, your form will appear under <quote>personal forms</quote>. Click on the link to use it (fig. 4.11).</para>
+      </section>
+      <section id="DownloadForm"><title>Download Form</title><graphic fileref="images/PersonalForms/IconDownloadForm.jpg" format="JPG"/><para><emphasis role="bold">Download Form:</emphasis> If the user chooses to download his or her form to a directory, click on the icon and the user will be prompted to specify a directory for the file transfer</para></section>
+      <section id="EditForm"><title>Edit Form</title>
+      <graphic fileref="images/PersonalForms/IconEditForm.jpg" format="JPG"/>
+      <para><emphasis role="bold">Edit Form:</emphasis> The user may edit his or her form by repeating <link linkend="BuildStep2">Step 2</link> with the previous entries still existent.</para>
+      <para><note><para>Fields that were previously marked as <emphasis>Ignore</emphasis>, when the form was last built, will not be available.</para></note></para>
+      </section>
+      <section id="ShareForm"><title>Share Form</title>
+      <graphic fileref="images/PersonalForms/IconShareForm.jpg" format="JPG"/>
+      <para><emphasis role="bold">Share Form:</emphasis> The user may share his or her form with other users connected to the current computer</para>
+      <graphic fileref="images/PersonalForms/ShareFormPrompt.jpg" format="JPG"/>
+      <para>Specify the appropriate users you wish to share the form with</para>
+      </section>
+      <section id="UploadForm"><title>Upload Form</title>
+      <graphic fileref="images/PersonalForms/IconUploadForm.jpg" format="JPG"/>
+      <para><emphasis role="bold">Upload Form:</emphasis> The user may upload his or her form to the MITRE server.</para>
+      <graphic fileref="images/PersonalForms/UploadFormPrompt.jpg" format="JPG"/>
+      <para>Specify the appropriate form to upload to the server.
+      <note><para>The uploaded form must be either an html or xml file, properly formatted</para></note></para>
+      </section>
+    </section>
+  </chapter>
+  <chapter id = "DirectQuery">
+  <title>Write an <link linkend="glossarySQL">SQL</link> Query</title>
+    <para>The Direct Query feature of MRALD is for users who are knowledgeable about the underlying data model, such as the deployers or the system administrators, and are fluent in SQL.</para>
+    <section id="BrowserDirectQuery"><title>Use the Browser for a Single Query</title>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/SelectBrowserDirectQuery.jpg" format="JPG"/>
+    </figure>
+    <para>From the main menu, choose <quote>Direct Query</quote> under <quote>special forms</quote> and Click <quote>Go</quote>.
+    (fig. 5.1).</para>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/DirectQueryText.jpg" format="JPG"/>
+    </figure>
+    <orderedlist>
+    <listitem><para>Enter an SQL Query in the text box labeled <quote>Query Text</quote> (fig. 5.2).</para></listitem>
+    <listitem>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/DirectQueryFormat.jpg" format="JPG"/>
+    </figure>
+    <para>Select Output Size and Format Selections (fig. 5.3)</para>
+    <para>See <link linkend="OutputSizeAndFormat">Chapter 3 - Select Output Size and Format</link>. </para></listitem>
+    <listitem><para>Finally, click <quote>Retrieve Data</quote> (fig. 5.4) and the output will be printed to the destination in the specified format. </para></listitem></orderedlist></section>
+    <section id="FileDirectQuery"><title>Upload a File with Multiple Queries</title>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/SelectFileDirectQuery.jpg" format="JPG"/>
+    </figure>
+    <para>From the main menu, choose <quote>Direct Query File Upload</quote> under the section entitled <quote>special forms</quote> and Click <quote>Go</quote> (fig. 5.4).</para>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/DirectQueryFilePrompt.jpg" format="JPG"/>
+    </figure>
+    <orderedlist>
+    <listitem><para>In the textbox labeled <quote>Query File</quote> browse the local disk to find the classpath for the file containing the query (see fig. 5.5). Click <quote>Retrieve Data</quote> to start the query.<note><para>Format is to be one query per line, with the ending semicolon optional.</para></note></para></listitem>
+    <listitem><para>Each query will appear next to a checkbox, select those queries which should be executed and Click <quote>Retrieve Data</quote> to return the results as desired. Again the user may choose the Output Size and Format Selections (see fig. 5.6).</para>
+    <figure><title></title>
+    <graphic fileref="images/DirectQuery/MultipleQueryCheck.jpg" format="JPG"/>
+    </figure>
+    </listitem></orderedlist>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Trouble Shooting and FAQs</title>
+    <para><emphasis role="bold">Q: How can I contact the deployer?</emphasis>
+    A: The deployer may be contacted by email at <email> mrald-dev-list@listsrv.mitre.org</email>.</para>
+    <para><emphasis role="bold">Common Error List</emphasis></para>
+    <para>
+    <emphasis role="bold">ERROR: Attribute <emphasis>table.attribute</emphasis> must be GROUPed or used in an aggregate function </emphasis>: An individual field cannot be included in the output unless it is used in the <quote>Group By</quote> clause during statistical operations. In other words, no <quote>Output Data Items</quote> should be checked unless they are used in the <quote>Group By</quote> section under <emphasis>Statistics</emphasis>. If this did not help you or did not cause this errorname or you have any questions please contact us using the link below.</para>
+    <para>
+    <emphasis role="bold">ERROR: pg_atoi: error in <quote><emphasis>Value</emphasis></quote>: can't parse <quote><emphasis>Value</emphasis></quote>.</emphasis>: The <emphasis>Value</emphasis> input under <emphasis>Filter Selections</emphasis> has been given an invalid value. MRALD cannot parse the value because it does not match valid entries for the specified field.</para>
+    <para>
+    <emphasis role="bold">ERROR: Function <emphasis>function</emphasis>(character) does not exist Unable to identify a function that satisfies the given argument types You may need to add explicit typecasts </emphasis>: The attempted conversion of a character string to a number failed during statistical operations because the character string was not a valid numeric literal. Only numeric fields or character fields containing numeric data may be used in statistical functions such as <emphasis>Average</emphasis>, <emphasis>Standard Deviation</emphasis>, <emphasis>Sum</emphasis>, and <emphasis>Variance</emphasis> requiring arithmetic operations. Note only numeric fields may be added to or subtracted from dates.  If this did not help you or did not cause this errorname or you have any questions please contact us using the link below.</para>
+    <para>
+    <emphasis role="bold">ERROR: For SELECT DISTINCT, ORDER BY expressions must appear in target list </emphasis>: This error name occurs when a query is built that sorts on a field that is not selected for output and filtered as <quote>Distinct</quote>. In order to retrieve your data, use your browser's back button and either make sure you have selected for output all the fields you are sorting on, or check the box in the output selections that reads <quote>Include duplicate rows in returned data</quote>. Note this will cause you to get duplicate data if you have mulitple, identical rows.  If this did not cause this errorname or you have any questions please contact us using the link below.</para>
+    <para>
+    <emphasis role="bold">ERROR: Invalid date format: <emphasis>Entered Date</emphasis>. Please reenter date. The expected formats are month/day/year. If you entered a time, the format should be either hour:minute, or hour:minute:second.</emphasis>: This error name occurs when the user has entered an invalid date under the <emphasis>Time Selection</emphasis> section. In order to retrieve the data, the user should use the browser's back button and reenter the date in the specified format.</para>
+    <para>
+    <emphasis role="bold">ERROR: Bad date external representation '<emphasis>Entered Date</emphasis>'</emphasis>: This error name occurs when the user has entered an invalid date in a <emphasis>Range Filter</emphasis>. In order to retrive the data, the user must use the browser's back button and reenter the date in the appropriate format (which should be specified in the filter label).</para>
+    <para>
+    <emphasis role="bold">ERROR: Processing of multipart/form-data request failed. Stream ended unexpectedly</emphasis>: This error name occurs when the user has entered an invalid file name in the <emphasis>Direct Query File Upload</emphasis> section of MRALD. The user must ensure that the file name is correct and the file follows the specified format for multiple queries (one query per line, with ending semi-colon optional).</para>
+    <para>
+    <emphasis role="bold">ERROR: You may only perform queries through this form</emphasis>: This error name occurs when the user has entered an invalid SQL query in the <emphasis>Direct Query</emphasis> section of MRALD. In order to retrive the data, the user must use the browser's back button and reenter a valid SQL query.</para>
+  </chapter>
+  <chapter>
+    <title>Contribute to MRALD</title>
+    <para>MRALD has no funding of it's own. It's creation and advancement have been accomplished during the ongoing business of other projects within MITRE. Any new features you might want added will have to be paid for by your project. In addition, if you use MRALD on your project, we'd appreciate a bit of staffing to help with ongoing enhancement, training, documentation,
+    and maintenance. Please contact us at <email>mrald-dev-list@listsrv.mitre.org</email></para>
+  </chapter>
+  <appendix>
+    <title>Data Bases 101</title>
+    <para>This section aims to provide the user with a basic understanding of databases and the framework for MRALD. In other words, what is a database, and how does MRALD search that database?</para>
+    <para>In its most general form, a database is simply a collection of related information stored in a structured format. The same can be said for a <link linkend="glossaryTable">table</link>, however a table is a single store of related information while a database can consist of one or more related tables. A database consisting of multiple related tables
+    is known as a <emphasis>relational database</emphasis>. To make the structure more concrete, consider a table where student records are stored. Each record consists of an individual student's information, such as name, id, and home address. Another table may store information for teachers such as name, class, and students. Finally, a third table could contain records of schools in a region, characterized by faculty, level of education, and mascot. A relational database would relate the three tables, and could answer such questions as <quote>How many students named <emphasis>John</emphasis> have a teacher named <emphasis>Betty</emphasis> and a school mascot of a <emphasis>Zebra</emphasis></quote>. As you can see, a <link linkend="glossaryQuery">query</link> into a
+    database can provide very accurate interpretations of very large chunks of data.</para>
+    <para>A relational database relates seperate tables by using <link linkend="glossaryPrimaryKey">primary</link> and
+    <link linkend="glossaryForeignKey">foreign</link> keys. A primary key is a unique identifier for each record in a table.
+    An example for the table representing student records is the student's id (let's assume it's unique e.g. a Social Security Number). Now we can map a student's id in the student table (using the primary key) to a student's id in the teacher table (the foreign key). Thus we know who each student's teacher is (assume each student has only one teacher). Now we can obtain a teacher's id and use it as a primary key to map to the teacher's id in the school table. Finally we have our answer, the student has been
+    indirectly mapped using primary keys and foreign keys to his or her school mascot (see fig. A.1).</para>
+    <figure><title></title>
+    <graphic fileref="images/DataBaseModel.jpg" format="JPG"/>
+    </figure>
+  </appendix>
+  <glossary><title>Glossary</title>
+  <glossentry id="glossaryDirectQuery"><glossterm>DirectQuery</glossterm>
+  <glossdef>
+  <para>One of three main ways to submit a query into the database. For advanced users with a good understanding of SQL and the underlying data model, a Direct Query will take an SQL statement entered by the user and execute it on the database (see <link linkend="DirectQuery">Chapter 6</link>).</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryDirectQueryUpload"><glossterm>DirectQueryUploadForm</glossterm>
+  <glossdef>
+  <para> Similiar to a <link linkend="glossaryDirectQuery">Direct Query</link> but instead of entering the query in the browser the query is written into a text file stored on the local disk of the user. Multiple simultaneous queries are allowed. Format for the file is one query per line, with ending semicolon optional.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryField"><glossterm>Field</glossterm>
+  <glossdef>
+  <para>A Field is a column of a <link linkend="glossaryTable">table</link>. It is a single unit of data stored as part of a database record. The value describes the data in a particuliar way. As an example, in a table of <emphasis>people</emphasis>, a potential field could be a <emphasis>birthdate</emphasis>. Each entry of the table, which would be a particuliar person, would have a value of this field.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryFilter"><glossterm>Filter</glossterm>
+  <glossdef>
+  <para>A filter restricts the results of a query to a database</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryForeignKey"><glossterm>Foreign Key</glossterm>
+  <glossdef>
+  <para>A foreign key is a <link linkend="glossaryField">field</link> in a relational table that matches the
+  <link linkend="glossaryPrimaryKey">primary key</link> column of another table. It is used to relate the data in a Relational Database Management System.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryForm"><glossterm>Form</glossterm>
+  <glossdef>
+    <para>A form lets the user designate how he or she wishess to search the database. It contains a title, designates
+    the <link linkend="glossaryTable">tables</link>, <link linkend="glossaryJoin">joins</link>, <link linkend="glossaryFilter">
+    filters</link>, and <link linkend="glossaryField">fields</link> to be used in the <link linkend="glossaryQuery">query</link>. An MRALD form represents a set of database tables and a unique way of joining them together to retrieve data around a certain concept. Trying to force a single form to do more than this will cause unpredictable or incorrect results (it is possible to build an MRALD form that will build multiple queries and therefore bypass these issues, however these forms must be hand built).</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryFormBuilder"><glossterm>Form Builder</glossterm>
+  <glossdef>
+  <para>A special min-app that any user can use to build their own forms. These forms will then be saved as personalized forms (see chapter 3). The administrator can take these forms directly and place them in the <emphasis>personal forms</emphasis> section of the MRALD main page for everyone to access if appropriate.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryJDBCDriver"><glossterm>JDBC Driver</glossterm>
+  <glossdef>
+  <para>Java DataBase Connectivity Driver: JDBC is a Java Applicaton Program Interface (API) that enables Java programs to
+  execute SQL statements. This allows Java programs to interact with any SQL-compliant databases. Since nearly all relational
+  database management systems (DBMS's) support SQL, and because Java itself runs on most platforms, JDBC makes it possible to
+  write a single database application that can run on different platforms and interact with different DBMS's.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryJoin"><glossterm>Join</glossterm>
+  <glossdef>
+  <para>Join is used in <link linkend="glossarySQL">SQL</link> to combine the data contained in two relational database tables
+  based upon a common field.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryPrimaryKey"><glossterm>Primary Key</glossterm>
+  <glossdef>
+  <para>The primary key of a relational table uniquely identifies each record in the table. It can be any field of that particular data set that is guaranteed to be unique for every entry in the table. All foreign keys must map
+  to a primary key, but the all primary keys do not necessarily have to map to a foreign key.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryQuery"><glossterm>Query</glossterm>
+  <glossdef>
+  <para>Queries are the primary mechanism for retrieving information from a relational database and consist of a description of the data desired. Many database management system use the Structured Query Language (SQL) standard query format.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryRecord"><glossterm>Record</glossterm>
+  <glossdef>
+  <para>A record is a row in a table. It represents an individual object in that table, and that object holds characteristic fields to describe it. An example is Dr. Jon Smith in a table of doctors.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossarySQL"><glossterm>SQL</glossterm>
+  <glossdef>
+  <para>Structured Query Language - an industry standard language used for manipulation of data in a relational database</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryTable"><glossterm>Table</glossterm>
+  <glossdef>
+  <para>In a relational database, a table is a predefined format of rows and columns to define an entity. The rows in a table
+  represent an individual record while the columns in a table represent all representive fields of the entity to describe a particular record.</para>
+  </glossdef>
+  </glossentry>
+  <glossentry id="glossaryView"><glossterm>View</glossterm>
+  <glossdef>
+  <para>Focusing on a subset of data in a larger database. For instance suppose the database is composed of medical information, a view into the database would be examining a subset, such as biographical information about the patients.</para>
+  </glossdef>
+  </glossentry>
+  </glossary>
+</book>
+

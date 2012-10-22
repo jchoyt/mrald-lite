@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="remote_targets" type="remote_targetsType"/>
+    <xs:complexType name="remote_targetsType">
+        <xs:sequence>
+            <xs:element type="broadcast_targetType" name="broadcast_target" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="broadcast_targetType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="name" use="required"/>
+                <xs:attribute type="xs:string" name="local_datasource" use="required"/>
+                <xs:attribute type="xs:anyURI" name="url" use="required"/>
+                <xs:attribute type="xs:string" name="remote_datasource" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>
+
+<!-- :mode=xml: -->
