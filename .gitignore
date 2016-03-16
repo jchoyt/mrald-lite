@@ -2,6 +2,9 @@
 
 # Package Files #
 mrald.jar
+mrald-util.jar
+graphics-util.jar
+html/release.txt
 #*.jar
 *.war
 *.ear

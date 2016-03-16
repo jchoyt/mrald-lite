@@ -58,6 +58,7 @@
     </div>
     <form action="FormSubmit" method="post" enctype="x-www-form-urlencoded" onSubmit="return checkForm(this)" name="form">
 	  <input type="hidden" name="workflow" value="UserLogin" />
+	  <input type="hidden" name="pageurl" value="index.jsp" />
       <input type="hidden" name="loginAction" value="checkUser" />
       <center>
         <div class="floating-text" style="width:400px;" name="floatingbox">
