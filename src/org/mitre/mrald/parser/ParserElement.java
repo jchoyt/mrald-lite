@@ -206,7 +206,7 @@ public abstract class ParserElement
                 else
                 {
                     name = nvp.substring( 0, splitPoint );
-                    value = nvp.substring( splitPoint + 1 );
+                    value = nvp.substring( splitPoint + FormTags.NAMEVALUE_TOKEN_STR.length() );
                     /*
                      *  some databases allow spaces in a table name.
                      *  Check here and put double quotes (") around any table name

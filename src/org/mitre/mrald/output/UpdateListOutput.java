@@ -220,9 +220,9 @@ public class UpdateListOutput extends HTMLOutput
 
             //Add the checkbox with the associated information
             String updateInfo = "<td><input type='hidden' name='updateRow" + row_count +
-                "' value=\"Table:" + keyTable +
-                "~Column:" + primaryKeyCols[0] +
-                "~Value:" + rs.getString( 1 ) + "\">";
+                "' value=\"Table" + FormTags.NAMEVALUE_TOKEN_STR  + keyTable +
+                "~Column" + FormTags.NAMEVALUE_TOKEN_STR  + primaryKeyCols[0] +
+                "~Value" + FormTags.NAMEVALUE_TOKEN_STR  + rs.getString( 1 ) + "\">";
             out.println( updateInfo );
             updateInfo = "<input type='button' name='updateRow" +
                     row_count +

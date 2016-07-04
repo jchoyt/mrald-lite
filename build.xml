@@ -38,7 +38,7 @@
         -->
     </target>
 
-    <target name="jar" depends="test">
+    <target name="jar" depends="compile">
         <jar jarfile="${jarfile}" basedir="${build}">
             <include name="*/**" />
             <exclude name="**/test/**" />
@@ -100,11 +100,11 @@
                 <!-- needed only for testing -->
                 <exclude name="mockobjects*" />
                 <!-- flatten out the lib directory -->
-                <exclude name="**/axis2/**"/>
+                <!--<exclude name="**/axis2/**"/>-->
                 <exclude name="**/cewolf/**"/>
             </lib>
             <lib file="${jarfile}"/>
-            <lib dir="${jars}/axis2" />
+            <!--<lib dir="${jars}/axis2" />-->
             <lib dir="${jars}/cewolf" />
             <webinf dir="${config}" excludes="web.xml" />
         </war>

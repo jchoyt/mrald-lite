@@ -538,7 +538,7 @@ public abstract class OutputManager extends AbstractStep
             pair = valueTokens.nextToken();
             split = pair.indexOf( FormTags.NAMEVALUE_TOKEN_STR );
             name = pair.substring( 0, split );
-            value = pair.substring( split + 1, pair.length() );
+            value = pair.substring( split + FormTags.NAMEVALUE_TOKEN_STR.length(), pair.length() );
             nameValues.setValue( name, value );
         }
         return nameValues;

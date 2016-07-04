@@ -420,9 +420,9 @@ public class FBUtils extends java.lang.Object
             while ( iter2.hasNext() )
             {
                 field = ( String ) iter2.next();
-                ret.append( "<option value=\"Table:" );
+                ret.append( "<option value=\"Table" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( tableInfo.getName() );
-                ret.append( "~Field:" );
+                ret.append( "~Field" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( field );
                 ret.append( "\">" );
                 ret.append( tableInfo.getName() );

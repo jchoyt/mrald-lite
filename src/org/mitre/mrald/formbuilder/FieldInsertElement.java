@@ -121,18 +121,18 @@ public class FieldInsertElement extends ParserElement implements FormBuilderElem
 
         String FIELD_ROW = "\n<tr>" +
             "<td align=\"center\">" +
-                "<input name=\"FBInsert<:orderNo:>\" value=\"Output:true~Table:<:tableName:>\" type=\"hidden\">" +
+                "<input name=\"FBInsert<:orderNo:>\" value=\"Output" + FormTags.NAMEVALUE_TOKEN_STR + "true~Table" + FormTags.NAMEVALUE_TOKEN_STR + "<:tableName:>\" type=\"hidden\">" +
                 "<:pkinfo:>" +
-                "<input name=\"FBInsert<:orderNo:>\" value=\"Ignore:true\" type=\"checkbox\"></td>" +
+                "<input name=\"FBInsert<:orderNo:>\" value=\"Ignore" + FormTags.NAMEVALUE_TOKEN_STR + "true\" type=\"checkbox\"></td>" +
             "<td><:tableName:></td>" +
             "<td>" +
-                "<input type=\"hidden\" name=\"FBInsert<:orderNo:>\" value=\"Field:<:column_name:>~Type:<:type:>\"><:column_name:></td>" +
+                "<input type=\"hidden\" name=\"FBInsert<:orderNo:>\" value=\"Field" + FormTags.NAMEVALUE_TOKEN_STR + "<:column_name:>~Type" + FormTags.NAMEVALUE_TOKEN_STR + "<:type:>\"><:column_name:></td>" +
             "<td>" +
                 "<input name=\"FBInsert<:orderNo:>\" type=\"text\" size=\"15\" value=\"<:nice_column_name:>\"></td>" +
             "<td align=\"center\">" +
                 "<input name=\"FBInsert<:orderNo:>\" type=\"text\" size=\"3\" value=\"<:orderNo:>\"></td>" +
             "<td align=\"center\">" +
-                "<input name=\"FBInsert<:orderNo:>\" type=\"checkbox\" value=\"Required:true\" <:required:>></td>" +
+                "<input name=\"FBInsert<:orderNo:>\" type=\"checkbox\" value=\"Required" + FormTags.NAMEVALUE_TOKEN_STR + "true\" <:required:>></td>" +
             "<td align=\"left\"><:listColumn:></td>" +
             "<td align=\"left\"><:comments:></td>";
 

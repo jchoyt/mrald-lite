@@ -36,13 +36,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import org.mitre.mrald.control.MsgObject;
-import org.mitre.mrald.util.Config;
-import org.mitre.mrald.util.DBMetaData;
-import org.mitre.mrald.util.FBUtils;
-import org.mitre.mrald.util.MetaData;
-import org.mitre.mrald.util.MraldConnection;
-import org.mitre.mrald.util.MraldOutFile;
-import org.mitre.mrald.util.TableMetaData;
+import org.mitre.mrald.util.*;
 
 /**
  *  Description of the Class
@@ -207,7 +201,7 @@ public class ListUpdateValuesTag extends BodyTagSupport
                     whereAppend = " AND ";
 
                 	whereClause.append( colName + "='" + val + "'" );
-                	String pkStr = "Table:" + tableName + "~Field:" + colName + "~Value:" + val;
+                	String pkStr = "Table" + FormTags.NAMEVALUE_TOKEN_STR + tableName + "~Field" + FormTags.NAMEVALUE_TOKEN_STR  + colName + "~Value" + FormTags.NAMEVALUE_TOKEN_STR  + val;
                 	filters.add( pkStr );
 
                 }
@@ -446,12 +440,12 @@ public class ListUpdateValuesTag extends BodyTagSupport
                 }
                 String typeName = FBUtils.isDateType(type)   ? "Date" :
 								  FBUtils.isNumberType(type) ? "Numeric" :
-								  	FBUtils.isBinaryType(type) ? "Binary" :
+								  FBUtils.isBinaryType(type) ? "Binary" :
 									  						      "String";
 
 
 
-                buffer.append( "<input type='hidden' name='" + action + ( i + 1 ) + "' value=\"Table:" + tableName + "~Field:" + colName + "~Type:" + typeName + "\"></tr>" );
+                buffer.append( "<input type='hidden' name='" + action + ( i + 1 ) + "' value=\"Table" + FormTags.NAMEVALUE_TOKEN_STR  + tableName + "~Field" + FormTags.NAMEVALUE_TOKEN_STR  + colName + "~Type" + FormTags.NAMEVALUE_TOKEN_STR  + typeName + "\"></tr>" );
             }
         }
         rs.close();

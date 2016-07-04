@@ -132,8 +132,6 @@ public class LinkElement extends org.mitre.mrald.query.LinkElement implements Fo
             ret.append( "<td align=\"left\" width=\"25%\">" + ftable + "." + fcolumn + "</td>\n" );
             ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + counter +  thread + "\" value=\"" + fullLink + "~Link:Ignore \" ></td>\n" );
             ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + counter +  thread + "\" value=\"" + fullLink + "~Link:Full \" CHECKED></td>\n" );
-            //ret.append( "<td width=\"13%\"><input type=\"radio\" name=\"FBLink" + counter + "\" value=\"" + fullLink + "~Link:LeftOuter\" ></td>\n" );
-            //ret.append( "<td width=\"13%\"><input type=\"radio\" name=\"FBLink" + counter + "\" value=\"" + fullLink + "~Link:RightOuter\" ></td>\n" );
             ret.append( fieldEnd );
 
             counter++;
@@ -157,12 +155,10 @@ public class LinkElement extends org.mitre.mrald.query.LinkElement implements Fo
             ret.append( fieldStart );
             ret.append("<input type=\"hidden\" name=\"FBLink" + uniqueCount +"\" value=\"DBName:" + sidName +"~Schema:" + schema + "~SqlThread:"+ thread + "\" />");
 
-            ret.append( dropdown.toString().replaceAll( "Table:", "Table1:" ).replaceAll( "Field:", "Field1:" ) );
-            ret.append( dropdown.toString().replaceAll( "Table:", "Table2:" ).replaceAll( "Field:", "Field2:" ) );
-            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + uniqueCount+ "\" value=\"Link:Ignore~SqlThread:"+ thread + "\" CHECKED></td>\n" );
-            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + uniqueCount + "\" value=\"Link:Full~SqlThread:"+ thread + "\" ></td>\n" );
-            //ret.append( "<td width=\"13%\"><input type=\"radio\" name=\"FBLink" + i + "\" value=\"Link:LeftOuter\" ></td>\n");
-            //ret.append( "<td width=\"13%\"><input type=\"radio\" name=\"FBLink" + i + "\" value=\"Link:RightOuter\" ></td>\n");
+            ret.append( dropdown.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table1" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field1" + FormTags.NAMEVALUE_TOKEN_STR  ) );
+            ret.append( dropdown.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table2" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field2" + FormTags.NAMEVALUE_TOKEN_STR  ) );
+            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + uniqueCount+ "\" value=\"Link" + FormTags.NAMEVALUE_TOKEN_STR + "Ignore~SqlThread" + FormTags.NAMEVALUE_TOKEN_STR + thread + "\" CHECKED></td>\n" );
+            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"FBLink" + uniqueCount + "\" value=\"Link" + FormTags.NAMEVALUE_TOKEN_STR +" Full~SqlThread:"+ thread + "\" ></td>\n" );
             ret.append( fieldEnd );
         }//for
         ret.append( fieldStart );

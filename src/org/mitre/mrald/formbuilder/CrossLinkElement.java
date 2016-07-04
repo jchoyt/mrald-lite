@@ -134,10 +134,10 @@ public class CrossLinkElement extends LinkElement
 
             ret.append( fieldStart );
 
-            ret.append( dropdown.toString().replaceAll( "Table:", "Table1:" ).replaceAll( "Field:", "Field1:" ).replaceAll("DBName:", "DBName1:").replaceAll("Schema:", "Schema1:") );
-            ret.append( dropdown.toString().replaceAll( "Table:", "Table2:" ).replaceAll( "Field:", "Field2:" ).replaceAll("DBName:", "DBName2:").replaceAll("Schema:", "Schema2:"));
-            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"CrossLink" + uniqueCount+ "\" value=\"Link:Ignore~SqlThread:-1\" CHECKED></td>\n" );
-            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"CrossLink" + uniqueCount + "\" value=\"Link:Full~SqlThread:-1\" ></td>\n" );
+            ret.append( dropdown.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table1" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field1" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll("DBName" + FormTags.NAMEVALUE_TOKEN_STR , "DBName1" + FormTags.NAMEVALUE_TOKEN_STR ).replaceAll("Schema" + FormTags.NAMEVALUE_TOKEN_STR , "Schema1" + FormTags.NAMEVALUE_TOKEN_STR ));
+            ret.append( dropdown.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table2" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field2" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll("DBName" + FormTags.NAMEVALUE_TOKEN_STR , "DBName2" + FormTags.NAMEVALUE_TOKEN_STR ).replaceAll("Schema" + FormTags.NAMEVALUE_TOKEN_STR , "Schema2" + FormTags.NAMEVALUE_TOKEN_STR ));
+            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"CrossLink" + uniqueCount+ "\" value=\"Link" + FormTags.NAMEVALUE_TOKEN_STR +"Ignore~SqlThread" + FormTags.NAMEVALUE_TOKEN_STR +"-1\" CHECKED></td>\n" );
+            ret.append( "<td width=\"25%\"><input type=\"radio\" name=\"CrossLink" + uniqueCount + "\" value=\"Link" + FormTags.NAMEVALUE_TOKEN_STR +"Full~SqlThread" + FormTags.NAMEVALUE_TOKEN_STR +"-1\" ></td>\n" );
 
             ret.append( fieldEnd );
 
@@ -201,13 +201,13 @@ public class CrossLinkElement extends LinkElement
             		tableName = sidName + "." + schema + "." + tableName;
             	}*/
                 field = ( String ) iter2.next();
-                ret.append( "<option value=\"Table:" );
+                ret.append( "<option value=\"Table" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( tableName );
-                ret.append( "~Field:" );
+                ret.append( "~Field" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( field );
-                ret.append( "~DBName:" );
+                ret.append( "~DBName" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( sidName );
-                ret.append( "~Schema:" );
+                ret.append( "~Schema" + FormTags.NAMEVALUE_TOKEN_STR  );
                 ret.append( schema );
                 ret.append( "\">" );
                 ret.append( tableInfo.getName() );

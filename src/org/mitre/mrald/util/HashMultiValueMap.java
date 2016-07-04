@@ -107,20 +107,20 @@ public class HashMultiValueMap<K,V> implements Map<K,V>{
 		return (values == null)? null : values.iterator().next();
 	}
 
-	/**
-	 * @param key A particular key to remove.
-	 * @param value A particular value to remove.
-	 * @return The value removed from the hash-map, or null if the value
-	 * was not associated with the key.
-	 */
-	@SuppressWarnings("unchecked")
-	public V remove(Object key, V value) {
-		// We assume that the key really is of type K.
-		Set<V> values = getAll((K)key);
-		boolean found = (values == null ? false: values.remove(value));
-		if (values.isEmpty()) map.remove(key);
-		return (found ? value : null);
-	}
+	// /**
+	//  * @param key A particular key to remove.
+	//  * @param value A particular value to remove.
+	//  * @return The value removed from the hash-map, or null if the value
+	//  * was not associated with the key.
+	//  */
+	// @SuppressWarnings("unchecked")
+	// public V remove(Object key, V value) {
+	// 	// We assume that the key really is of type K.
+	// 	Set<V> values = getAll((K)key);
+	// 	boolean found = (values == null ? false: values.remove(value));
+	// 	if (values.isEmpty()) map.remove(key);
+	// 	return (found ? value : null);
+	// }
 
 	/**
 	 * Populates a HashMultiValueMap with a normal (single-value) map.

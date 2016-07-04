@@ -89,7 +89,7 @@ public class FormTags
     public final static String HAVING_VALUE_TAG = HAVING_OPERATOR_TAG + OPERATOR_TAG;
 
     public final static String TOKENIZER_STR = "~";
-    public final static String NAMEVALUE_TOKEN_STR = ":";
+    public final static String NAMEVALUE_TOKEN_STR = "::";
 
     //May also need TimeRange
     public final static String DAY_TAG = "Day";

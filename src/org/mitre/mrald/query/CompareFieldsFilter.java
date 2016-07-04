@@ -96,7 +96,7 @@ public class CompareFieldsFilter extends FilterElement implements FormBuilderEle
 
 	        ret.append( "<td><strong>First Field:</strong></td>" );
 	        ret.append( "<td>" );
-	        ret.append( list.toString().replaceAll( "Table:", "Table1:" ).replaceAll( "Field:", "Field1:" ) );
+	        ret.append( list.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table1" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field1" + FormTags.NAMEVALUE_TOKEN_STR  ) );
 	        ret.append( "</td>" );
 
 	        ret.append( "<td><strong>Operator:</strong></td>" );
@@ -106,7 +106,7 @@ public class CompareFieldsFilter extends FilterElement implements FormBuilderEle
 
 	        ret.append( "<td><strong>Second Field:</strong></td>" );
 	        ret.append( "<td>" );
-	        ret.append( list.toString().replaceAll( "Table:", "Table2:" ).replaceAll( "Field:", "Field2:" ) );
+	        ret.append( list.toString().replaceAll( "Table" + FormTags.NAMEVALUE_TOKEN_STR , "Table2" + FormTags.NAMEVALUE_TOKEN_STR  ).replaceAll( "Field" + FormTags.NAMEVALUE_TOKEN_STR , "Field2" + FormTags.NAMEVALUE_TOKEN_STR  ) );
 	        ret.append( "</td>" );
 
 	        ret.append( FBUtils.ROW_END );
